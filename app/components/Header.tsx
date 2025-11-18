@@ -401,20 +401,21 @@ export default function Header() {
             </div>
           </div>
 
-          <div className="bg-divider w-full ch-divider-footer h-0125 absolute bottom-0 left-0 right-0 transition-all duration-200 ease-linear"></div>
-        </div>
-        <Script
-          src="https://widgets.coingecko.com/gecko-coin-price-marquee-widget.js"
-          strategy="afterInteractive"
-        />
+          <div className="bg-divider w-full ch-divider-footer h-0125 absolute bottom-0 left-0 right-0 transition-all duration-200 ease-linear">
+            <Script
+              src="https://widgets.coingecko.com/gecko-coin-price-marquee-widget.js"
+              strategy="afterInteractive"
+            />
 
-        {/* Render widget without JSX */}
-        {React.createElement("gecko-coin-price-marquee-widget", {
-          locale: "en",
-          outlined: "true",
-          "coin-ids": "",
-          "initial-currency": "usd",
-        })}
+            {/* Render widget without JSX */}
+            {React.createElement("gecko-coin-price-marquee-widget", {
+              locale: "en",
+              outlined: "true",
+              "coin-ids": "",
+              "initial-currency": "usd",
+            })}
+          </div>
+        </div>
       </header>
     </>
   );

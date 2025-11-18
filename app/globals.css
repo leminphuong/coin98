@@ -1,4 +1,4 @@
-@import "tailwindcss";
+
 
 :root {
   --background: #ffffff;
@@ -12381,3 +12381,4 @@ input:-webkit-autofill:hover {
   opacity: .75;
   color: #000
 }
+
