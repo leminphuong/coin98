@@ -53,6 +53,9 @@ export default function Home() {
             </div>
             <ArticleCardHorizontalFull {...post} />
           </div>
+          <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-1000"></div>
+
+          <div className="bg-divider-subtle h-0125 w-full mt-0"></div>
         </div>
       </div>
     </main>
