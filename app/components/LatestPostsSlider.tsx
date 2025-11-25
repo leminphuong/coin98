@@ -15,10 +15,10 @@ export default function LatestPostsSlider() {
       href: "/btc-dump-manh-trong-24h",
       title: "BTC dump mạnh trong 24h: Điều gì đang xảy ra?",
       image:
-        "https://files.amberblocks.com/thumbnail/chnbzaa92ook5tnj/posts/uwmgvdjbqzxwm4t6/f3bjwnv6m69d1xljfzidc8hhk1fry5xg/btc-giam-24h.png",
+        "https://coin.joydigi.net/wp-content/uploads/2025/11/trump-airdrop-1-300x201.jpg",
       author: "Trung Đoàn",
       date: "Nov 21 2025",
-      avatar: "https://files.amberblocks.com/userdata/usrXX/profile/avatar.png",
+      avatar: "https://coin.joydigi.net/wp-content/uploads/2025/11/trump-airdrop-1-300x201.jpg",
       description:
         "Thị trường crypto đang chứng kiến biến động rất mạnh trong 24h...",
       readTime: "3 min read",
@@ -27,10 +27,10 @@ export default function LatestPostsSlider() {
       href: "/btc-dump-manh-trong-24h",
       title: "BTC dump mạnh trong 24h: Điều gì đang xảy ra?",
       image:
-        "https://files.amberblocks.com/thumbnail/chnbzaa92ook5tnj/posts/uwmgvdjbqzxwm4t6/f3bjwnv6m69d1xljfzidc8hhk1fry5xg/btc-giam-24h.png",
+        "https://coin.joydigi.net/wp-content/uploads/2025/11/trump-airdrop-1-300x201.jpg",
       author: "Trung Đoàn",
       date: "Nov 21 2025",
-      avatar: "https://files.amberblocks.com/userdata/usrXX/profile/avatar.png",
+      avatar: "https://coin.joydigi.net/wp-content/uploads/2025/11/trump-airdrop-1-300x201.jpg",
       description:
         "Thị trường crypto đang chứng kiến biến động rất mạnh trong 24h...",
       readTime: "3 min read",
@@ -39,10 +39,10 @@ export default function LatestPostsSlider() {
       href: "/btc-dump-manh-trong-24h",
       title: "BTC dump mạnh trong 24h: Điều gì đang xảy ra?",
       image:
-        "https://files.amberblocks.com/thumbnail/chnbzaa92ook5tnj/posts/uwmgvdjbqzxwm4t6/f3bjwnv6m69d1xljfzidc8hhk1fry5xg/btc-giam-24h.png",
+        "https://coin.joydigi.net/wp-content/uploads/2025/11/trump-airdrop-1-300x201.jpg",
       author: "Trung Đoàn",
       date: "Nov 21 2025",
-      avatar: "https://files.amberblocks.com/userdata/usrXX/profile/avatar.png",
+      avatar: "https://coin.joydigi.net/wp-content/uploads/2025/11/trump-airdrop-1-300x201.jpg",
       description:
         "Thị trường crypto đang chứng kiến biến động rất mạnh trong 24h...",
       readTime: "3 min read",
@@ -51,10 +51,10 @@ export default function LatestPostsSlider() {
       href: "/btc-dump-manh-trong-24h",
       title: "BTC dump mạnh trong 24h: Điều gì đang xảy ra?",
       image:
-        "https://files.amberblocks.com/thumbnail/chnbzaa92ook5tnj/posts/uwmgvdjbqzxwm4t6/f3bjwnv6m69d1xljfzidc8hhk1fry5xg/btc-giam-24h.png",
+        "https://coin.joydigi.net/wp-content/uploads/2025/11/trump-airdrop-1-300x201.jpg",
       author: "Trung Đoàn",
       date: "Nov 21 2025",
-      avatar: "https://files.amberblocks.com/userdata/usrXX/profile/avatar.png",
+      avatar: "https://coin.joydigi.net/wp-content/uploads/2025/11/trump-airdrop-1-300x201.jpg",
       description:
         "Thị trường crypto đang chứng kiến biến động rất mạnh trong 24h...",
       readTime: "3 min read",
@@ -63,10 +63,10 @@ export default function LatestPostsSlider() {
       href: "/btc-dump-manh-trong-24h",
       title: "BTC dump mạnh trong 24h: Điều gì đang xảy ra?",
       image:
-        "https://files.amberblocks.com/thumbnail/chnbzaa92ook5tnj/posts/uwmgvdjbqzxwm4t6/f3bjwnv6m69d1xljfzidc8hhk1fry5xg/btc-giam-24h.png",
+        "https://coin.joydigi.net/wp-content/uploads/2025/11/trump-airdrop-1-300x201.jpg",
       author: "Trung Đoàn",
       date: "Nov 21 2025",
-      avatar: "https://files.amberblocks.com/userdata/usrXX/profile/avatar.png",
+      avatar: "https://coin.joydigi.net/wp-content/uploads/2025/11/trump-airdrop-1-300x201.jpg",
       description:
         "Thị trường crypto đang chứng kiến biến động rất mạnh trong 24h...",
       readTime: "3 min read",

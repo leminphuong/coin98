@@ -4,6 +4,8 @@ import ArticleCardHorizontalFull from "./components/ArticleCardHorizontalFull";
 import FeaturedPostsSlider from "./components/FeaturedPostsSlider";
 import LatestPostsSlider from "./components/LatestPostsSlider";
 import LatestPostsHeader from "./components/LatestPostsHeader";
+import ArticleList from "./components/ArticleList";
+import SeriesList from "./components/SeriesSlider";
 export default function Home() {
   const post = {
     slug: "co-hoi-jupiter-jup",
@@ -57,10 +59,7 @@ export default function Home() {
         <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-1000"></div>
         <FeaturedPostsSlider />
         <div className="bg-divider-subtle h-0125 w-full mt-0"></div>
-        <div
-          className="max-w-w1280 mx-auto w-full my-600 md:my-1000 lg:my-500"
-          style={{ order: 3 }}
-        >
+        <div className="max-w-w1280 mx-auto w-full my-600 md:my-1000 lg:my-500">
           <div className="clear-both">
             <div className="w-full max-w-w1280 mx-auto h-[100px] s560:h-[250px]">
               <a
@@ -85,20 +84,26 @@ export default function Home() {
           </div>
         </div>
         <div className="bg-divider-subtle h-0125 w-full mt-0"></div>
-        <div
-          className="max-w-w1280 mx-auto w-full my-700 md:my-1000 lg:my-700"
-          style={{ order: 4 }}
-        >
+        <div className="max-w-w1280 mx-auto w-full my-700 md:my-1000 lg:my-700">
           <LatestPostsHeader title="Mới Nhất" moreHref="/latest" />
 
           <LatestPostsSlider />
         </div>
-        
-        <div
-          className="max-w-w1280 mx-auto w-full my-600 md:my-1000 lg:my-500"
-          style={{ order: 5 }}
-        >
+        <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-1000"></div>
+        <div className="max-w-w1280 mx-auto w-full my-600 md:my-1000 lg:my-500">
           <LatestPostsHeader title="Phân tích" moreHref="/phan-tich" />
+
+          <ArticleList />
+        </div>
+        <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-1000"></div>
+        <div className="max-w-w1280 mx-auto w-full my-600 md:my-1000 lg:my-500">
+          <LatestPostsHeader title="Series" moreHref="/series" />
+
+          <SeriesList />
+        </div>
+        <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-1000"></div>
+        <div className="max-w-w1280 mx-auto w-full my-700 md:my-1000 lg:my-700">
+          <LatestPostsHeader title="Mới Nhất" moreHref="/latest" />
 
           <LatestPostsSlider />
         </div>
