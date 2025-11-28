@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="">
+    <footer className="footer">
       <div className="relative w-full max-w-w1440 mx-auto pt-500 pb-300 md:pb-1000 z-100 bg-background">
         <div className="bg-divider h-0125 w-full absolute top-0 left-0"></div>
 

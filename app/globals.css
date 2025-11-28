@@ -12356,3 +12356,8 @@ input:-webkit-autofill:hover {
   color: #000
 }
 
+
+
+#widget-article-detail{
+  height: 100% !important;
+}

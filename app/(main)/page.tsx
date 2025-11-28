@@ -56,7 +56,7 @@ export default function Home() {
           </div>
           <ArticleCardHorizontalFull {...post} />
         </div>
-        <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-1000"></div>
+        <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-500"></div>
         <FeaturedPostsSlider />
         <div className="bg-divider-subtle h-0125 w-full mt-0"></div>
         <div className="max-w-w1280 mx-auto w-full my-600 md:my-1000 lg:my-500">
@@ -89,19 +89,19 @@ export default function Home() {
 
           <LatestPostsSlider />
         </div>
-        <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-1000"></div>
+        <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-500"></div>
         <div className="max-w-w1280 mx-auto w-full my-600 md:my-1000 lg:my-500">
           <LatestPostsHeader title="Phân tích" moreHref="/phan-tich" />
 
           <ArticleList />
         </div>
-        <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-1000"></div>
+        <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-500"></div>
         <div className="max-w-w1280 mx-auto w-full my-600 md:my-1000 lg:my-500">
           <LatestPostsHeader title="Series" moreHref="/series" />
 
           <SeriesList />
         </div>
-        <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-1000"></div>
+        <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-500"></div>
         <div className="max-w-w1280 mx-auto w-full my-700 md:my-1000 lg:my-700">
           <LatestPostsHeader title="Mới Nhất" moreHref="/latest" />
 
