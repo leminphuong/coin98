@@ -77,7 +77,7 @@ export default function FeaturedPostsSlider() {
   };
 
   return (
-    <div className="max-w-w1280 mx-auto w-full my-600 md:my-1000 lg:my-500">
+    <>
       <SliderHeader title="Bài viết nổi bật" onPrev={prev} onNext={next} />
 
       {/* DESKTOP SLIDER */}
@@ -95,6 +95,6 @@ export default function FeaturedPostsSlider() {
           <MobileItem key={idx} {...item} />
         ))}
       </div>
-    </div>
+    </>
   );
 }

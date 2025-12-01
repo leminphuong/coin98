@@ -9,6 +9,7 @@ export default function MainLayout({
   return (
     <>
       <Header />
+      
       <main className="flex flex-col flex-1 pt-1600 md:pt-sp160">
         {children}
       </main>

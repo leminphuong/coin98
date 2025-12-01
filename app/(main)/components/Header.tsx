@@ -1,13 +1,201 @@
 "use client";
 
+import { useState } from "react";
+
 import Navbar from "./Navbar";
 import Link from "next/link";
 import Script from "next/script";
 import React from "react";
 
 export default function Header() {
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
   return (
     <>
+      {isSearchOpen && (
+        <div className="fixed inset-0 z-100 flex items-center justify-center transition-all duration-150 ease-linear group-data-[modal=hide]/body:opacity-0 group-data-[modal=show]/body:opacity-100 bg-transparent">
+          <div
+            role="dialog-content"
+            className="relative p-100 rounded-050 bg-background shadow-elevation-300 transition-all duration-200 ease-linear w-full h-full opacity-100 translate-y-0"
+          >
+            {/* TOP */}
+            <div className="flex-none w-full md:pb-300 sticky md:pt-1000 md:top-0 bg-background z-10">
+              <div className="relative w-full py-300 px-100 sm:px-400 md:p-0 md:w-w680 md:mx-auto">
+                {/* BACK BUTTON */}
+                <button
+                  onClick={() => setIsSearchOpen(false)}
+                  className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear lg:disabled:cursor-not-allowed bg-button-ghost-background lg:hover:bg-button-ghost-background-hovered active:bg-button-ghost-background-pressed lg:hover:disabled:bg-button-ghost-background-disabled disabled:bg-button-ghost-background-disabled border-0125 border-transparent py-050 px-100 mb-200 lg:mb-0 lg:absolute lg:right-100% lg:top-50% lg:-translate-y-50% lg:mr-300"
+                >
+                  <i className="ab-icon !not-italic text-button-ghost-icon group-disabled/ab-button:text-button-ghost-icon-disabled text-size-400 mr-100 ab-arrow_left" />
+                  <span className="select-none text-button-ghost-text group-disabled/ab-button:text-button-ghost-text-disable button-text-medium">
+                    Back
+                  </span>
+
+                  <div className="flex items-center justify-center -z-1 opacity-0 absolute inset-0 ab-btn-loading-wrapper transition-all">
+                    <div className="relative animate-spin flex items-center justify-center w-200 h-200">
+                      <div className="h-050 w-050 rounded-circle absolute left-50% -translate-x-50% top-0 z-1 bg-btn-loading-transparent" />
+                      <div
+                        className="w-full h-full rounded-circle border-box bg-btn-loading-transparent"
+                        style={{
+                          padding: "4px",
+                          mask: "conic-gradient(rgba(0, 0, 0, 0) 45deg, rgb(0, 0, 0)) subtract, linear-gradient(rgb(0,0,0) 0px, rgb(0,0,0) 0px) content-box",
+                        }}
+                      />
+                    </div>
+                  </div>
+                </button>
+
+                {/* SEARCH BAR */}
+                <div className="flex flex-col">
+                  <label
+                    htmlFor="waus9"
+                    className="h-600 bg-background flex items-center py-150 px-200 rounded-050 border-0125 border-border transition-all duration-200 focus-within:border-cbr-50 focus-within:shadow-outline-primary cursor-text rounded-circle"
+                  >
+                    <i className="ab-icon !not-italic mr-150 flex-none transition-all duration-200 text-size-800 text-icon ab-search" />
+
+                    <input
+                      placeholder="Search"
+                      id="waus9"
+                      autoComplete="off"
+                      className="outline-none bg-transparent align-middle flex-1 text-text-primary disabled:text-text-disabled select-none placeholder:select-none placeholder:text-text-subtlest"
+                      defaultValue="a"
+                    />
+
+                    <div className="w-300 h-300 flex items-center justify-center ml-150 lg:hover:cursor-pointer visible">
+                      <i className="ab-icon !not-italic flex-none text-size-400 text-icon-subtlest ab-cancel" />
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            {/* MAIN SCROLL AREA */}
+            <div className="no-scrollbar h-full w-full overflow-y-auto flex-1 relative flex flex-col">
+              <div className="w-full sm:px-200 md:px-0 mx-auto max-w-w960 overflow-y-auto no-scrollbar">
+                <div className="w-full relative md:px-200 pb-sp200 lg:pb-0">
+                  <div className="flex flex-col lg:flex-row">
+                    {/* LEFT COLUMN */}
+                    <div className="lg:w-w430 lg:flex-none">
+                      <div className="py-100 px-100 sm:px-200">
+                        <div className="relative py-100">
+                          <span className="ui-text-x-small-emphasis text-text-subtlest">
+                            POSTS
+                          </span>
+                          <div className="bg-divider-subtle h-0125 w-full absolute -bottom-100 left-0" />
+                        </div>
+                      </div>
+
+                      {/* POST ITEM */}
+                      <a
+                        className="block grow group/search-suggest"
+                        href="/huong-dan-serenity-halo-testnet"
+                      >
+                        <div className="transition-all duration-300 bg-background lg:hover:bg-background-hovered article-suggested select-none overflow-hidden flex py-300 px-100 sm:px-200 flex-row">
+                          <picture className="block flex-none w-w90 relative">
+                            <img
+                              alt="Hướng dẫn làm Serenity & Halo Testnet trên Aura Network"
+                              width={600}
+                              height={400}
+                              className="object-cover rounded-050 aspect-3-2 w-full rounded-050"
+                              src="/_next/image?url=https%3A%2F%2Ffile.coin98.com%2Fthumbnail%2Fhuong-dan-serenity-halo-testnet.png&w=3840&q=75"
+                            />
+                          </picture>
+
+                          <div className="flex-1 flex flex-col ml-200">
+                            <p className="text-text-primary break-words ui-text-small-emphasis">
+                              Hướng dẫn làm Serenity & Halo Testnet trên Aura
+                              Network
+                            </p>
+
+                            <div className="h-300 flex items-center mt-050 ui-text-small">
+                              May 18 2022
+                              <div className="m-050 flex items-center justify-center h-100 aspect-square">
+                                <div className="w-100 aspect-square rounded-circle bg-g block scale-50" />
+                              </div>
+                              <div className="box-border badge flex w-fit items-center justify-center rounded-circle border-0125 px-100 py-0125 border-badge-labeled-neutral-border bg-badge-labeled-neutral-background h-300 text-text-primary my-050 whitespace-nowrap">
+                                <span className="ui-text-small text-badge-labeled-neutral-text">
+                                  4 min read
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Divider */}
+                        <div className="px-200">
+                          <div className="bg-divider h-0125 w-full group-last/search-suggest:hidden" />
+                        </div>
+                      </a>
+                    </div>
+
+                    {/* RIGHT COLUMN */}
+                    <div className="lg:flex-1">
+                      <div className="w-full">
+                        <div className="py-100 px-200">
+                          <div className="relative py-100">
+                            <span className="ui-text-x-small-emphasis text-text-subtlest">
+                              SERIES
+                            </span>
+                            <div className="bg-divider-subtle h-0125 w-full absolute -bottom-100 left-0" />
+                          </div>
+                        </div>
+
+                        {/* SERIES SCROLL */}
+                        <div className="flex overflow-x-auto no-scrollbar">
+                          <a
+                            className="min-w-w320 lg:min-w-0 w-1/2"
+                            href="/series/the-research-and-analysis"
+                          >
+                            <div className="transition-all duration-300 bg-background lg:hover:bg-background-hovered group/seriesCard p-200">
+                              <div className="w-full relative overflow-hidden rounded-050">
+                                <picture>
+                                  <img
+                                    alt="The Research & Analysis"
+                                    width={379}
+                                    height={379}
+                                    className="transition-all duration-200 ease-linear object-cover lg:group-hover/seriesCard:scale-105 aspect-3-2 md:aspect-square w-full rounded-050"
+                                    src="/_next/image?url=https%3A%2F%2Ffiles.amberblocks.com%2Fthumbnail%2Fchnbzaa92ook5tnj%2Fseries%2Fs8gvo18tpe6k%2Ff42citksrh1pfa0wphkw680e9se7d3m5%2Fthe-research-analysis.jpg&w=3840&q=75"
+                                  />
+                                </picture>
+
+                                {/* OVERLAY TEXT */}
+                                <div className="pb-200 px-200 top-400 flex flex-col justify-end absolute inset-x-0 bottom-0 rounded-050 bg-series-overlay">
+                                  <div
+                                    data-theme="dark"
+                                    className="select-none flex-1 relative overflow-hidden flex flex-col justify-end"
+                                  >
+                                    <div className="text-text-primary article-h6">
+                                      The Research & Analysis
+                                    </div>
+                                    <div className="ui-text-x-small text-text-secondary mt-100">
+                                      339 POSTS
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* FOOTER BUTTON */}
+              <div className="sticky bottom-0 inset-x-0 flex justify-center lg:justify-end bg-background md:mt-200 md:mb-800 py-100 z-1">
+                <button className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear bg-button-ghost-background lg:hover:bg-button-ghost-background-hovered active:bg-button-ghost-background-pressed border-0125 border-transparent py-100 px-150">
+                  <i className="ab-icon !not-italic text-button-ghost-icon text-size-400 mr-100 ab-enter" />
+                  <span className="select-none text-button-ghost-text button-text-large">
+                    Enter for more
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="fixed bottom-200 left-200 h-fit w-fit -z-1"></div>
       <header className="z-90 max-w-screen w-screen transition-all duration-0 fixed left-0 top-0 ch-template-center2rows">
         <div className="ab-channel-header w-full relative z-10">
@@ -168,14 +356,14 @@ export default function Header() {
 
               {/* SEARCH BUTTONS */}
               <button
-                role="trigger"
+                onClick={() => setIsSearchOpen(true)}
                 className="group/ab-button relative select-none items-center justify-center rounded-050 transition-all duration-200 ease-linear lg:disabled:cursor-not-allowed bg-button-ghost-background lg:hover:bg-button-ghost-background-hovered active:bg-button-ghost-background-pressed disabled:bg-button-ghost-background-disabled border-0125 border-transparent p-100 ch-search w-fit h-fit md:w-w136 lg:w-w320 md:h-600 hidden md:hidden"
               >
                 <i className="ab-icon !not-italic text-button-ghost-icon text-size-800 mr-0 ab-search" />
               </button>
 
               <button
-                role="trigger"
+                onClick={() => setIsSearchOpen(true)}
                 className="group/ab-button relative select-none items-center justify-center rounded-050 transition-all duration-200 ease-linear lg:disabled:cursor-not-allowed p-0 border-none md:w-w136 lg:w-w320 ch-search w-fit h-fit md:h-600 hidden md:block"
               >
                 <span className="select-none button-text-large text-button-text-text active:text-button-text-text-pressed">
@@ -364,14 +552,14 @@ export default function Header() {
               </button>
 
               <button
-                role="trigger"
+                onClick={() => setIsSearchOpen(true)}
                 className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear lg:disabled:cursor-not-allowed bg-button-ghost-background lg:hover:bg-button-ghost-background-hovered active:bg-button-ghost-background-pressed disabled:bg-button-ghost-background-disabled border-0125 border-transparent p-100 ch-search w-fit h-fit md:w-w136 lg:w-w320 md:h-600 md:hidden"
               >
                 <i className="ab-icon !not-italic text-button-ghost-icon group-disabled/ab-button:text-button-ghost-icon-disabled text-size-800 mr-0 ab-search"></i>
               </button>
 
               <button
-                role="trigger"
+                onClick={() => setIsSearchOpen(true)}
                 className="group/ab-button relative select-none items-center justify-center rounded-050 transition-all duration-200 ease-linear lg:disabled:cursor-not-allowed p-0 border-none hidden md:w-w136 lg:w-w320 ch-search w-fit h-fit md:h-600 md:hidden"
               >
                 <span className="select-none button-text-large text-button-text-text active:text-button-text-text-pressed disabled:text-button-text-text-disabled">

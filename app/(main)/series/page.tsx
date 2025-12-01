@@ -142,7 +142,9 @@ export default function SeriesPage() {
         <div className="px-300">
           <div className="border-b-0125 border-divider mt-500"></div>
         </div>
-        <FeaturedPostsSlider />
+        <div className="mt-800">
+          <FeaturedPostsSlider />
+        </div>
       </div>
       <div className="py-1000 sm:px-100 max-w-w1440 mx-auto w-full s1441:rounded-100 overflow-hidden">
         <div className="flex items-center px-300 py-200">

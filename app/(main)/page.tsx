@@ -57,7 +57,9 @@ export default function Home() {
           <ArticleCardHorizontalFull {...post} />
         </div>
         <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-500"></div>
-        <FeaturedPostsSlider />
+        <div className="max-w-w1280 mx-auto w-full my-600 md:my-1000 lg:my-500">
+          <FeaturedPostsSlider />
+        </div>
         <div className="bg-divider-subtle h-0125 w-full mt-0"></div>
         <div className="max-w-w1280 mx-auto w-full my-600 md:my-1000 lg:my-500">
           <div className="clear-both">

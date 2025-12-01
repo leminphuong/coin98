@@ -104,7 +104,7 @@ export default function CoursesPage() {
                   </span>
                 </div>
 
-                <div className="absolute top-0 left-0 py-250 h-full lg:h-auto lg:px-300 lg:w-full">
+                <div className="absolute top-0 left-0 py-250 h-full lg:h-auto lg:py-0 lg:px-300 lg:w-full group-first/course-section-menu:hidden">
                   <div className="bg-divider-subtle h-full w-0125 lg:h-0125 lg:w-full"></div>
                 </div>
               </div>
@@ -123,7 +123,7 @@ export default function CoursesPage() {
                   </span>
                 </div>
 
-                <div className="absolute top-0 left-0 py-250 h-full lg:h-auto lg:px-300 lg:w-full">
+                <div className="absolute top-0 left-0 py-250 h-full lg:h-auto lg:py-0 lg:px-300 lg:w-full group-first/course-section-menu:hidden">
                   <div className="bg-divider-subtle h-full w-0125 lg:h-0125 lg:w-full"></div>
                 </div>
               </div>
