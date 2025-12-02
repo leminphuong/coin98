@@ -1,61 +1,54 @@
-import ArticleCardVertical from "./components/ArticleCardVertical";
-import ArticleCardHorizontalLarge from "./components/ArticleCardVerticalLarge";
-import ArticleCardHorizontalFull from "./components/ArticleCardHorizontalFull";
-import FeaturedPostsSlider from "./components/FeaturedPostsSlider";
-import LatestPostsSlider from "./components/LatestPostsSlider";
-import LatestPostsHeader from "./components/LatestPostsHeader";
-import ArticleList from "./components/ArticleList";
-import SeriesList from "./components/SeriesSlider";
-export default function Home() {
-  const post = {
-    slug: "co-hoi-jupiter-jup",
-    title: 'Jupiter: Từ dự án "ngáo giá" đến hidden gem hệ Solana?',
-    excerpt:
-      "Đây là câu chuyện thật của mình: từ chỗ phải unstake toàn bộ JUP vì tokenomics “ngáo giá”…",
-    image:
-      "https://coin.joydigi.net/wp-content/uploads/2025/11/trump-airdrop-1-300x201.jpg",
-    avatar:
-      "https://coin.joydigi.net/wp-content/uploads/2025/11/trump-airdrop-1-300x201.jpg",
-    author: "Jack Vĩ",
-    date: "2 days ago",
-    readTime: "18 min read",
-  };
+import ArticleCardVertical from "@/components/ArticleCardVertical";
+import ArticleCardHorizontalLarge from "@/components/ArticleCardVerticalLarge";
+import ArticleCardHorizontalFull from "@/components/ArticleCardHorizontalFull";
+import FeaturedPostsSlider from "@/components/FeaturedPostsSlider";
+import LatestPostsSlider from "@/components/LatestPostsSlider";
+import LatestPostsHeader from "@/components/LatestPostsHeader";
+import ArticleList from "@/components/ArticleList";
+import SeriesList from "@/components/SeriesSlider";
+import { getHomeData } from "@/api/getHomeData"; // bạn tạo file này như hướng dẫn
+import type { PostItem } from "@/types/post";
+import React from "react";
+
+export default async function Home() {
+  const data = await getHomeData("vi");
+
+  // 2: Lấy danh sách bài mới nhất
+  const latest: PostItem[] = data.latest_posts || [];
+
+  console.log(latest);
 
   return (
     <div className="w-full mx-auto max-w-w1280">
       <div className="flex w-full flex-wrap">
-        {/* LEFT 3/4 COLUMN */}
         <div className="w-full lg:w-3/4 flex flex-col-reverse lg:flex-row">
           {/* LEFT SMALL POSTS */}
           <div className="w-full lg:w-1/3">
             <div className="grid grid-cols-2 lg:grid-cols-1 gap-300 px-200 lg:px-0">
-              <ArticleCardVertical {...post} />
-              <ArticleCardVertical {...post} />
+              {latest.slice(1, 3).map((post) => (
+                <ArticleCardVertical key={post.slug} {...post} />
+              ))}
             </div>
           </div>
 
           {/* RIGHT FEATURED LARGE ARTICLE */}
           <div className="w-full lg:w-2/3">
-            <ArticleCardHorizontalLarge {...post} />
+            {latest[0] && <ArticleCardHorizontalLarge {...latest[0]} />}
           </div>
         </div>
 
-        {/* RIGHT SIDEBAR 1/4 */}
         <div className="w-full lg:w-1/4">
-          <ArticleCardHorizontalFull {...post} />
-          <div className="px-200 md:px-300">
-            <div className="bg-divider h-0125 w-full"></div>
-          </div>
-          <ArticleCardHorizontalFull {...post} />
-          <div className="px-200 md:px-300">
-            <div className="bg-divider h-0125 w-full"></div>
-          </div>
-          <ArticleCardHorizontalFull {...post} />
-          <div className="px-200 md:px-300">
-            <div className="bg-divider h-0125 w-full"></div>
-          </div>
-          <ArticleCardHorizontalFull {...post} />
+          {latest.slice(3, 7).map((post) => (
+            <React.Fragment key={post.slug}>
+              <ArticleCardHorizontalFull {...post} />
+              <div className="px-200 md:px-300">
+                <div className="bg-divider h-0125 w-full"></div>
+              </div>
+            </React.Fragment>
+          ))}
         </div>
+
+        {/* Divider cuối */}
         <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-500"></div>
         <div className="max-w-w1280 mx-auto w-full my-600 md:my-1000 lg:my-500">
           <FeaturedPostsSlider />

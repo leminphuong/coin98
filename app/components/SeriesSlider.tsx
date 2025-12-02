@@ -2,7 +2,8 @@
 
 import React, { useRef } from "react";
 import Slider from "react-slick";
-import { SeriesCardDesktop, SeriesCardMobile, SeriesItem } from "./SeriesCard";
+import { SeriesCardDesktop, SeriesCardMobile } from "@/components/SeriesCard";
+import type { SeriesItem } from "@/types/series";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

@@ -1,19 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import { LatestPostCardProps } from "./LatestPostCard.types";
+import { PostItem } from "@/types/post";
 
 export default function LatestPostCard({
-  href,
+  slug,
   title,
   excerpt,
   image,
   readTime,
   date,
   authors,
-}: LatestPostCardProps) {
+}: PostItem) {
+  const safeAuthors = authors ?? [];
+
   return (
-    <a href={href} className="block">
+    <a href={slug} className="block">
       <div
         className="transition-all duration-300 bg-background lg:hover:bg-background-hovered 
                    article-vertical select-none px-200 py-300 md:px-300"
@@ -40,7 +42,7 @@ export default function LatestPostCard({
         ============================== */}
         <div className="ui-text-small text-text-secondary min-h-300 flex-wrap items-center md:mb-100 mb-100 md:flex hidden">
           <div className="flex items-center -space-x-2 mr-100">
-            {authors.map((au, idx) => (
+            {safeAuthors .map((au, idx) => (
               <div
                 key={idx}
                 className="aspect-square relative z-10 ab-avatar-people ab-avatar-size-24 ring-2 ring-background rounded-circle"
@@ -58,7 +60,7 @@ export default function LatestPostCard({
           </div>
 
           <span className="ui-text-x-small md:ui-text-small text-text-primary">
-            {authors.length > 1 ? "Multi Author" : authors[0]?.name}
+            {safeAuthors .length > 1 ? "Multi Author" : safeAuthors [0]?.name}
           </span>
 
           <div className="m-050 flex items-center justify-center h-100 aspect-square">

@@ -1,5 +1,5 @@
-import LatestPostsHeader from "../components/LatestPostsHeader";
-import LatestPostsSlider from "../components/LatestPostsSlider";
+import LatestPostsHeader from "@/components/LatestPostsHeader";
+import LatestPostsSlider from "@/components/LatestPostsSlider";
 
 export default function ReportPage() {
   return (

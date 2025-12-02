@@ -1,6 +1,6 @@
 "use client";
 
-import SidebarPortal from "../../components/SidebarPortal";
+import SidebarPortal from "../@/components/SidebarPortal";
 
 const posts = [
   {

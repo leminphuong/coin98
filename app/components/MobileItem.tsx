@@ -1,10 +1,10 @@
 "use client";
 
-import { PostItem } from "./types";
+import { PostItem } from "@/types/post";
 
-export default function MobileItem({ href, image, title, author, date }: PostItem) {
+export default function MobileItem({ slug, image, title, author, date }: PostItem) {
   return (
-    <a href={href}>
+    <a href={slug}>
       <div
         draggable={false}
         className="transition-all duration-300 bg-background select-none 

@@ -1,13 +1,13 @@
 "use client";
 
-import { PostItem } from "./types";
+import { PostItem } from "@/types/post";
 
-export default function SlideItem({ href, image, title, author, date }: PostItem) {
+export default function SlideItem({ slug, image, title, author, date }: PostItem) {
   return (
     <a
       className=""
       tabIndex={-1}
-      href={href}
+      href={slug}
       style={{ width: "100%", display: "inline-block" }}
     >
       <div

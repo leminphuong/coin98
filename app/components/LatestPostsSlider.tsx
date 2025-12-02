@@ -2,8 +2,8 @@
 
 import Slider from "react-slick";
 import { useRef } from "react";
-import LatestPostItem from "./LatestPostItem";
-import LatestPostCard from "./LatestPostCard";
+import LatestPostItem from "@/components/LatestPostItem";
+import LatestPostCard from "@/components/LatestPostCard";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -98,7 +98,7 @@ export default function LatestPostsSlider() {
         {items.slice(0, 4).map((item, idx) => (
           <LatestPostCard
             key={idx}
-            href={item.href}
+            slug={item.href}
             title={item.title}
             excerpt={item.description}
             image={item.image}

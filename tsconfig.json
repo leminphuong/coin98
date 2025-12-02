@@ -4,31 +4,42 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
+
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
+
     "module": "esnext",
     "moduleResolution": "bundler",
+
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+
     "plugins": [
       {
         "name": "next"
       }
     ],
+
+    /* ⭐ ALIAS @ → ROOT PROJECT */
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/api/*": ["./app/api/*"],
+      "@/components/*": ["app/components/*"],
+      "@/types/*": ["./app/types/*"]
     }
   },
+
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "**/*.mts",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts",
-    "**/*.mts"
+    ".next/dev/types/**/*.ts"
   ],
+
   "exclude": ["node_modules"]
 }

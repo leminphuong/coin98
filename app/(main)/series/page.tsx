@@ -1,4 +1,4 @@
-import FeaturedPostsSlider from "../components/FeaturedPostsSlider";
+import FeaturedPostsSlider from "@/components/FeaturedPostsSlider";
 
 export default function SeriesPage() {
   return (

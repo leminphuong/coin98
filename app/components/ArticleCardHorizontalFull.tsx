@@ -1,17 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import type { PostItem } from "@/types/post";
 
-export interface ArticleCardHorizontalFullProps {
-  slug: string;
-  title: string;
-  excerpt: string;
-  image: string;
-  avatar: string;
-  author: string;
-  date: string;
-  readTime: string;
-}
 
 export default function ArticleCardHorizontalFull({
   slug,
@@ -22,7 +13,7 @@ export default function ArticleCardHorizontalFull({
   author,
   date,
   readTime,
-}: ArticleCardHorizontalFullProps) {
+}: PostItem) {
   return (
     <div>
       <Link href={`/${slug}`}>

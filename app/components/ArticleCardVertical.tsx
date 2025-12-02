@@ -3,18 +3,9 @@
 import Link from "next/link";
 import React from "react";
 
-export interface ArticleCardVerticalLargeProps {
-  slug: string;
-  title: string;
-  excerpt: string;
-  image: string;
-  avatar: string;
-  author: string;
-  date: string;
-  readTime: string;
-}
+import type { PostItem } from "@/types/post";
 
-export default function ArticleCardVerticalLarge({
+export default function ArticleCardVertical({
   slug,
   title,
   excerpt,
@@ -23,7 +14,7 @@ export default function ArticleCardVerticalLarge({
   author,
   date,
   readTime,
-}: ArticleCardVerticalLargeProps) {
+}: PostItem) {
   return (
     <Link href={`/${slug}`}>
       <div
@@ -31,7 +22,7 @@ export default function ArticleCardVerticalLarge({
         draggable={false}
       >
         {/* IMAGE */}
-        <picture className="relative lg:mb-250 mb-200 block">
+        <picture className="relative mb-200 block">
           <img
             src={image}
             alt={title}
@@ -40,7 +31,7 @@ export default function ArticleCardVerticalLarge({
         </picture>
 
         {/* AUTHOR */}
-        <div className="ui-text-small text-text-secondary min-h-300 flex-wrap items-center lg:mb-150 mb-100 lg:flex hidden">
+        <div className="ui-text-small text-text-secondary min-h-300 flex-wrap items-center mb-100 lg:flex hidden">
           <div className="flex items-center h-max ui-text-small text-text-primary">
             <div className="aspect-square ab-avatar-people ab-avatar-size-24 flex-none mr-100">
               <img
@@ -65,19 +56,19 @@ export default function ArticleCardVerticalLarge({
         </div>
 
         {/* TITLE */}
-        <p className="text-text-primary break-words md:article-h5 lg:article-h3 article-h5">
+        <p className="text-text-primary break-words md:article-h5 article-h7">
           {title}
         </p>
 
         {/* EXCERPT */}
-        <div className="lg:mt-150 mt-100 lg:block hidden">
+        <div className="mt-100 hidden">
           <span className="article-text-x-small break-words line-clamp-3 text-text-secondary">
             {excerpt}
           </span>
         </div>
 
-        {/* READ TIME + BUTTONS */}
-        <div className="h-400 items-center justify-between lg:mt-200 mt-150 lg:flex hidden">
+        {/* READ TIME + ICONS */}
+        <div className="h-400 items-center justify-between mt-150 lg:flex hidden">
           <div className="flex items-center">
             <div className="box-border badge flex w-fit items-center justify-center rounded-circle border-0125 px-100 py-0125 border-badge-labeled-neutral-border bg-badge-labeled-neutral-background h-300 text-text-primary my-050 whitespace-nowrap">
               <span className="ui-text-small text-badge-labeled-neutral-text">
@@ -86,15 +77,14 @@ export default function ArticleCardVerticalLarge({
             </div>
           </div>
 
+          {/* Save + Copy */}
           <div className="flex items-center">
-            {/* Save */}
             <div className="overflow-hidden relative w-max h-max group/tooltip lg:hover:overflow-visible mr-150">
               <button className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear bg-button-ghost-background lg:hover:bg-button-ghost-background-hovered border-0125 border-transparent p-100">
                 <i className="ab-icon text-button-ghost-icon text-size-800 ab-bookmark_outlined"></i>
               </button>
             </div>
 
-            {/* Copy Link */}
             <div className="overflow-hidden relative w-max h-max group/tooltip lg:hover:overflow-visible">
               <button className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear bg-button-ghost-background lg:hover:bg-button-ghost-background-hovered border-0125 border-transparent p-100">
                 <i className="ab-icon text-button-ghost-icon text-size-800 ab-link"></i>

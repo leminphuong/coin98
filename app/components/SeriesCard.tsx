@@ -1,14 +1,7 @@
 "use client";
 import React from "react";
 
-export interface SeriesItem {
-  id: string;
-  title: string;
-  posts: number;
-  image: string;
-  description: string;
-  url: string;
-}
+import type { SeriesItem } from "@/types/series";
 
 /* ============================================
    SERIES CARD DESKTOP (Upside style - Enhanced)
