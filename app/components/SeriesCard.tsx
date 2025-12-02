@@ -38,7 +38,7 @@ export function SeriesCardDesktop({ item }: { item: SeriesItem }) {
                 </div>
 
                 <div className="ui-text-x-small text-text-secondary mt-100 delay-200 lg:group-hover/seriesCard:opacity-0 lg:group-hover/seriesCard:delay-0">
-                  {item.posts} POSTS
+                  {item.count} count
                 </div>
 
                 <div className="inset-x-0 bottom-0 absolute transition-all duration-200 ease-linear article-text-x-small text-text-primary line-clamp-4 translate-y-30% opacity-0 delay-0 lg:group-hover/seriesCard:translate-y-0 lg:group-hover/seriesCard:opacity-100 lg:group-hover/seriesCard:delay-100">
@@ -149,7 +149,7 @@ export function SeriesCardMobile({ item }: { item: SeriesItem }) {
                     lg:group-hover/seriesCard:delay-0
                   "
                 >
-                  {item.posts} POSTS
+                  {item.count} count
                 </div>
 
                 <div

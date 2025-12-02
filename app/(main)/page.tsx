@@ -99,9 +99,9 @@ export default async function Home() {
         </div>
         <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-500"></div>
         <div className="max-w-w1280 mx-auto w-full my-600 md:my-1000 lg:my-500">
-          <LatestPostsHeader title="Series" moreHref="/series" />
+          <LatestPostsHeader title={data.series} moreHref={data.url_series} />
 
-          <SeriesList />
+          <SeriesList items={data.series_tags} />
         </div>
         <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-500"></div>
         <div className="max-w-w1280 mx-auto w-full my-700 md:my-1000 lg:my-700">

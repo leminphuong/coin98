@@ -560,7 +560,7 @@ export default function ReportPage() {
         </div>
         <div className="mb-500">
           <LatestPostsHeader title="Mới Nhất" moreHref="/latest" />
-          <LatestPostsSlider />
+          {/* <LatestPostsSlider /> */}
         </div>
       </div>
     </>

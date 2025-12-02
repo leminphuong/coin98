@@ -143,7 +143,7 @@ export default function SeriesPage() {
           <div className="border-b-0125 border-divider mt-500"></div>
         </div>
         <div className="mt-800">
-          <FeaturedPostsSlider />
+          {/* <FeaturedPostsSlider /> */}
         </div>
       </div>
       <div className="py-1000 sm:px-100 max-w-w1440 mx-auto w-full s1441:rounded-100 overflow-hidden">
