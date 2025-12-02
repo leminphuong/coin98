@@ -51,7 +51,10 @@ export default async function Home() {
         {/* Divider cuối */}
         <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-500"></div>
         <div className="max-w-w1280 mx-auto w-full my-600 md:my-1000 lg:my-500">
-          <FeaturedPostsSlider />
+          <FeaturedPostsSlider
+            title={data.featured_title}
+            items={data.featured_posts}
+          />
         </div>
         <div className="bg-divider-subtle h-0125 w-full mt-0"></div>
         <div className="max-w-w1280 mx-auto w-full my-600 md:my-1000 lg:my-500">
@@ -65,12 +68,12 @@ export default async function Home() {
                 <picture>
                   <source
                     media="(min-width:560px)"
-                    srcSet="https://files.amberblocks.com/thumbnail/chnbzaa92ook5tnj/layout/lzrbv0qyrjwg/f4mp6lsny6h42c7ny3i08ign55zd4qnl/new-banner-ivy-newsletter-rounded.png"
+                    srcSet={data.featured_banner}
                   />
 
                   <img
                     alt="advertising"
-                    src="https://files.amberblocks.com/thumbnail/chnbzaa92ook5tnj/layout/lzrbv0qyrjwg/fc8ll1o4m37ummm9f8pmz6vci60p8ama/mobile-banner-ivy.png"
+                    src={data.featured_banner}
                     className="w-full h-full object-cover"
                   />
                 </picture>
@@ -80,10 +83,14 @@ export default async function Home() {
         </div>
         <div className="bg-divider-subtle h-0125 w-full mt-0"></div>
         <div className="max-w-w1280 mx-auto w-full my-700 md:my-1000 lg:my-700">
-          <LatestPostsHeader title="Mới Nhất" moreHref="/latest" />
+          <LatestPostsHeader
+            title={data.moi_nhat}
+            moreHref={data.url_more_moi_nhat}
+          />
 
-          <LatestPostsSlider />
+          <LatestPostsSlider items={data.latest_posts} />
         </div>
+
         <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-500"></div>
         <div className="max-w-w1280 mx-auto w-full my-600 md:my-1000 lg:my-500">
           <LatestPostsHeader title="Phân tích" moreHref="/phan-tich" />
@@ -98,9 +105,12 @@ export default async function Home() {
         </div>
         <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-500"></div>
         <div className="max-w-w1280 mx-auto w-full my-700 md:my-1000 lg:my-700">
-          <LatestPostsHeader title="Mới Nhất" moreHref="/latest" />
+          <LatestPostsHeader
+            title={data.moi_nhat}
+            moreHref={data.url_more_moi_nhat}
+          />
 
-          <LatestPostsSlider />
+          <LatestPostsSlider items={data.latest_posts} />
         </div>
       </div>
     </div>

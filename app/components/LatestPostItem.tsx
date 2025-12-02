@@ -1,31 +1,23 @@
 "use client";
 
-interface LatestPostItemProps {
-  href: string;
-  title: string;
-  image: string;
-  avatar: string;
-  author: string;
-  date: string;
-  description?: string;
-  readTime?: string;
-}
+import type { PostItem } from "@/types/post";
+
 
 export default function LatestPostItem({
-  href,
+  slug,
   title,
   image,
   avatar,
   author,
   date,
-  description = "",
+  excerpt = "",
   readTime = "4 min read",
-}: LatestPostItemProps) {
+}: PostItem) {
   return (
     <div>
       <a
         tabIndex={-1}
-        href={href}
+        href={slug}
         style={{ width: "100%", display: "inline-block" }}
       >
         <div
@@ -78,11 +70,11 @@ export default function LatestPostItem({
             {title}
           </p>
 
-          {/* DESCRIPTION */}
-          {description && (
+          {/* excerpt */}
+          {excerpt && (
             <div className="md:mt-100 mt-100 md:block hidden">
               <span className="article-text-x-small break-words line-clamp-3 text-text-secondary">
-                {description}
+                {excerpt}
               </span>
             </div>
           )}

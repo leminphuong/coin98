@@ -4,11 +4,19 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "admin.coinjdg.com",
+      },
+      {
+        protocol: "https",
+        hostname: "coin.joydigi.net",
+      },
+      {
+        protocol: "https",
         hostname: "files.amberblocks.com",
       },
       {
         protocol: "https",
-        hostname: "coin.joydigi.net", // giữ domain cũ nếu bạn còn dùng
+        hostname: "**.wp.com", // nếu WP image proxy
       },
     ],
   },
