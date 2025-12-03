@@ -1,4 +1,7 @@
+import Link from "next/link";
 import "./page.css";
+import AvatarCircle from "@/components/AvatarCircle";
+import Image from "next/image";
 interface PageProps {
   params: Promise<{
     slug: string;
@@ -68,7 +71,7 @@ export default async function Page({ params }: PageProps) {
             <div className="flex items-center mt-050">
               {/* MarginATM */}
               <div className="mr-050 last:mr-0">
-                <a
+                <Link
                   className="bg-background-on-color p-050 rounded-100 flex items-center pr-100"
                   href="https://marginatm.com"
                 >
@@ -93,12 +96,12 @@ export default async function Page({ params }: PageProps) {
                   <span className="ui-text-x-small-emphasis lg:ui-text-small-emphasis ml-100">
                     MarginATM
                   </span>
-                </a>
+                </Link>
               </div>
 
               {/* Upside */}
               <div className="mr-050 last:mr-0">
-                <a
+                <Link
                   className="bg-background-on-color p-050 rounded-100 flex items-center pr-100"
                   href="https://coin98.net"
                 >
@@ -123,7 +126,7 @@ export default async function Page({ params }: PageProps) {
                   <span className="ui-text-x-small-emphasis lg:ui-text-small-emphasis ml-100">
                     Upside
                   </span>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -139,7 +142,7 @@ export default async function Page({ params }: PageProps) {
           <div className="flex items-center">
             {/* First Contributor */}
             <div className="mr-050 last:mr-0">
-              <a
+              <Link
                 className="bg-background-on-color p-050 rounded-100 flex items-center pr-100"
                 href="https://marginatm.com"
               >
@@ -165,7 +168,7 @@ export default async function Page({ params }: PageProps) {
                 <span className="ui-text-x-small-emphasis lg:ui-text-small-emphasis ml-100">
                   MarginATM
                 </span>
-              </a>
+              </Link>
             </div>
 
             {/* +1 Dropdown */}
@@ -187,7 +190,7 @@ export default async function Page({ params }: PageProps) {
                 <div className="ui-text-medium rounded-050 bg-background border-0125 border-border shadow-elevation-none group-data-[show=open]/dropdown:shadow-elevation-500">
                   <div className="min-w-w180 py-100 max-h-h216 overflow-y-auto no-scrollbar">
                     {/* Item 1 */}
-                    <a
+                    <Link
                       className="py-100 px-200 flex items-center"
                       href="https://marginatm.com"
                     >
@@ -210,10 +213,10 @@ export default async function Page({ params }: PageProps) {
                       <span className="ui-text-small ml-100 line-clamp-1 break-all">
                         MarginATM
                       </span>
-                    </a>
+                    </Link>
 
                     {/* Item 2 */}
-                    <a
+                    <Link
                       className="py-100 px-200 flex items-center"
                       href="https://coin98.net"
                     >
@@ -236,7 +239,7 @@ export default async function Page({ params }: PageProps) {
                       <span className="ui-text-small ml-100 line-clamp-1 break-all">
                         Upside
                       </span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -329,7 +332,7 @@ export default async function Page({ params }: PageProps) {
                   <div className="h-full w-full max-w-w728 mx-auto">
                     <div className="flex flex-wrap">
                       {/* Post Item */}
-                      <a className="block w-full" href="/what-is-coin98-wallet">
+                      <Link className="block w-full" href="/what-is-coin98-wallet">
                         <div className="transition-all duration-300 bg-background article-horizontal select-none overflow-hidden py-300 px-200 md:hidden">
                           <div className="ui-text-small text-text-secondary min-h-300 flex-wrap items-center mb-100 flex">
                             <div className="flex items-center h-max ui-text-small text-text-primary">
@@ -346,9 +349,8 @@ export default async function Page({ params }: PageProps) {
                                 <span>linhnt</span>
                               </div>
                             </div>
-                            <div className="m-050 flex items-center justify-center h-100 aspect-square">
-                              <div className="w-100 aspect-square rounded-circle bg-g block scale-50"></div>
-                            </div>
+                            <AvatarCircle />
+
                             Jun 24 2021
                           </div>
 
@@ -389,7 +391,7 @@ export default async function Page({ params }: PageProps) {
                             </div>
                           </div>
                         </div>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -406,7 +408,7 @@ export default async function Page({ params }: PageProps) {
                 >
                   <div className="h-full w-full max-w-w728 mx-auto">
                     <div className="flex flex-wrap">
-                      <a className="block w-full" href="/what-is-coin98-wallet">
+                      <Link  className="block w-full" href="/what-is-coin98-wallet">
                         {/* MOBILE CARD */}
                         <div
                           id="peb4rkl89rp6cb9x"
@@ -430,9 +432,8 @@ export default async function Page({ params }: PageProps) {
                                 <span>linhnt</span>
                               </div>
                             </div>
-                            <div className="m-050 flex items-center justify-center h-100 aspect-square">
-                              <div className="w-100 aspect-square rounded-circle bg-g block scale-50"></div>
-                            </div>
+                           <AvatarCircle />
+
                             Jun 24 2021
                           </div>
 
@@ -525,9 +526,8 @@ export default async function Page({ params }: PageProps) {
                                 <span>linhnt</span>
                               </div>
                             </div>
-                            <div className="m-050 flex items-center justify-center h-100 aspect-square">
-                              <div className="w-100 aspect-square rounded-circle bg-g block scale-50"></div>
-                            </div>
+                            <AvatarCircle />
+
                             Jun 24 2021
                           </div>
 
@@ -593,7 +593,7 @@ export default async function Page({ params }: PageProps) {
                             </div>
                           </div>
                         </div>
-                      </a>
+                      </Link>
                     </div>
 
                     <div></div>

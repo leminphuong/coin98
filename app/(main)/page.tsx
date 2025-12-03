@@ -9,6 +9,7 @@ import SeriesList from "@/components/SeriesSlider";
 import { getHomeData } from "@/api/getHomeData"; // bạn tạo file này như hướng dẫn
 import type { PostItem } from "@/types/post";
 import React from "react";
+import Link from "next/link";
 
 export default async function Home() {
   const data = await getHomeData("vi");
@@ -38,12 +39,16 @@ export default async function Home() {
         </div>
 
         <div className="w-full lg:w-1/4">
-          {latest.slice(3, 7).map((post) => (
+          {latest.slice(3, 7).map((post, index, arr) => (
             <React.Fragment key={post.slug}>
               <ArticleCardHorizontalFull {...post} />
-              <div className="px-200 md:px-300">
-                <div className="bg-divider h-0125 w-full"></div>
-              </div>
+
+              {/* render divider nếu KHÔNG phải phần tử cuối */}
+              {index < arr.length - 1 && (
+                <div className="px-200 md:px-300">
+                  <div className="bg-divider h-0125 w-full"></div>
+                </div>
+              )}
             </React.Fragment>
           ))}
         </div>
@@ -60,7 +65,7 @@ export default async function Home() {
         <div className="max-w-w1280 mx-auto w-full my-600 md:my-1000 lg:my-500">
           <div className="clear-both">
             <div className="w-full max-w-w1280 mx-auto h-[100px] s560:h-[250px]">
-              <a
+              <Link
                 target="_blank"
                 rel="nofollow"
                 href="https://wetheivy.beehiiv.com/?utm_source=coin98insights"
@@ -77,7 +82,7 @@ export default async function Home() {
                     className="w-full h-full object-cover"
                   />
                 </picture>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -93,7 +98,10 @@ export default async function Home() {
 
         <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-500"></div>
         <div className="max-w-w1280 mx-auto w-full my-600 md:my-1000 lg:my-500">
-          <LatestPostsHeader title="Phân tích" moreHref="/phan-tich" />
+          <LatestPostsHeader
+            title={data.phan_tich}
+            moreHref={data.url_more_phan_tich}
+          />
 
           <ArticleList />
         </div>

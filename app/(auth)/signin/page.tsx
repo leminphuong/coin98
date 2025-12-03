@@ -1,6 +1,12 @@
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+
 export default function SigninPage() {
   return (
     <div className="bg-background pb-500 md:pb-1300 pt-1500 flex flex-col items-center w-screen h-screen overflow-hidden">
+      
       {/* Title */}
       <div className="w-full max-w-w680 flex flex-col items-center article-h3 text-center text-text-primary">
         <i className="ab-icon !not-italic text-icon-link text-size-1100 mb-200 ab-amber_logo_mark"></i>
@@ -9,6 +15,7 @@ export default function SigninPage() {
 
       {/* FORM */}
       <form className="w-full select-none mt-500 max-w-w320 mx-auto">
+        
         {/* EMAIL */}
         <div className="flex flex-col">
           <label
@@ -46,7 +53,7 @@ export default function SigninPage() {
         </div>
 
         {/* FORGOT PASSWORD */}
-        <a className="block w-max ml-auto mt-200" href="/forgot-password">
+        <Link href="/forgot-password" className="block w-max ml-auto mt-200">
           <button
             type="button"
             className="group/ab-button relative flex items-center justify-center rounded-050 transition-all duration-200 bg-button-ghost-background p-050"
@@ -55,7 +62,7 @@ export default function SigninPage() {
               Forgot password
             </span>
           </button>
-        </a>
+        </Link>
 
         {/* SIGN IN BUTTON */}
         <button
@@ -71,6 +78,7 @@ export default function SigninPage() {
 
       {/* GOOGLE LOGIN + SIGN UP */}
       <div className="max-w-w320 mx-auto w-full">
+        
         {/* Google */}
         <button className="group/ab-button relative flex items-center justify-center rounded-050 transition-all duration-200 bg-button-tertiary-background border-button-tertiary-border py-100 px-150 w-full mt-200">
           <span className="button-text-large text-button-tertiary-text">
@@ -87,7 +95,7 @@ export default function SigninPage() {
         </button>
 
         {/* Sign up */}
-        <a href="/signup">
+        <Link href="/signup">
           <button
             type="button"
             className="group/ab-button relative flex items-center justify-center rounded-050 transition-all duration-200 bg-button-ghost-background py-050 px-100 w-full mt-200"
@@ -96,7 +104,7 @@ export default function SigninPage() {
               Sign up
             </span>
           </button>
-        </a>
+        </Link>
       </div>
 
       {/* FOOTER BOTTOM ICONS */}

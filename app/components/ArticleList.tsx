@@ -11,7 +11,9 @@ interface ArticleType {
   image: string;
   authors: string[];
 }
-
+import AvatarCircle from "@/components/AvatarCircle";
+import Link from "next/link";
+import Image from "next/image";
 export default function ArticleList() {
   // ===============================
   // DATA
@@ -224,7 +226,7 @@ export default function ArticleList() {
     return (
       <>
         <div className="group/section-list-column w-full">
-          <a href={item.url}>
+          <Link  href={item.url}>
             <div
               draggable="false"
               className={
@@ -267,6 +269,7 @@ export default function ArticleList() {
                       >
                         <img
                           src={a}
+                           alt={a}
                           className="avatar-img aspect-square w-full object-cover"
                         />
                       </div>
@@ -275,9 +278,7 @@ export default function ArticleList() {
                   Multi Author
                 </div>
 
-                <div className="m-050 flex items-center justify-center h-100 aspect-square">
-                  <div className="w-100 aspect-square rounded-circle bg-g block scale-50"></div>
-                </div>
+                          <AvatarCircle />
 
                 {item.time}
               </div>
@@ -313,7 +314,7 @@ export default function ArticleList() {
                 </div>
               )}
             </div>
-          </a>
+          </Link>
         </div>
 
         {/* DIVIDER – chỉ hiển thị nếu KHÔNG phải 3 bài cuối */}

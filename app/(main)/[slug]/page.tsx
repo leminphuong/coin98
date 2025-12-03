@@ -1,4 +1,7 @@
+import Link from "next/link";
 import "./page.css";
+import AvatarCircle from "@/components/AvatarCircle";
+import Image from "next/image";
 interface PageProps {
   params: Promise<{
     slug: string;
@@ -219,9 +222,9 @@ export default async function Page({ params }: PageProps) {
           style={{ textAlign: "left" }}
         >
           Trước khi bạn lao vào{" "}
-          <a href="https://coin98.net/cryptocurrency-la-gi" target="_blank">
+          <Link href="https://coin98.net/cryptocurrency-la-gi" target="_blank">
             thị trường crypto
-          </a>
+          </Link>
           , hãy dừng lại và tự hỏi bản thân:{" "}
           <b>
             "Bạn là ai trong thị trường này? Động lực bắt đầu của bạn là gì?"
@@ -439,9 +442,9 @@ export default async function Page({ params }: PageProps) {
           Theo khảo sát của Finder năm 2022, có đến 21% người Việt Nam tham gia
           thị trường crypto, một con số đáng chú ý trong khu vực Đông Nam Á.
           Giới trẻ Việt ngày càng nhạy bén với{" "}
-          <a href="https://coin98.net/blockchain-101" target="_blank">
+          <Link href="https://coin98.net/blockchain-101" target="_blank">
             công nghệ blockchain
-          </a>{" "}
+          </Link>{" "}
           và những cơ hội mới, không muốn bỏ lỡ những làn sóng thay đổi lớn của
           thị trường.
         </p>
@@ -498,9 +501,9 @@ export default async function Page({ params }: PageProps) {
         >
           Nhiều người tham gia vào crypto không chỉ vì lợi nhuận trước mắt mà
           còn vì mong muốn đạt được{" "}
-          <a href="https://coin98.net/tu-do-tai-chinh" target="_blank">
+          <Link href="https://coin98.net/tu-do-tai-chinh" target="_blank">
             tự do tài chính
-          </a>
+          </Link>
           . Họ muốn kiếm tiền mà không phải làm công việc văn phòng từ 9 giờ
           sáng đến 5 giờ chiều, và crypto dường như mang lại cơ hội đó.
         </p>
@@ -553,13 +556,13 @@ export default async function Page({ params }: PageProps) {
         >
           Brandon Quittem, cựu nhân viên văn phòng đã từ bỏ công việc ổn định để
           bước chân vào thị trường crypto. Anh bắt đầu bằng việc{" "}
-          <a href="https://coin98.net/staking-la-gi" target="_blank">
+          <Link href="https://coin98.net/staking-la-gi" target="_blank">
             staking
-          </a>{" "}
+          </Link>{" "}
           và{" "}
-          <a href="https://coin98.net/yield-farming" target="_blank">
+          <Link href="https://coin98.net/yield-farming" target="_blank">
             yield farming
-          </a>{" "}
+          </Link>{" "}
           trên các giao thức DeFi, thu về lợi nhuận đều đặn từ số tài sản nắm
           giữ.
         </p>
@@ -571,9 +574,9 @@ export default async function Page({ params }: PageProps) {
         >
           Brandon chia sẻ rằng: "Tôi đã không còn phải làm việc toàn thời gian
           kể từ khi bước chân vào crypto. Thu nhập thụ động từ{" "}
-          <a href="https://coin98.net/defi-la-gi" target="_blank">
+          <Link href="https://coin98.net/defi-la-gi" target="_blank">
             DeFi
-          </a>{" "}
+          </Link>{" "}
           đã giúp tôi thoát khỏi vòng xoáy công việc truyền thống, mang đến cho
           tôi tự do tài chính và thời gian để theo đuổi những đam mê khác."
         </p>
@@ -601,18 +604,18 @@ export default async function Page({ params }: PageProps) {
           className="px-200 s704:px-0 mt-250 md:mt-300 article-text-x-small md:article-text-medium mx-auto w-full max-w-w680 text-text-primary break-words"
           style={{ textAlign: "left" }}
         >
-          <a href="https://coin98.net/bitcoin-btc-la-gi" target="_blank">
+          <Link href="https://coin98.net/bitcoin-btc-la-gi" target="_blank">
             Bitcoin
-          </a>
+          </Link>
           , được xem như "vàng kỹ thuật số", đã trở thành công cụ quan trọng
           giúp nhà đầu tư bảo vệ tài sản của mình trước lạm phát. Với số lượng
           giới hạn chỉ 21 triệu đồng coin, Bitcoin không thể bị "in thêm" như{" "}
-          <a
+          <Link
             href="https://coin98.net/tien-phap-dinh-fiat-la-gi"
             target="_blank"
           >
             tiền pháp định
-          </a>
+          </Link>
           , khiến nó trở thành một hàng rào chống lại lạm phát và sự mất giá của
           tiền tệ.
         </p>
@@ -662,9 +665,9 @@ export default async function Page({ params }: PageProps) {
           <i>
             <b>
               Tìm hiểu:{" "}
-              <a href="https://coin98.net/lam-phat-va-bitcoin" target="_blank">
+              <Link href="https://coin98.net/lam-phat-va-bitcoin" target="_blank">
                 Bitcoin có phải là lời giải hoàn hảo cho bài toán lạm phát?
-              </a>
+              </Link>
             </b>
           </i>
         </p>
@@ -781,13 +784,13 @@ export default async function Page({ params }: PageProps) {
         >
           Không chỉ Beeple, hàng nghìn nghệ sĩ, nhà phát triển và người sáng tạo
           khác cũng đã dấn thân vào thế giới{" "}
-          <a href="https://coin98.net/nft-la-gi" target="_blank">
+          <Link href="https://coin98.net/nft-la-gi" target="_blank">
             NFT
-          </a>{" "}
+          </Link>{" "}
           và{" "}
-          <a href="https://coin98.net/metaverse-la-gi" target="_blank">
+          <Link href="https://coin98.net/metaverse-la-gi" target="_blank">
             Metaverse
-          </a>
+          </Link>
           , nơi họ có thể khai phá những khả năng vô tận mà blockchain mang lại.
         </p>
 
@@ -1000,7 +1003,7 @@ export default async function Page({ params }: PageProps) {
           id="_wagl7LeYz"
           className="px-200 s704:px-0 mt-250 md:mt-300 mx-auto w-full max-w-w680 flex justify-center"
         >
-          <a
+          <Link
             target="_blank"
             className="!no-underline"
             href="https://coin98.net/learn"
@@ -1008,7 +1011,7 @@ export default async function Page({ params }: PageProps) {
             <button className="box-border outline-none ab-btn ab-btn-primary ab-btn-size-regular">
               Truy cập Thư viện Crypto
             </button>
-          </a>
+          </Link>
         </div>
 
         <h3
@@ -1092,9 +1095,9 @@ export default async function Page({ params }: PageProps) {
           <b>
             <i>
               Đọc thêm:{" "}
-              <a href="https://coin98.net/fomo-la-gi" target="_blank">
+              <Link href="https://coin98.net/fomo-la-gi" target="_blank">
                 FOMO là gì? 4 cách vượt qua tâm lý FOMO trong crypto
-              </a>
+              </Link>
             </i>
           </b>
         </p>
@@ -1161,12 +1164,12 @@ export default async function Page({ params }: PageProps) {
                 style={{ wordBreak: "break-word" }}
               >
                 <b>Quản lý rủi ro</b> bằng cách{" "}
-                <a
+                <Link
                   href="https://coin98.net/da-dang-hoa-dau-tu-la-gi"
                   target="_blank"
                 >
                   đa dạng hóa danh mục đầu tư
-                </a>
+                </Link>
                 . Không bao giờ đặt tất cả số tiền vào một đồng coin duy nhất.
               </span>
             </div>
@@ -1245,13 +1248,13 @@ export default async function Page({ params }: PageProps) {
           <b>
             <i>
               Đọc thêm{" "}
-              <a
+              <Link
                 href="https://coin98.net/chu-nghia-hu-vo-tai-chinh"
                 target="_blank"
               >
                 Chủ nghĩa hư vô tài chính: Chuyển dịch tâm lý đầu tư của giới
                 trẻ qua lăng kính Bitcoin và Memecoin
-              </a>
+              </Link>
             </i>
           </b>
         </p>
@@ -1261,7 +1264,7 @@ export default async function Page({ params }: PageProps) {
       </div>
       <div className="flex flex-wrap px-200 w-full mt-800">
         <div className="flex flex-wrap max-w-w680 mx-auto w-full gap-100">
-          <a href="/tags/Ng%C6%B0%E1%BB%9Di_M%E1%BB%9Bi">
+          <Link href="/tags/Ng%C6%B0%E1%BB%9Di_M%E1%BB%9Bi">
             <button
               className="
       w-fit bg-button-tertiary-background 
@@ -1280,7 +1283,7 @@ export default async function Page({ params }: PageProps) {
             >
               <span className="text-text-primary">#Người Mới</span>
             </button>
-          </a>
+          </Link>
         </div>
       </div>
       <div
@@ -1587,7 +1590,7 @@ export default async function Page({ params }: PageProps) {
         </h2>
 
         <div className="flex flex-wrap w-full">
-          <a
+          <Link
             className="group block w-full md:w-1/2 lg:w-1/4"
             href="/cung-tien-m2"
           >
@@ -1665,9 +1668,7 @@ export default async function Page({ params }: PageProps) {
                     </div>
                   </button>
                 </div>
-                <div className="m-050 flex items-center justify-center h-100 aspect-square">
-                  <div className="w-100 aspect-square rounded-circle bg-g block scale-50" />
-                </div>
+                <AvatarCircle />
                 Oct 25 2025
               </div>
 
@@ -1779,7 +1780,7 @@ export default async function Page({ params }: PageProps) {
                 </div>
               </div>
             </div>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

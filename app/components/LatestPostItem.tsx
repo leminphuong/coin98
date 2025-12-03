@@ -1,7 +1,8 @@
 "use client";
 
 import type { PostItem } from "@/types/post";
-
+import AvatarCircle from "@/components/AvatarCircle";
+import Link from "next/link";
 
 export default function LatestPostItem({
   slug,
@@ -15,7 +16,7 @@ export default function LatestPostItem({
 }: PostItem) {
   return (
     <div>
-      <a
+      <Link
         tabIndex={-1}
         href={slug}
         style={{ width: "100%", display: "inline-block" }}
@@ -58,9 +59,7 @@ export default function LatestPostItem({
               </div>
             </div>
 
-            <div className="m-050 flex items-center justify-center h-100 aspect-square">
-              <div className="w-100 aspect-square rounded-circle bg-g block scale-50" />
-            </div>
+                     <AvatarCircle />
 
             {date}
           </div>
@@ -116,7 +115,7 @@ export default function LatestPostItem({
             </div>
           </div>
         </div>
-      </a>
+      </Link>
     </div>
   );
 }

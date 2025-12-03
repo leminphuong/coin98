@@ -1,10 +1,11 @@
 "use client";
-
+import AvatarCircle from "@/components/AvatarCircle";
 import { PostItem } from "@/types/post";
+import Link from "next/link";
 
 export default function SlideItem({ slug, image, title, author, date }: PostItem) {
   return (
-    <a
+    <Link
       className=""
       tabIndex={-1}
       href={slug}
@@ -48,14 +49,12 @@ export default function SlideItem({ slug, image, title, author, date }: PostItem
               </div>
             </div>
 
-            <div className="m-050 flex items-center justify-center h-100 aspect-square">
-              <div className="w-100 aspect-square rounded-circle bg-g block scale-50"></div>
-            </div>
+                      <AvatarCircle />
 
             {date}
           </div>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }

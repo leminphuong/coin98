@@ -1,4 +1,6 @@
 import FeaturedPostsSlider from "@/components/FeaturedPostsSlider";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function SeriesPage() {
   return (
@@ -9,7 +11,7 @@ export default function SeriesPage() {
         style={{ backgroundColor: "rgb(0, 0, 0)" }}
       >
         <div>
-          <a
+          <Link
             className="flex md:items-center flex-col-reverse sm:flex-row"
             href="/series/the-spotlight"
           >
@@ -137,7 +139,7 @@ export default function SeriesPage() {
                 </div>
               </div>
             </div>
-          </a>
+          </Link>
         </div>
         <div className="px-300">
           <div className="border-b-0125 border-divider mt-500"></div>
@@ -156,7 +158,7 @@ export default function SeriesPage() {
           <div className="min-h-500"></div>
         </div>
         <div className="flex flex-wrap">
-          <a
+          <Link
             className="block w-full md:w-1/2 lg:w-1/3"
             href="/series/the-research-and-analysis"
           >
@@ -262,7 +264,7 @@ export default function SeriesPage() {
                 </picture>
               </div>
             </div>
-          </a>
+          </Link>
         </div>
       </div>
     </>

@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-
+import AvatarCircle from "@/components/AvatarCircle";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import Script from "next/script";
 import React from "react";
+import Image from "next/image";
 
 export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -86,7 +87,7 @@ export default function Header() {
                       </div>
 
                       {/* POST ITEM */}
-                      <a
+                      <Link
                         className="block grow group/search-suggest"
                         href="/huong-dan-serenity-halo-testnet"
                       >
@@ -109,9 +110,7 @@ export default function Header() {
 
                             <div className="h-300 flex items-center mt-050 ui-text-small">
                               May 18 2022
-                              <div className="m-050 flex items-center justify-center h-100 aspect-square">
-                                <div className="w-100 aspect-square rounded-circle bg-g block scale-50" />
-                              </div>
+                                        <AvatarCircle />
                               <div className="box-border badge flex w-fit items-center justify-center rounded-circle border-0125 px-100 py-0125 border-badge-labeled-neutral-border bg-badge-labeled-neutral-background h-300 text-text-primary my-050 whitespace-nowrap">
                                 <span className="ui-text-small text-badge-labeled-neutral-text">
                                   4 min read
@@ -125,7 +124,7 @@ export default function Header() {
                         <div className="px-200">
                           <div className="bg-divider h-0125 w-full group-last/search-suggest:hidden" />
                         </div>
-                      </a>
+                      </Link>
                     </div>
 
                     {/* RIGHT COLUMN */}
@@ -142,7 +141,7 @@ export default function Header() {
 
                         {/* SERIES SCROLL */}
                         <div className="flex overflow-x-auto no-scrollbar">
-                          <a
+                          <Link
                             className="min-w-w320 lg:min-w-0 w-1/2"
                             href="/series/the-research-and-analysis"
                           >
@@ -174,7 +173,7 @@ export default function Header() {
                                 </div>
                               </div>
                             </div>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -245,7 +244,7 @@ export default function Header() {
                               height="16"
                               className="mr-100"
                               alt="Vietnamese"
-                              src="https://flagcdn.com/160x120/vn.png"
+                              src="http://admin.coinjdg.com/wp-content/uploads/2025/12/vn.png"
                             />
                             <p className="ui-text-small">Vie</p>
                           </div>
@@ -285,7 +284,7 @@ export default function Header() {
                           width="22"
                           height="16"
                           alt="Vietnamese"
-                          src="https://flagcdn.com/160x120/vn.png"
+                          src="http://admin.coinjdg.com/wp-content/uploads/2025/12/vn.png"
                         />
                         <p className="ml-100 text-text-primary ui-text-small-emphasis">
                           Vietnamese
@@ -297,7 +296,7 @@ export default function Header() {
                           width="22"
                           height="16"
                           alt="English"
-                          src="https://flagcdn.com/160x120/gb.png"
+                          src="http://admin.coinjdg.com/wp-content/uploads/2025/12/gb.png"
                         />
                         <p className="ml-100 text-text-primary ui-text-small">
                           English
@@ -307,48 +306,48 @@ export default function Header() {
 
                     {/* MAIN MENU */}
                     <div className="flex flex-col transition-all duration-300">
-                      <a
+                      <Link
                         className="px-200 py-150 text-text-primary ui-text-large-emphasis"
                         href="/"
                       >
                         Home
-                      </a>
-                      <a
+                      </Link>
+                      <Link
                         className="px-200 py-150 text-text-primary ui-text-large"
                         href="/learn"
                       >
                         Learn
-                      </a>
-                      <a
+                      </Link>
+                      <Link
                         className="px-200 py-150 text-text-primary ui-text-large"
                         href="/series"
                       >
                         Series
-                      </a>
-                      <a
+                      </Link>
+                      <Link
                         className="px-200 py-150 text-text-primary ui-text-large"
                         href="/report"
                       >
                         Report
-                      </a>
-                      <a
+                      </Link>
+                      <Link
                         className="px-200 py-150 text-text-primary ui-text-large"
                         href="/courses"
                       >
                         Courses
-                      </a>
+                      </Link>
 
                       <div className="bg-divider h-0125 w-full my-050"></div>
 
                       {/* SIGN IN */}
-                      <a className="lg:ml-150" href="/signin">
+                      <Link className="lg:ml-150" href="/signin">
                         <button className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear lg:disabled:cursor-not-allowed bg-button-ghost-background lg:hover:bg-button-ghost-background-hovered active:bg-button-ghost-background-pressed disabled:bg-button-ghost-background-disabled border-0125 border-transparent py-100 px-150 lg:hidden">
                           <i className="ab-icon !not-italic text-button-ghost-icon mr-100 text-size-600 ab-signin"></i>
                           <span className="select-none text-button-ghost-text button-text-large !text-text-primary !ui-text-large">
                             Sign in
                           </span>
                         </button>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -382,7 +381,7 @@ export default function Header() {
             {/* CENTER SECTION */}
             <div className="ch-center grow">
               <div className="ch-logo-wrapper flex-none">
-                <a className="flex items-center" href="/">
+                <Link className="flex items-center" href="/">
                   <div className="h-400 md:h-500">
                     <img
                       alt="Upside logo"
@@ -392,13 +391,13 @@ export default function Header() {
                       src="/assets/logo/coin98-insight.svg"
                     />
                   </div>
-                </a>
+                </Link>
               </div>
 
               {/* DESKTOP MENU */}
               <div className="ch-sidebar ch-menu-wrapper w-0 h-0 overflow-hidden flex items-center">
                 <div className="ch-menu flex items-center h-full">
-                  <a
+                  <Link
                     className="h-full mx-150 lg:mx-250 flex items-center ui-text-medium text-text-primary relative"
                     href="/"
                   >
@@ -406,43 +405,43 @@ export default function Header() {
                       Home
                     </span>
                     <div className="h-025 w-full absolute bottom-0 left-0 bg-icon z-1"></div>
-                  </a>
+                  </Link>
 
-                  <a
+                  <Link
                     className="h-full mx-150 lg:mx-250 flex items-center ui-text-medium text-text-subtlest hover:text-text-primary"
                     href="/learn"
                   >
                     <span className="overflow-hidden whitespace-nowrap text-ellipsis max-w-1500">
                       Learn
                     </span>
-                  </a>
+                  </Link>
 
-                  <a
+                  <Link
                     className="h-full mx-150 lg:mx-250 flex items-center ui-text-medium text-text-subtlest hover:text-text-primary"
                     href="/series"
                   >
                     <span className="overflow-hidden whitespace-nowrap text-ellipsis max-w-1500">
                       Series
                     </span>
-                  </a>
+                  </Link>
 
-                  <a
+                  <Link
                     className="h-full mx-150 lg:mx-250 flex items-center ui-text-medium text-text-subtlest hover:text-text-primary"
                     href="/report"
                   >
                     <span className="overflow-hidden whitespace-nowrap text-ellipsis max-w-1500">
                       Report
                     </span>
-                  </a>
+                  </Link>
 
-                  <a
+                  <Link
                     className="h-full mx-150 lg:mx-250 flex items-center ui-text-medium text-text-subtlest hover:text-text-primary"
                     href="/courses"
                   >
                     <span className="overflow-hidden whitespace-nowrap text-ellipsis max-w-1500">
                       Courses
                     </span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -462,7 +461,7 @@ export default function Header() {
                           width="22"
                           height="16"
                           alt="Vietnamese"
-                          src="https://flagcdn.com/160x120/vn.png"
+                          src="http://admin.coinjdg.com/wp-content/uploads/2025/12/vn.png"
                         />
                         <p className="ui-text-small ml-100 mr-050">Vie</p>
                         <i className="ab-icon !not-italic text-size-600 ab-chevron_down"></i>
@@ -484,7 +483,7 @@ export default function Header() {
                                   width="22"
                                   height="16"
                                   alt="Vietnamese"
-                                  src="https://flagcdn.com/160x120/vn.png"
+                                  src="http://admin.coinjdg.com/wp-content/uploads/2025/12/vn.png"
                                 />
                                 <p className="ml-100 text-text-primary ui-text-small-emphasis">
                                   Vietnamese
@@ -496,7 +495,7 @@ export default function Header() {
                                   width="22"
                                   height="16"
                                   alt="English"
-                                  src="https://flagcdn.com/160x120/gb.png"
+                                  src="http://admin.coinjdg.com/wp-content/uploads/2025/12/gb.png"
                                 />
                                 <p className="ml-100 text-text-primary ui-text-small">
                                   English
@@ -511,7 +510,7 @@ export default function Header() {
                 </div>
               </div>
 
-              <a className="lg:ml-150" href="/signin">
+              <Link className="lg:ml-150" href="/signin">
                 <button className="group/ab-button relative select-none items-center justify-center rounded-050 transition-all duration-200 ease-linear lg:disabled:cursor-not-allowed bg-button-ghost-background lg:hover:bg-button-ghost-background-hovered active:bg-button-ghost-background-pressed lg:hover:disabled:bg-button-ghost-background-disabled disabled:bg-button-ghost-background-disabled border-0125 border-transparent py-100 px-150 hidden md:flex lg:hidden">
                   <i className="ab-icon !not-italic text-button-ghost-icon group-disabled/ab-button:text-button-ghost-icon-disabled mr-100 text-size-600 ab-signin"></i>
                   <span className="select-none text-button-ghost-text group-disabled/ab-button:text-button-ghost-text-disable button-text-large"></span>
@@ -529,7 +528,7 @@ export default function Header() {
                     </div>
                   </div>
                 </button>
-              </a>
+              </Link>
 
               <button className="group/ab-button relative select-none items-center justify-center rounded-050 transition-all duration-200 ease-linear lg:disabled:cursor-not-allowed bg-button-primary-background lg:hover:bg-button-primary-background-hovered active:bg-button-primary-background-pressed lg:hover:disabled:bg-button-primary-background-disabled disabled:bg-button-primary-background-disabled border-0125 border-button-primary-background lg:hover:border-button-primary-background-hovered active:border-button-primary-background-pressed lg:hover:disabled:border-button-primary-background-disabled disabled:border-button-primary-background-disabled py-100 px-150 hidden lg:block">
                 <i className="ab-icon !not-italic text-button-primary-icon group-disabled/ab-button:text-button-primary-icon-disabled text-size-400 mr-100 ab-signin"></i>

@@ -1,10 +1,11 @@
 "use client";
 
 import { PostItem } from "@/types/post";
+import Link from "next/link";
 
 export default function MobileItem({ slug, image, title, author, date }: PostItem) {
   return (
-    <a href={slug}>
+    <Link href={slug}>
       <div
         draggable={false}
         className="transition-all duration-300 bg-background select-none 
@@ -30,6 +31,6 @@ export default function MobileItem({ slug, image, title, author, date }: PostIte
           </span>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }

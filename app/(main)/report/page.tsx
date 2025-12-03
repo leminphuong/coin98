@@ -1,6 +1,8 @@
 import LatestPostsHeader from "@/components/LatestPostsHeader";
 import LatestPostsSlider from "@/components/LatestPostsSlider";
-
+import AvatarCircle from "@/components/AvatarCircle";
+import Link from "next/link";
+import Image from "next/image";
 export default function ReportPage() {
   return (
     <>
@@ -14,7 +16,7 @@ export default function ReportPage() {
             </div>
 
             <div className="min-h-500 ml-150">
-              <a href="/report/phan-tich-theo-chu-de">
+              <Link href="/report/phan-tich-theo-chu-de">
                 <button className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear lg:disabled:cursor-not-allowed bg-button-ghost-background lg:hover:bg-button-ghost-background-hovered active:bg-button-ghost-background-pressed lg:hover:disabled:bg-button-ghost-background-disabled disabled:bg-button-ghost-background-disabled border-0125 border-transparent py-100 px-150 ml-150">
                   <span className="select-none text-button-ghost-text group-disabled/ab-button:text-button-ghost-text-disable button-text-large">
                     More
@@ -36,10 +38,10 @@ export default function ReportPage() {
                     </div>
                   </div>
                 </button>
-              </a>
+              </Link>
             </div>
           </div>
-          <a href="/dinh-gia-base">
+          <Link  href="/dinh-gia-base">
             {/* DESKTOP CARD */}
             <div
               id="pioha7q5vsmi1o49"
@@ -126,10 +128,7 @@ export default function ReportPage() {
                     </button>
                   </div>
                   {/* Dot */}
-                  <div className="m-050 flex items-center justify-center h-100 aspect-square">
-                    <div className="w-100 aspect-square rounded-circle bg-g block scale-50"></div>
-                  </div>
-                  3 days ago
+                  <AvatarCircle />3 days ago
                 </div>
 
                 {/* TITLE */}
@@ -214,10 +213,7 @@ export default function ReportPage() {
               {/* AUTHOR */}
               <div className="ui-text-small text-text-secondary min-h-300 flex-wrap items-center mb-100 flex">
                 <div>Multi Author</div>
-                <div className="m-050 flex items-center justify-center h-100 aspect-square">
-                  <div className="w-100 aspect-square rounded-circle bg-g block scale-50"></div>
-                </div>
-                3 days ago
+                <AvatarCircle />3 days ago
               </div>
 
               {/* Title */}
@@ -246,10 +242,10 @@ export default function ReportPage() {
                 </div>
               </div>
             </div>
-          </a>
+          </Link>
           <div className="flex flex-wrap">
             <div className="w-full s640:w-1/2 s1180:w-1/4">
-              <a href="/phan-tich-base">
+              <Link  href="/phan-tich-base">
                 <div
                   id="p67nlcb467xgj2hg"
                   draggable={false}
@@ -332,11 +328,7 @@ export default function ReportPage() {
                         </div>
                       </button>
                     </div>
-                    {/* Dot */}
-                    <div className="m-050 flex items-center justify-center h-100 aspect-square">
-                      <div className="w-100 aspect-square rounded-circle bg-g block scale-50"></div>
-                    </div>
-                    4 days ago
+                    <AvatarCircle />4 days ago
                   </div>
 
                   {/* TITLE */}
@@ -400,10 +392,10 @@ export default function ReportPage() {
                     </div>
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
             <div className="w-full s640:w-1/2 s1180:w-1/4">
-              <a href="/phan-tich-base">
+              <Link  href="/phan-tich-base">
                 <div
                   id="p67nlcb467xgj2hg"
                   draggable={false}
@@ -486,11 +478,7 @@ export default function ReportPage() {
                         </div>
                       </button>
                     </div>
-                    {/* Dot */}
-                    <div className="m-050 flex items-center justify-center h-100 aspect-square">
-                      <div className="w-100 aspect-square rounded-circle bg-g block scale-50"></div>
-                    </div>
-                    4 days ago
+                    <AvatarCircle />4 days ago
                   </div>
 
                   {/* TITLE */}
@@ -554,7 +542,7 @@ export default function ReportPage() {
                     </div>
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

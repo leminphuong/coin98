@@ -1,5 +1,7 @@
 "use client";
-
+import AvatarCircle from "@/components/AvatarCircle";
+import Image from "next/image";
+import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
@@ -157,7 +159,7 @@ export default function SearchPage() {
                   </div>
 
                   <div className="flex flex-wrap">
-                    <a
+                    <Link
                       className="group block w-full md:w-50% lg:w-1/3 2xl:w-1/4"
                       href="/huong-dan-serenity-halo-testnet"
                     >
@@ -203,9 +205,7 @@ export default function SearchPage() {
                               <span>hangduong</span>
                             </div>
                           </div>
-                          <div className="m-050 flex items-center justify-center h-100 aspect-square">
-                            <div className="w-100 aspect-square rounded-circle bg-g block scale-50"></div>
-                          </div>
+                          <AvatarCircle />
                           May 18 2022
                         </div>
 
@@ -263,7 +263,7 @@ export default function SearchPage() {
                           </div>
                         </div>
                       </div>
-                    </a>
+                    </Link>
                   </div>
 
                   {/* More suggestions */}
@@ -293,7 +293,7 @@ export default function SearchPage() {
                   </div>
 
                   <div className="flex flex-wrap">
-                    <a
+                    <Link
                       className="group block w-full md:w-50% lg:w-1/3 2xl:w-1/4"
                       href="/huong-dan-serenity-halo-testnet"
                     >
@@ -339,9 +339,7 @@ export default function SearchPage() {
                               <span>hangduong</span>
                             </div>
                           </div>
-                          <div className="m-050 flex items-center justify-center h-100 aspect-square">
-                            <div className="w-100 aspect-square rounded-circle bg-g block scale-50"></div>
-                          </div>
+                          <AvatarCircle />
                           May 18 2022
                         </div>
 
@@ -399,7 +397,7 @@ export default function SearchPage() {
                           </div>
                         </div>
                       </div>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -427,7 +425,7 @@ export default function SearchPage() {
                   </div>
 
                   <div className="flex flex-wrap">
-                    <a
+                    <Link
                       className="group block w-full md:w-50% lg:w-1/3 2xl:w-1/4"
                       target="_blank"
                       href="/courses/farming-101"
@@ -575,7 +573,7 @@ export default function SearchPage() {
                           </div>
                         </div>
                       </div>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -610,7 +608,7 @@ export default function SearchPage() {
                   </div>
 
                   <div className="flex flex-wrap">
-                    <a
+                    <Link
                       className="group block w-full md:w-50% xl:w-1/4"
                       href="/series/the-model"
                     >
@@ -685,7 +683,7 @@ export default function SearchPage() {
                           </picture>
                         </div>
                       </div>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

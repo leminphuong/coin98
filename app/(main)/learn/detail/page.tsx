@@ -1,6 +1,7 @@
 "use client";
-
-import SidebarPortal from "../@/components/SidebarPortal";
+import AvatarCircle from "@/components/AvatarCircle";
+import SidebarPortal from "@/components/SidebarPortal";
+import Link from "next/link";
 
 const posts = [
   {
@@ -21,7 +22,7 @@ const posts = [
 function ArticleItem({ item }: { item: any }) {
   return (
     <div>
-      <a href={item.href}>
+      <Link href={item.href}>
         {/* MOBILE */}
         <div
           id={item.id}
@@ -45,9 +46,8 @@ function ArticleItem({ item }: { item: any }) {
               </div>
             </div>
 
-            <div className="m-050 flex items-center justify-center h-100 aspect-square">
-              <div className="w-100 aspect-square rounded-circle bg-g block scale-50"></div>
-            </div>
+            <AvatarCircle />
+
 
             {item.date}
           </div>
@@ -113,9 +113,8 @@ function ArticleItem({ item }: { item: any }) {
               </div>
             </div>
 
-            <div className="m-050 flex items-center justify-center h-100 aspect-square">
-              <div className="w-100 aspect-square rounded-circle bg-g block scale-50"></div>
-            </div>
+            <AvatarCircle />
+
 
             {item.date}
           </div>
@@ -157,7 +156,7 @@ function ArticleItem({ item }: { item: any }) {
             </div>
           </div>
         </div>
-      </a>
+      </Link>
 
       <div className="bg-divider h-0125 w-full"></div>
     </div>

@@ -1,4 +1,6 @@
+import Link from "next/link";
 import "./page.css";
+import Image from "next/image";
 interface PageProps {
   params: Promise<{
     slug: string;
@@ -71,7 +73,7 @@ export default async function Page({ params }: PageProps) {
           <div className="flex items-center">
             {/* First Contributor */}
             <div className="mr-050 last:mr-0">
-              <a
+              <Link
                 className="bg-background-on-color p-050 rounded-100 flex items-center pr-100"
                 href="https://marginatm.com"
               >
@@ -97,7 +99,7 @@ export default async function Page({ params }: PageProps) {
                 <span className="ui-text-x-small-emphasis lg:ui-text-small-emphasis ml-100">
                   MarginATM
                 </span>
-              </a>
+              </Link>
             </div>
 
             {/* +1 Dropdown */}
@@ -119,7 +121,7 @@ export default async function Page({ params }: PageProps) {
                 <div className="ui-text-medium rounded-050 bg-background border-0125 border-border shadow-elevation-none group-data-[show=open]/dropdown:shadow-elevation-500">
                   <div className="min-w-w180 py-100 max-h-h216 overflow-y-auto no-scrollbar">
                     {/* Item 1 */}
-                    <a
+                    <Link
                       className="py-100 px-200 flex items-center"
                       href="https://marginatm.com"
                     >
@@ -142,10 +144,10 @@ export default async function Page({ params }: PageProps) {
                       <span className="ui-text-small ml-100 line-clamp-1 break-all">
                         MarginATM
                       </span>
-                    </a>
+                    </Link>
 
                     {/* Item 2 */}
-                    <a
+                    <Link
                       className="py-100 px-200 flex items-center"
                       href="https://coin98.net"
                     >
@@ -168,7 +170,7 @@ export default async function Page({ params }: PageProps) {
                       <span className="ui-text-small ml-100 line-clamp-1 break-all">
                         Upside
                       </span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

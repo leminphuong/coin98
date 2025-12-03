@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import React from "react";
-
+import AvatarCircle from "@/components/AvatarCircle";
 import type { PostItem } from "@/types/post";
+import Image from "next/image";
 
 export default function ArticleCardVertical({
   slug,
@@ -35,8 +36,8 @@ export default function ArticleCardVertical({
           <div className="flex items-center h-max ui-text-small text-text-primary">
             <div className="aspect-square ab-avatar-people ab-avatar-size-24 flex-none mr-100">
               <img
-                src={avatar}
-                alt={author}
+  src={avatar || "/default-avatar.png"}
+  alt={author || "avatar"}
                 width={32}
                 height={32}
                 className="avatar-img aspect-square w-full object-cover"
@@ -48,9 +49,7 @@ export default function ArticleCardVertical({
             </div>
           </div>
 
-          <div className="m-050 flex items-center justify-center h-100 aspect-square">
-            <div className="w-100 aspect-square rounded-circle bg-g block scale-50"></div>
-          </div>
+          <AvatarCircle />
 
           {date}
         </div>

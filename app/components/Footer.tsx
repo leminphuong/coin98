@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="footer">
@@ -6,7 +9,7 @@ export default function Footer() {
 
         {/* Logo + Social */}
         <div className="md:px-300 xl:px-1000 flex flex-col md:flex-row items-center justify-between">
-          <a href="/">
+          <Link href="/">
             <div className="h-400 md:h-500">
               <img
                 alt="Upside"
@@ -19,24 +22,24 @@ export default function Footer() {
                 src="/assets/logo/coin98-insight.svg"
               />
             </div>
-          </a>
+          </Link>
 
           <div className="flex items-center mt-200 md:mt-0 gap-300">
-            <a rel="nofollow" className="flex items-center" target="_blank" href="https://x.com/gm_upside">
+            <Link rel="nofollow" className="flex items-center" target="_blank" href="https://x.com/gm_upside">
               <i className="ab-icon !not-italic text-size-800 text-icon-subtlest ab-channel_twitter"></i>
-            </a>
-            <a rel="nofollow" className="flex items-center" target="_blank" href="https://www.facebook.com/groups/Coin98.Net">
+            </Link>
+            <Link rel="nofollow" className="flex items-center" target="_blank" href="https://www.facebook.com/groups/Coin98.Net">
               <i className="ab-icon !not-italic text-size-800 text-icon-subtlest ab-channel_facebook"></i>
-            </a>
-            <a rel="nofollow" className="flex items-center" target="_blank" href="https://t.me/Coin98Insights">
+            </Link>
+            <Link rel="nofollow" className="flex items-center" target="_blank" href="https://t.me/Coin98Insights">
               <i className="ab-icon !not-italic text-size-800 text-icon-subtlest ab-channel_telegram"></i>
-            </a>
-            <a rel="nofollow" className="flex items-center" target="_blank" href="https://www.youtube.com/@Coin98">
+            </Link>
+            <Link rel="nofollow" className="flex items-center" target="_blank" href="https://www.youtube.com/@Coin98">
               <i className="ab-icon !not-italic text-size-800 text-icon-subtlest ab-channel_youtube"></i>
-            </a>
-            <a rel="nofollow" className="flex items-center" target="_blank" href="https://www.tiktok.com/@upsidevn">
+            </Link>
+            <Link rel="nofollow" className="flex items-center" target="_blank" href="https://www.tiktok.com/@upsidevn">
               <i className="ab-icon !not-italic text-size-800 text-icon-subtlest ab-channel_tiktok"></i>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -53,17 +56,17 @@ export default function Footer() {
 
           <div className="flex justify-center px-200 md:px-0 items-center flex-wrap gap-150 md:gap-300">
             <div className="flex items-center">
-              <a rel="nofollow" target="_blank" href="https://docs.coin98.net/terms-of-service">
+              <Link rel="nofollow" target="_blank" href="https://docs.coin98.net/terms-of-service">
                 <span className="text-text-subtlest">Terms of Service</span>
-              </a>
+              </Link>
             </div>
 
             <span className="w-050 h-050 rounded-circle bg-g-20"></span>
 
             <div className="flex items-center">
-              <a rel="nofollow" target="_blank" href="https://docs.coin98.net/privacy-policy">
+              <Link rel="nofollow" target="_blank" href="https://docs.coin98.net/privacy-policy">
                 <span className="text-text-subtlest">Privacy Policy</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

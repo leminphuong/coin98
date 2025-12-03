@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function SignupStep1() {
   return (
     <div className="bg-background pb-500 md:pb-1300 pt-1500 flex flex-col items-center w-screen h-screen overflow-hidden">
@@ -71,10 +73,10 @@ export default function SignupStep1() {
               </div>
               <span className="ui-text-x-small">
                 I confirm that I am at least 18 years old and agree to{" "}
-                <a className="ui-text-x-small-emphasis text-text-highlight" href="https://docs.amberblocks.com/terms-of-service" target="_blank">Terms of Service</a>,{" "}
-                <a className="ui-text-x-small-emphasis text-text-highlight" href="https://docs.amberblocks.com/" target="_blank">Publisher Terms</a>,{" "}
+                <Link className="ui-text-x-small-emphasis text-text-highlight" href="https://docs.amberblocks.com/terms-of-service" target="_blank">Terms of Service</Link>,{" "}
+                <Link className="ui-text-x-small-emphasis text-text-highlight" href="https://docs.amberblocks.com/" target="_blank">Publisher Terms</Link>,{" "}
                 and{" "}
-                <a className="ui-text-x-small-emphasis text-text-highlight" href="https://docs.amberblocks.com/privacy-policy" target="_blank">Privacy Policy</a>.
+                <Link className="ui-text-x-small-emphasis text-text-highlight" href="https://docs.amberblocks.com/privacy-policy" target="_blank">Privacy Policy</Link>.
               </span>
             </div>
 
@@ -82,15 +84,14 @@ export default function SignupStep1() {
             <button type="submit" className="group/ab-button w-full mt-400 rounded-050 bg-button-primary-background py-100 px-150">
               <span className="button-text-large text-button-primary-text">Continue</span>
             </button>
-
           </form>
 
           {/* Sign in */}
-          <a href="/signin">
+          <Link href="/signin">
             <button className="group/ab-button w-full mt-200 rounded-050 bg-button-ghost-background py-100 px-150">
               <span className="text-button-ghost-text button-text-large">Sign in</span>
             </button>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

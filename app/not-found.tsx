@@ -1,3 +1,6 @@
+import Link from "next/link";
+import Image from "next/image";
+
 export default function NotFound() {
   return (
     <div className="w-screen flex-1 flex flex-col overflow-hidden">
@@ -17,11 +20,11 @@ export default function NotFound() {
 
         {/* Button */}
         <div className="mt-200 md:mt-300 flex justify-center">
-          <a href="/">
+          <Link href="/" className="inline-block">
             <button className="ab-btn-size-regular ab-btn-primary ab-btn">
               Go to Home
             </button>
-          </a>
+          </Link>
         </div>
 
       </div>
@@ -31,7 +34,8 @@ export default function NotFound() {
         <img
           src="https://coin98.net/assets/error/land-lm.svg"
           alt="land 404 page"
-          className="h-full md:h-auto md:w-full object-cover"
+          className="object-cover"
+          sizes="100vw"
         />
       </div>
     </div>

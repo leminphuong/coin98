@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 interface PageProps {
   params: Promise<{
@@ -758,7 +760,7 @@ export default function Page({ params }: PageProps) {
             </div>
             <div className="flex flex-wrap">
               <div className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4">
-                <a target="_blank" href="/courses/blockchain-101">
+                <Link  target="_blank" href="/courses/blockchain-101">
                   <div className="transition-all duration-300 bg-background lg:hover:bg-background-hovered select-none lg:hover:cursor-pointer group/course-card py-400 px-200 md:px-300 h-full flex flex-col">
                     {/* IMAGE */}
                     <div className="w-full relative mb-200 aspect-video rounded-050 overflow-hidden">
@@ -905,7 +907,7 @@ export default function Page({ params }: PageProps) {
                       </div>
                     </div>
                   </div>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

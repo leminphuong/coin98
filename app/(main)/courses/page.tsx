@@ -5,6 +5,8 @@ import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function CoursesPage() {
   const sliderRef = useRef<Slider | null>(null);
@@ -168,7 +170,7 @@ export default function CoursesPage() {
               <Slider ref={sliderRef} {...settings}>
                 {courses.map((c, i) => (
                   <div key={i}>
-                    <a href={c.href} target="_blank">
+                    <Link href={c.href} target="_blank">
                       <div className="transition-all duration-300 bg-background lg:hover:bg-background-hovered py-400 px-200 md:px-300 h-full flex flex-col">
                         <div className="w-full relative mb-200 aspect-video rounded-050 overflow-hidden">
                           <img
@@ -196,6 +198,7 @@ export default function CoursesPage() {
                               <div className="flex items-center ui-text-small text-text-primary">
                                 <img
                                   src={c.avatar}
+                                  alt={c.title}
                                   className="w-300 h-300 rounded-full mr-100"
                                 />
                                 <span>{c.instructor}</span>
@@ -219,7 +222,7 @@ export default function CoursesPage() {
                           </div>
                         </div>
                       </div>
-                    </a>
+                    </Link>
                   </div>
                 ))}
               </Slider>
@@ -228,11 +231,12 @@ export default function CoursesPage() {
             {/* MOBILE GRID */}
             <div className="grid lg:hidden grid-cols-1 s640:grid-cols-2">
               {courses.map((c, i) => (
-                <a key={i} href={c.href} target="_blank">
+                <Link key={i} href={c.href} target="_blank">
                   <div className="transition-all duration-300 bg-background p-200 md:px-300 py-400 flex flex-col">
                     <div className="w-full aspect-video rounded-050 overflow-hidden mb-200">
                       <img
                         src={c.image}
+                        alt={c.title}
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -242,7 +246,7 @@ export default function CoursesPage() {
                       <span className="ui-text-small">{c.level}</span>
                     </div>
                   </div>
-                </a>
+                </Link>
               ))}
             </div>
           </div>

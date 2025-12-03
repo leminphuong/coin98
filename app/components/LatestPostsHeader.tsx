@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 interface LatestPostsHeaderProps {
   title: string;
   moreHref?: string;
@@ -15,7 +17,7 @@ export default function LatestPostsHeader({ title, moreHref = "#" }: LatestPosts
       </div>
 
       <div className="min-h-500 ml-150">
-        <a href={moreHref}>
+        <Link href={moreHref}>
           <button className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear lg:disabled:cursor-not-allowed bg-button-ghost-background lg:hover:bg-button-ghost-background-hovered active:bg-button-ghost-background-pressed lg:hover:disabled:bg-button-ghost-background-disabled disabled:bg-button-ghost-background-disabled border-0125 border-transparent py-100 px-150">
             <span className="select-none text-button-ghost-text group-disabled/ab-button:text-button-ghost-text-disable button-text-large">
               More
@@ -41,7 +43,7 @@ export default function LatestPostsHeader({ title, moreHref = "#" }: LatestPosts
               </div>
             </div>
           </button>
-        </a>
+        </Link>
       </div>
     </div>
   );

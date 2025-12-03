@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import type { PostItem } from "@/types/post";
-
+import AvatarCircle from "@/components/AvatarCircle";
+import Image from "next/image";
 
 export default function ArticleCardHorizontalFull({
   slug,
@@ -23,12 +24,11 @@ export default function ArticleCardHorizontalFull({
         >
           {/* AUTHOR ROW */}
           <div className="ui-text-small text-text-secondary min-h-300 flex-wrap items-center lg:mb-100 mb-100 lg:flex hidden">
-            
             <div className="flex items-center h-max ui-text-small text-text-primary">
               <div className="aspect-square ab-avatar-people ab-avatar-size-24 flex-none mr-100">
                 <img
                   alt="Avatar"
-                  src={avatar}
+                  src={avatar || "/default-avatar.png"}
                   width={32}
                   height={32}
                   className="avatar-img aspect-square w-full object-cover"
@@ -40,16 +40,13 @@ export default function ArticleCardHorizontalFull({
               </div>
             </div>
 
-            <div className="m-050 flex items-center justify-center h-100 aspect-square">
-              <div className="w-100 aspect-square rounded-circle bg-g block scale-50"></div>
-            </div>
+            <AvatarCircle />
 
             {date}
           </div>
 
           {/* MAIN CONTENT ROW */}
           <div className="flex lg:-mx-150 -mx-100 flex-row-reverse">
-            
             {/* IMAGE RIGHT */}
             <div className="flex-none lg:mx-150 w-600 mx-100 block">
               <picture className="block w-full relative">
@@ -89,7 +86,6 @@ export default function ArticleCardHorizontalFull({
           </div>
         </div>
       </Link>
-
     </div>
   );
 }

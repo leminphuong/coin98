@@ -1,5 +1,7 @@
 "use client";
+
 import { useState } from "react";
+import Link from "next/link";
 
 export default function SignupPage() {
   const [step, setStep] = useState(1);
@@ -18,6 +20,7 @@ export default function SignupPage() {
         {/* BACK BUTTON */}
         {step > 1 && (
           <div className="fixed left-200 top-1200 md:absolute md:top-100 md:left-0 w-fit h-fit select-none overflow-hidden">
+            {/* Desktop */}
             <button
               onClick={() => setStep(step - 1)}
               className="group/ab-button hidden md:flex items-center justify-center rounded-050 bg-button-ghost-background py-050 px-100"
@@ -82,17 +85,29 @@ export default function SignupPage() {
 
               <span className="ui-text-x-small">
                 I confirm that I am at least 18 years old and agree to{" "}
-                <a href="https://docs.amberblocks.com/terms-of-service" target="_blank" className="ui-text-x-small-emphasis text-text-highlight">
+                <Link
+                  href="https://docs.amberblocks.com/terms-of-service"
+                  target="_blank"
+                  className="ui-text-x-small-emphasis text-text-highlight"
+                >
                   AmberBlocks Terms of Service
-                </a>
+                </Link>
                 ,{" "}
-                <a href="https://docs.amberblocks.com/" target="_blank" className="ui-text-x-small-emphasis text-text-highlight">
+                <Link
+                  href="https://docs.amberblocks.com/"
+                  target="_blank"
+                  className="ui-text-x-small-emphasis text-text-highlight"
+                >
                   Publisher Terms of Service
-                </a>
+                </Link>
                 , and{" "}
-                <a href="https://docs.amberblocks.com/privacy-policy" target="_blank" className="ui-text-x-small-emphasis text-text-highlight">
+                <Link
+                  href="https://docs.amberblocks.com/privacy-policy"
+                  target="_blank"
+                  className="ui-text-x-small-emphasis text-text-highlight"
+                >
                   Privacy Policy
-                </a>
+                </Link>
               </span>
             </div>
 
@@ -125,14 +140,17 @@ export default function SignupPage() {
 
             <div className="mt-200 ui-text-x-small">Password must have at least:</div>
 
-            {["8 characters", "1 upper case letter", "1 digit", "1 special character (ex: @, #, $, %, & ,...)"].map(
-              (rule) => (
-                <div key={rule} className="flex items-center py-050">
-                  <i className="ab-icon text-size-400 text-border-subtle ab-chevron_check"></i>
-                  <span className="ml-100 ui-text-x-small">{rule}</span>
-                </div>
-              )
-            )}
+            {[
+              "8 characters",
+              "1 upper case letter",
+              "1 digit",
+              "1 special character (ex: @, #, $, %, & ,...)"
+            ].map((rule) => (
+              <div key={rule} className="flex items-center py-050">
+                <i className="ab-icon text-size-400 text-border-subtle ab-chevron_check"></i>
+                <span className="ml-100 ui-text-x-small">{rule}</span>
+              </div>
+            ))}
 
             {/* CONFIRM PASSWORD */}
             <div className="flex flex-col mt-400">
@@ -167,6 +185,7 @@ export default function SignupPage() {
               <span className="ui-text-small-emphasis">example@gmail.com</span>
             </div>
 
+            {/* OTP INPUT */}
             <div className="flex flex-col mt-400">
               <label className="h-600 bg-background flex items-center py-150 border-0125 border-border px-0">
                 <input
@@ -187,11 +206,11 @@ export default function SignupPage() {
         </div>
 
         {/* LINK TO SIGNIN */}
-        <a href="/signin">
+        <Link href="/signin">
           <button className="group/ab-button w-full mt-200 rounded-050 bg-button-ghost-background py-100 px-150">
             <span className="button-text-large text-button-ghost-text">Sign in</span>
           </button>
-        </a>
+        </Link>
       </div>
     </div>
   );

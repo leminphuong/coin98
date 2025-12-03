@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function ForgotPasswordPage() {
   return (
     <div className="bg-background pb-500 md:pb-1300 pt-1500 flex flex-col items-center w-screen h-screen overflow-hidden">
@@ -14,7 +16,8 @@ export default function ForgotPasswordPage() {
 
         {/* BACK BUTTON */}
         <div className="fixed select-none left-200 top-1200 md:absolute md:top-100 md:left-0 w-fit h-fit overflow-hidden">
-          <a href="/signin">
+          <Link href="/signin">
+
             {/* Mobile */}
             <button className="group/ab-button flex md:hidden items-center justify-center rounded-050 bg-button-ghost-background p-100">
               <i className="ab-icon text-button-ghost-icon text-size-800 ab-arrow_left"></i>
@@ -25,7 +28,8 @@ export default function ForgotPasswordPage() {
               <i className="ab-icon text-button-ghost-icon text-size-400 mr-100 ab-arrow_left"></i>
               <span className="button-text-medium text-button-ghost-text">Back</span>
             </button>
-          </a>
+
+          </Link>
         </div>
 
         {/* FORM */}

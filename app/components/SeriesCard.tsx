@@ -2,6 +2,7 @@
 import React from "react";
 
 import type { SeriesItem } from "@/types/series";
+import Link from "next/link";
 
 /* ============================================
    SERIES CARD DESKTOP (Upside style - Enhanced)
@@ -9,7 +10,7 @@ import type { SeriesItem } from "@/types/series";
 
 export function SeriesCardDesktop({ item }: { item: SeriesItem }) {
   return (
-    <a href={item.url}>
+    <Link href={item.url}>
       <div
         draggable={false}
         className="transition-all duration-300 bg-background lg:hover:bg-background-hovered group/seriesCard p-300"
@@ -75,7 +76,7 @@ export function SeriesCardDesktop({ item }: { item: SeriesItem }) {
           </picture>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }
 
@@ -83,7 +84,7 @@ export function SeriesCardDesktop({ item }: { item: SeriesItem }) {
 
 export function SeriesCardMobile({ item }: { item: SeriesItem }) {
   return (
-    <a href={item.url} className="lg:w-1/3 block group/seriesCard">
+    <Link href={item.url} className="lg:w-1/3 block group/seriesCard">
       <div
         draggable="false"
         className="
@@ -227,6 +228,6 @@ export function SeriesCardMobile({ item }: { item: SeriesItem }) {
           </picture>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }

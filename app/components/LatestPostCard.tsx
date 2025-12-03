@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { PostItem } from "@/types/post";
-
+import AvatarCircle from "@/components/AvatarCircle";
+import Link from "next/link";
 export default function LatestPostCard({
   slug,
   title,
@@ -15,7 +16,7 @@ export default function LatestPostCard({
   const safeAuthors = authors ?? [];
 
   return (
-    <a href={slug} className="block">
+    <Link href={slug} className="block">
       <div
         className="transition-all duration-300 bg-background lg:hover:bg-background-hovered 
                    article-vertical select-none px-200 py-300 md:px-300"
@@ -24,16 +25,13 @@ export default function LatestPostCard({
             FEATURE IMAGE
         ============================== */}
         <picture className="relative mb-200 block">
-          <Image
+          <img
             src={image}
             alt={title}
             width={1200}
             height={800}
-            quality={80}
             className="object-cover rounded-050 aspect-3-2 w-full"
             sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
-            placeholder="blur"
-            blurDataURL="/placeholder.png"
           />
         </picture>
 
@@ -47,7 +45,7 @@ export default function LatestPostCard({
                 key={idx}
                 className="aspect-square relative z-10 ab-avatar-people ab-avatar-size-24 ring-2 ring-background rounded-circle"
               >
-                <Image
+                <img
                   src={au.avatar}
                   alt={au.name ?? "avatar"}
                   width={32}
@@ -63,9 +61,7 @@ export default function LatestPostCard({
             {safeAuthors .length > 1 ? "Multi Author" : safeAuthors [0]?.name}
           </span>
 
-          <div className="m-050 flex items-center justify-center h-100 aspect-square">
-            <div className="w-100 aspect-square rounded-circle bg-g block scale-50"></div>
-          </div>
+                    <AvatarCircle />
 
           <span>{date}</span>
         </div>
@@ -115,7 +111,7 @@ export default function LatestPostCard({
           </div>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }
 

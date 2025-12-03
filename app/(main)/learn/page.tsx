@@ -1,5 +1,8 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
+
 export default function LearnPage() {
 
   const categories = [
@@ -87,19 +90,9 @@ export default function LearnPage() {
             alt="portal"
             fetchPriority="high"
             decoding="async"
-            data-nimg="fill"
             className="h-full md:h-auto w-full object-cover"
             sizes="100vw"
-            srcSet="
-        /_next/image?url=https%3A%2F%2Ffiles.amberblocks.com%2Fthumbnail%2Fchnbzaa92ook5tnj%2Flayout%2Flzrbv0qyrjwg%2Ff3gijq7khgy04eatyiwiwlvn2tz8u0dk%2Fc98-ins-thumbnail-22-.jpg&w=640&q=75 640w,
-        /_next/image?url=https%3A%2F%2Ffiles.amberblocks.com%2Fthumbnail%2Fchnbzaa92ook5tnj%2Flayout%2Flzrbv0qyrjwg%2Ff3gijq7khgy04eatyiwiwlvn2tz8u0dk%2Fc98-ins-thumbnail-22-.jpg&w=750&q=75 750w,
-        /_next/image?url=https%3A%2F%2Ffiles.amberblocks.com%2Fthumbnail%2Fchnbzaa92ook5tnj%2Flayout%2Flzrbv0qyrjwg%2Ff3gijq7khgy04eatyiwiwlvn2tz8u0dk%2Fc98-ins-thumbnail-22-.jpg&w=828&q=75 828w,
-        /_next/image?url=https%3A%2F%2Ffiles.amberblocks.com%2Fthumbnail%2Fchnbzaa92ook5tnj%2Flayout%2Flzrbv0qyrjwg%2Ff3gijq7khgy04eatyiwiwlvn2tz8u0dk%2Fc98-ins-thumbnail-22-.jpg&w=1080&q=75 1080w,
-        /_next/image?url=https%3A%2F%2Ffiles.amberblocks.com%2Fthumbnail%2Fchnbzaa92ook5tnj%2Flayout%2Flzrbv0qyrjwg%2Ff3gijq7khgy04eatyiwiwlvn2tz8u0dk%2Fc98-ins-thumbnail-22-.jpg&w=1200&q=75 1200w,
-        /_next/image?url=https%3A%2F%2Ffiles.amberblocks.com%2Fthumbnail%2Fchnbzaa92ook5tnj%2Flayout%2Flzrbv0qyrjwg%2Ff3gijq7khgy04eatyiwiwlvn2tz8u0dk%2Fc98-ins-thumbnail-22-.jpg&w=1920&q=75 1920w,
-        /_next/image?url=https%3A%2F%2Ffiles.amberblocks.com%2Fthumbnail%2Fchnbzaa92ook5tnj%2Flayout%2Flzrbv0qyrjwg%2Ff3gijq7khgy04eatyiwiwlvn2tz8u0dk%2Fc98-ins-thumbnail-22-.jpg&w=2048&q=75 2048w,
-        /_next/image?url=https%3A%2F%2Ffiles.amberblocks.com%2Fthumbnail%2Fchnbzaa92ook5tnj%2Flayout%2Flzrbv0qyrjwg%2Ff3gijq7khgy04eatyiwiwlvn2tz8u0dk%2Fc98-ins-thumbnail-22-.jpg&w=3840&q=75 3840w
-      "
+        
             src="/_next/image?url=https%3A%2F%2Ffiles.amberblocks.com%2Fthumbnail%2Fchnbzaa92ook5tnj%2Flayout%2Flzrbv0qyrjwg%2Ff3gijq7khgy04eatyiwiwlvn2tz8u0dk%2Fc98-ins-thumbnail-22-.jpg&w=3840&q=75"
             style={{
               position: "absolute",
@@ -175,12 +168,12 @@ export default function LearnPage() {
                 <span className="ui-text-large-emphasis md:ui-h3-emphasis text-text-primary flex-grow">
                   Người mới bắt đầu
                 </span>
-                <a href="/learn/detail?subCategories=fiE11iq5fvscloB1Yr6Da">
+                <Link href="/learn/detail?subCategories=fiE11iq5fvscloB1Yr6Da">
                   <button className="hidden md:flex items-center px-150 py-100 bg-button-ghost-background rounded-050 border-transparent">
                     More
                     <i className="ab-icon ml-100 ab-arrow_right"></i>
                   </button>
-                </a>
+                </Link>
               </div>
               {/* Chips */}
               <div className="-my-050">
@@ -200,10 +193,11 @@ export default function LearnPage() {
           <div className="flex flex-wrap mt-200">
             {posts.map((post) => (
               <div className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4" key={post.id}>
-                <a href={post.href} className="block w-full">
+                <Link  href={post.href} className="block w-full">
                   <div className="px-200 py-300 md:px-300 bg-background hover:bg-background-hovered transition rounded-050">
                     <picture className="block mb-200">
                       <img
+                        alt="Avatar"
                         src={post.thumb}
                         className="rounded-050 object-cover aspect-3-2 w-full"
                       />
@@ -211,6 +205,7 @@ export default function LearnPage() {
 
                     <div className="hidden md:flex items-center text-text-secondary mb-100">
                       <img
+                        alt="Avatar"
                         src={post.avatar}
                         className="w-200 h-200 rounded-circle mr-100"
                       />
@@ -233,7 +228,7 @@ export default function LearnPage() {
                       </div>
                     </div>
                   </div>
-                </a>
+                </Link>
               </div>
             ))}
           </div>
