@@ -60,7 +60,10 @@ export function SeriesCardDesktop({ item }: { item: SeriesItem }) {
 
                   <div className="w-max h-max absolute z-10 overflow-hidden px-075 py-050 text-size-400 transition-transform ease-linear rounded-050 border border-tooltip-background bg-tooltip-background mb-150 bottom-100% translate-y-100 lg:group-hover/tooltip:translate-y-0 left-1/2 -translate-x-1/2">
                     Copy link
-                    <div className="tooltip-arrow" data-popper-arrow="true"></div>
+                    <div
+                      className="tooltip-arrow"
+                      data-popper-arrow="true"
+                    ></div>
                   </div>
                 </div>
 
@@ -79,8 +82,6 @@ export function SeriesCardDesktop({ item }: { item: SeriesItem }) {
     </Link>
   );
 }
-
-
 
 export function SeriesCardMobile({ item }: { item: SeriesItem }) {
   return (
@@ -202,7 +203,10 @@ export function SeriesCardMobile({ item }: { item: SeriesItem }) {
                     "
                   >
                     Copy link
-                    <div className="tooltip-arrow" data-popper-arrow="true"></div>
+                    <div
+                      className="tooltip-arrow"
+                      data-popper-arrow="true"
+                    ></div>
                   </div>
                 </div>
 
