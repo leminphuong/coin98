@@ -671,7 +671,6 @@ export default function SearchPage() {
                                   </div>
                                 </div>
 
-                                {/* Follow series */}
                                 <button className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear bg-button-tertiary-background border-0125 border-button-tertiary-border py-050 px-100">
                                   <i className="ab-icon !not-italic text-button-tertiary-icon text-size-400 mr-100 ab-plus"></i>
                                   <span className="select-none text-button-tertiary-text button-text-medium">
