@@ -6,6 +6,7 @@ import LatestPostsSlider from "@/components/LatestPostsSlider";
 import LatestPostsHeader from "@/components/LatestPostsHeader";
 import ArticleList from "@/components/ArticleList";
 import SeriesList from "@/components/SeriesSlider";
+import ArticleImageFeaturedBanner from "@/components/ArticleImageFeaturedBanner";
 import { getHomeData } from "@/api/getHomeData"; // bạn tạo file này như hướng dẫn
 import type { PostItem } from "@/types/post";
 import React from "react";
@@ -26,8 +27,16 @@ export default async function Home() {
           {/* LEFT SMALL POSTS */}
           <div className="w-full lg:w-1/3">
             <div className="grid grid-cols-2 lg:grid-cols-1 gap-300 px-200 lg:px-0">
-              {latest.slice(1, 3).map((post) => (
-                <ArticleCardVertical key={post.slug} {...post} />
+              {latest.slice(1, 3).map((post, index) => (
+                <React.Fragment key={post.slug}>
+                  <ArticleCardVertical {...post} />
+
+                  {index === 0 && (
+                    <div className="px-200 md:px-300 hidden lg:block">
+                      <div className="bg-divider h-0125 w-full"></div>
+                    </div>
+                  )}
+                </React.Fragment>
               ))}
             </div>
           </div>
@@ -65,24 +74,7 @@ export default async function Home() {
         <div className="max-w-w1280 mx-auto w-full my-600 md:my-1000 lg:my-500">
           <div className="clear-both">
             <div className="w-full max-w-w1280 mx-auto h-[100px] s560:h-[250px]">
-              <Link
-                target="_blank"
-                rel="nofollow"
-                href="https://wetheivy.beehiiv.com/?utm_source=coin98insights"
-              >
-                <picture>
-                  <source
-                    media="(min-width:560px)"
-                    srcSet={data.featured_banner}
-                  />
-
-                  <img
-                    alt="advertising"
-                    src={data.featured_banner}
-                    className="w-full h-full object-cover"
-                  />
-                </picture>
-              </Link>
+              <ArticleImageFeaturedBanner src={data.featured_banner} />
             </div>
           </div>
         </div>
@@ -103,7 +95,7 @@ export default async function Home() {
             moreHref={data.url_more_phan_tich}
           />
 
-          <ArticleList />
+          <ArticleList items={data.phan_tich_posts} />
         </div>
         <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-500"></div>
         <div className="max-w-w1280 mx-auto w-full my-600 md:my-1000 lg:my-500">
@@ -114,11 +106,27 @@ export default async function Home() {
         <div className="bg-divider-subtle h-0125 w-full mt-600 md:mt-500"></div>
         <div className="max-w-w1280 mx-auto w-full my-700 md:my-1000 lg:my-700">
           <LatestPostsHeader
-            title={data.moi_nhat}
-            moreHref={data.url_more_moi_nhat}
+            title={data.the_spotlight}
+            moreHref={data.url_cua_more_the_spotlight}
           />
 
-          <LatestPostsSlider items={data.latest_posts} />
+          <LatestPostsSlider items={data.cac_bai_cua_the_spotlight} />
+        </div>
+        <div className="max-w-w1280 mx-auto w-full my-700 md:my-1000 lg:my-700">
+          <LatestPostsHeader
+            title={data.bao_cao_thi_truong_crypto}
+            moreHref={data.url_cua_more_bao_cao_thi_truong_crypto}
+          />
+
+          <LatestPostsSlider items={data.bai_cua_bao_cao_thi_truong_crypto} />
+        </div>
+        <div className="max-w-w1280 mx-auto w-full my-700 md:my-1000 lg:my-700">
+          <LatestPostsHeader
+            title={data.nguoi_moi}
+            moreHref={data.url_cua_nguoi_moi}
+          />
+
+          <LatestPostsSlider items={data.bai_cua_phan_nguoi_moi} />
         </div>
       </div>
     </div>

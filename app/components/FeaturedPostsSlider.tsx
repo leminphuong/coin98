@@ -36,7 +36,7 @@ export default function FeaturedPostsSlider({
     <>
       <SliderHeader title={title} onPrev={prev} onNext={next} />
 
-      {/* DESKTOP */}
+
       <div className="mt-100 hidden lg:block">
         <Slider ref={sliderRef} {...settings}>
           {items.map((item) => (
@@ -45,7 +45,6 @@ export default function FeaturedPostsSlider({
         </Slider>
       </div>
 
-      {/* MOBILE */}
       <div className="grid lg:hidden grid-cols-1">
         {items.map((item) => (
           <MobileItem key={item.slug} {...item} />

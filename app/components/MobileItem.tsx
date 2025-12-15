@@ -2,8 +2,15 @@
 
 import { PostItem } from "@/types/post";
 import Link from "next/link";
+import ArticleImageMobile from "@/components/ArticleImageMobile";
 
-export default function MobileItem({ slug, image, title, author, date }: PostItem) {
+export default function MobileItem({
+  slug,
+  image,
+  title,
+  author,
+  date,
+}: PostItem) {
   return (
     <Link href={slug}>
       <div
@@ -11,24 +18,12 @@ export default function MobileItem({ slug, image, title, author, date }: PostIte
         className="transition-all duration-300 bg-background select-none 
                    overflow-hidden p-300 px-200 box-border flex"
       >
-        <picture className="relative flex-none block min-w-200 w-600 mr-200">
-          <img
-            alt={title}
-            width={600}
-            height={400}
-            className="object-cover rounded-050 aspect-square w-full"
-            src={image}
-          />
-        </picture>
+        <ArticleImageMobile src={image} alt={title} />
 
         <div className="flex-1 break-words flex flex-col justify-center">
           <p className="text-text-primary break-words article-h7 mb-050">
             {title}
           </p>
-
-          <span className="ui-text-x-small text-text-secondary">
-            {author} · {date}
-          </span>
         </div>
       </div>
     </Link>

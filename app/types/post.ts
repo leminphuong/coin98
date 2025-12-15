@@ -7,5 +7,20 @@ export interface PostItem {
   author?: string;
   date: string;
   readTime: string;
-  authors?: { name: string; avatar: string }[];
+  authors?: {
+    title: string | undefined;
+    id: number;
+    name: string;
+    slug: string;
+    avatar: string;
+    url: string;
+  }[];
+}
+
+
+export interface AuthorItem {
+  id: string | number;
+  name: string;
+  slug: string;
+  avatar: string; // URL ảnh tác giả
 }
