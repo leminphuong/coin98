@@ -1,5 +1,6 @@
 export interface SeriesItem {
-  id: string;
+  id: number;
+  slug: string;
   name: string;
   count: number;
   image: string;

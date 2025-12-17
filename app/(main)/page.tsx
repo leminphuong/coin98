@@ -7,18 +7,18 @@ import LatestPostsHeader from "@/components/LatestPostsHeader";
 import ArticleList from "@/components/ArticleList";
 import SeriesList from "@/components/SeriesSlider";
 import ArticleImageFeaturedBanner from "@/components/ArticleImageFeaturedBanner";
-import { getHomeData } from "@/api/getHomeData"; // bạn tạo file này như hướng dẫn
+import { getHomeData } from "@/api/getHomeData";
 import type { PostItem } from "@/types/post";
 import React from "react";
 import Link from "next/link";
+import { detectLocaleByIP } from "@/lib/server/detectLocale";
 
 export default async function Home() {
-  const data = await getHomeData("vi");
+  const ipLocale = await detectLocaleByIP(); 
 
-  // 2: Lấy danh sách bài mới nhất
+  const data = await getHomeData(ipLocale);
+
   const latest: PostItem[] = data.latest_posts || [];
-
-  console.log(latest);
 
   return (
     <div className="w-full mx-auto max-w-w1280">
