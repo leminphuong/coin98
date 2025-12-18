@@ -1,83 +1,38 @@
-"use client";
-
-import Image from "next/image";
+import LatestPostItem from "@/components/LatestPostItem";
+import { getCategoriesWithPosts } from "@/api/getHomeData";
+import type { PostItem } from "@/types/post";
 import Link from "next/link";
+import "./page.css";
+import { detectLocaleByIP } from "@/lib/server/detectLocale";
+import GroupTabs from "@/components/GroupTabs";
 
-export default function LearnPage() {
+export default async function LearnPage() {
+  const ipLocale = await detectLocaleByIP();
+  const data = await getCategoriesWithPosts(ipLocale);
 
-  const categories = [
-    "Người mới bắt đầu",
-    "Kiến thức cơ bản",
-    "Airdrop",
-    "Kinh nghiệm",
-    "Trading",
-    "Kinh tế - Tài chính",
-    "Coin & Token",
-    "NFT",
-    "Gaming",
-    "Web3",
-    "AI",
-    "Layer 2",
-  ];
+  const categorySections =
+    data.categories?.filter((item: any) => {
+      const { content } = item;
 
-  // ==========================
-  // 🔥 DATA: CHIPS TRONG SECTION
-  // ==========================
-  const chips = [
-    "Lưu trữ",
-    "Bảo mật",
-    "Mua bán",
-    "Sàn giao dịch",
-    "Công cụ",
-    "Đầu tư Crypto",
-    "Thuật ngữ Crypto",
-    "Thêm mạng",
-  ];
+      if (!content) return false;
 
-  // ==========================
-  // 🔥 DATA: POSTS (CARD GRID)
-  // ==========================
-  const posts = [
-    {
-      id: "pcxv1",
-      href: "/ban-la-ai-trong-thi-truong-crypto",
-      title: "Bạn là ai trong thị trường Crypto? Hãy bắt đầu đúng đắn!",
-      desc: "Bài viết này dành cho bạn! Dù cho bạn có bắt đầu từ đâu, dù bạn đã tham gia thị trường crypto bao lâu, đồng hành cùng mình nhé!",
-      thumb:
-        "/_next/image?url=https%3A%2F%2Ffiles.amberblocks.com%2Fthumbnail%2Fchnbzaa92ook5tnj%2Fposts%2Fpcxv1gyzettkd0nb%2Ff0fdmus00us3ayatjrb8f5u519s3zket%2F240930-thumbweb-c98-ban-la-ai-trong-thi-truong-crypto.jpg&w=3840&q=75",
-      avatar:
-        "/_next/image?url=https%3A%2F%2Ffiles.amberblocks.com%2Fuserdata%2Fusr9580exg5m50m04fo1iskezbg3s5nt%2Fprofile-pictures%2Ffk49yv2ifvrm1tgz9wtzk9c0fe8cktvf%2Fava.jpeg&w=3840&q=50",
-      author: "trangtran.c98",
-      date: "Nov 15 2024",
-      readTime: "17 min read",
-    },
-    {
-      id: "pcxv2",
-      href: "/ban-la-ai-trong-thi-truong-crypto",
-      title: "Bạn là ai trong thị trường Crypto? Hãy bắt đầu đúng đắn!",
-      desc: "Bài viết này dành cho bạn! Dù cho bạn có bắt đầu từ đâu, dù bạn đã tham gia thị trường crypto bao lâu, đồng hành cùng mình nhé!",
-      thumb:
-        "/_next/image?url=https%3A%2F%2Ffiles.amberblocks.com%2Fthumbnail%2Fchnbzaa92ook5tnj%2Fposts%2Fpcxv1gyzettkd0nb%2Ff0fdmus00us3ayatjrb8f5u519s3zket%2F240930-thumbweb-c98-ban-la-ai-trong-thi-truong-crypto.jpg&w=3840&q=75",
-      avatar:
-        "/_next/image?url=https%3A%2F%2Ffiles.amberblocks.com%2Fuserdata%2Fusr9580exg5m50m04fo1iskezbg3s5nt%2Fprofile-pictures%2Ffk49yv2ifvrm1tgz9wtzk9c0fe8cktvf%2Fava.jpeg&w=3840&q=50",
-      author: "trangtran.c98",
-      date: "Nov 15 2024",
-      readTime: "17 min read",
-    },
-    {
-      id: "pcxv3",
-      href: "/ban-la-ai-trong-thi-truong-crypto",
-      title: "Bạn là ai trong thị trường Crypto? Hãy bắt đầu đúng đắn!",
-      desc: "Bài viết này dành cho bạn! Dù cho bạn có bắt đầu từ đâu, dù bạn đã tham gia thị trường crypto bao lâu, đồng hành cùng mình nhé!",
-      thumb:
-        "/_next/image?url=https%3A%2F%2Ffiles.amberblocks.com%2Fthumbnail%2Fchnbzaa92ook5tnj%2Fposts%2Fpcxv1gyzettkd0nb%2Ff0fdmus00us3ayatjrb8f5u519s3zket%2F240930-thumbweb-c98-ban-la-ai-trong-thi-truong-crypto.jpg&w=3840&q=75",
-      avatar:
-        "/_next/image?url=https%3A%2F%2Ffiles.amberblocks.com%2Fuserdata%2Fusr9580exg5m50m04fo1iskezbg3s5nt%2Fprofile-pictures%2Ffk49yv2ifvrm1tgz9wtzk9c0fe8cktvf%2Fava.jpeg&w=3840&q=50",
-      author: "trangtran.c98",
-      date: "Nov 15 2024",
-      readTime: "17 min read",
-    },
-  ];
+      // type: single
+      if (content.type === "single") {
+        return Array.isArray(content.posts) && content.posts.length > 0;
+      }
+
+      // type: group
+      if (content.type === "group") {
+        return (
+          Array.isArray(content.groups) &&
+          content.groups.some(
+            (group: any) => Array.isArray(group.posts) && group.posts.length > 0
+          )
+        );
+      }
+
+      return false;
+    }) || [];
 
   return (
     <>
@@ -92,7 +47,6 @@ export default function LearnPage() {
             decoding="async"
             className="h-full md:h-auto w-full object-cover"
             sizes="100vw"
-        
             src="/_next/image?url=https%3A%2F%2Ffiles.amberblocks.com%2Fthumbnail%2Fchnbzaa92ook5tnj%2Flayout%2Flzrbv0qyrjwg%2Ff3gijq7khgy04eatyiwiwlvn2tz8u0dk%2Fc98-ins-thumbnail-22-.jpg&w=3840&q=75"
             style={{
               position: "absolute",
@@ -106,7 +60,8 @@ export default function LearnPage() {
 
         <div
           data-theme="dark"
-          className="max-w-80% w-w960 z-1 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center"
+          className="max-w-80% w-w960 z-1 absolute left-1/2 top-1/2
+          -translate-x-1/2 -translate-y-1/2 flex flex-col items-center"
         >
           <h1 className="text-text-primary ui-h1-emphasis text-center mb-150">
             Learn - Thư viện kiến thức Crypto
@@ -119,37 +74,39 @@ export default function LearnPage() {
 
           <div className="flex flex-col max-w-w468 w-full">
             <label
-              htmlFor="rdsckg"
-              className="h-600 bg-background flex items-center py-150 px-200 rounded-050 border-0125 border-border transition-all duration-200 focus-within:border-cbr-50 focus-within:shadow-outline-primary cursor-text rounded-circle"
+              htmlFor="search"
+              className="h-600 bg-background flex items-center py-150 px-200
+              rounded-circle border-0125 border-border transition-all duration-200
+              focus-within:border-cbr-50 focus-within:shadow-outline-primary"
             >
-              <i className="ab-icon !not-italic mr-150 flex-none transition-all duration-200 text-size-800 text-icon ab-search"></i>
-
+              <i className="ab-icon mr-150 text-size-800 text-icon ab-search"></i>
               <input
+                id="search"
                 data-theme="dark"
                 placeholder="Search in portal"
-                id="rdsckg"
                 autoComplete="off"
-                className="outline-none bg-transparent align-middle flex-1 text-text-primary disabled:text-text-disabled select-none placeholder:select-none placeholder:text-text-subtlest"
+                className="outline-none bg-transparent flex-1
+                text-text-primary placeholder:text-text-subtlest"
               />
-
-              <div className="w-300 h-300 items-center justify-center ml-150 lg:hover:cursor-pointer hidden">
-                <i className="ab-icon !not-italic flex-none text-size-400 text-icon-subtlest ab-cancel"></i>
-              </div>
             </label>
           </div>
         </div>
       </div>
 
-      {/* ===================== TOP CATEGORIES ===================== */}
+      {/* ===================== TOP CATEGORIES (API) ===================== */}
       <div className="bg-background sticky top-0 z-10">
         <div className="py-200 flex w-full justify-center">
           <div className="max-w-w1440 w-full">
             <div className="flex overflow-y-auto no-scrollbar px-150">
-              {categories.map((item, i) => (
-                <div key={i} className="py-100 px-150 min-w-max">
-                  <span className="ui-text-medium-emphasis text-text-subtlest hover:text-text-primary cursor-pointer">
-                    {item}
-                  </span>
+              {categorySections.map((item: any) => (
+                <div key={item.category.id} className="py-100 px-150 min-w-max">
+                  <a
+                    href={`#cat-${item.category.slug}`}
+                    className="ui-text-medium-emphasis text-text-subtlest
+                    hover:text-text-primary cursor-pointer whitespace-nowrap"
+                  >
+                    {item.category.name}
+                  </a>
                 </div>
               ))}
             </div>
@@ -157,83 +114,61 @@ export default function LearnPage() {
         </div>
         <div className="bg-divider h-0125 w-full"></div>
       </div>
-      {/* ===================== SECTION ===================== */}
+
+      {/* ===================== SECTIONS ===================== */}
       <div className="w-full max-w-w1440 mx-auto">
-        <div>
-          {" "}
-          <div className="pt-300 py-500 md:pt-500 md:py-1000">
-            <div className="px-200 md:px-300 py-200">
-              <div className="flex items-center">
-                {" "}
-                <span className="ui-text-large-emphasis md:ui-h3-emphasis text-text-primary flex-grow">
-                  Người mới bắt đầu
-                </span>
-                <Link href="/learn/detail?subCategories=fiE11iq5fvscloB1Yr6Da">
-                  <button className="hidden md:flex items-center px-150 py-100 bg-button-ghost-background rounded-050 border-transparent">
-                    More
-                    <i className="ab-icon ml-100 ab-arrow_right"></i>
-                  </button>
-                </Link>
+        {categorySections.map((section: any, idx: number) => {
+          const { category, content } = section;
+          const isLast = idx === categorySections.length - 1;
+
+          return (
+            <div
+              id={`cat-${category.slug}`}
+              key={category.id}
+              className="pt-300 py-500 md:pt-500 md:py-1000"
+            >
+              {/* ===== SECTION HEADER ===== */}
+              <div className="px-200 md:px-300 py-200">
+                <div className="flex items-center">
+                  <span className="ui-text-large-emphasis md:ui-h3-emphasis text-text-primary flex-grow">
+                    {category.name}
+                  </span>
+
+                  <Link href={`/learn/detail?category=${category.slug}`}>
+                    <button className="hidden md:flex items-center px-150 py-100 bg-button-ghost-background rounded-050">
+                      More
+                      <i className="ab-icon ml-100 ab-arrow_right"></i>
+                    </button>
+                  </Link>
+                </div>
               </div>
-              {/* Chips */}
-              <div className="-my-050">
-                <div className="flex overflow-x-auto no-scrollbar md:flex-wrap">
-                  {chips.map((chip, i) => (
-                    <div key={i} className="min-w-max my-050 mr-150">
-                      <div className="min-w-600 py-100 px-150 rounded-circle border-0125 border-border-subtle hover:bg-background-hovered cursor-pointer">
-                        <span className="text-text-primary">{chip}</span>
-                      </div>
+
+              {/* ===== TYPE: SINGLE ===== */}
+              {content.type === "single" && (
+                <div className="flex flex-wrap">
+                  {content.posts.slice(0, 4).map((post: PostItem) => (
+                    <div
+                      key={post.slug}
+                      className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4"
+                    >
+                      <LatestPostItem {...post} />
                     </div>
                   ))}
                 </div>
-              </div>
+              )}
+
+              {/* ===== TYPE: GROUP ===== */}
+              {content.type === "group" && (
+                <GroupTabs groups={content.groups} />
+              )}
+
+              {/* ===== DIVIDER (KHÔNG HIỆN Ở CUỐI) ===== */}
+              {!isLast && (
+                <div className="bg-divider h-0125 w-full mt-300"></div>
+              )}
             </div>
-          </div>
-          {/* Posts */}
-          <div className="flex flex-wrap mt-200">
-            {posts.map((post) => (
-              <div className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4" key={post.id}>
-                <Link  href={post.href} className="block w-full">
-                  <div className="px-200 py-300 md:px-300 bg-background hover:bg-background-hovered transition rounded-050">
-                    <picture className="block mb-200">
-                      <img
-                        alt="Avatar"
-                        src={post.thumb}
-                        className="rounded-050 object-cover aspect-3-2 w-full"
-                      />
-                    </picture>
-
-                    <div className="hidden md:flex items-center text-text-secondary mb-100">
-                      <img
-                        alt="Avatar"
-                        src={post.avatar}
-                        className="w-200 h-200 rounded-circle mr-100"
-                      />
-                      <span>{post.author}</span>
-                      <div className="mx-100 w-50 h-50 rounded-circle bg-g scale-50"></div>
-                      {post.date}
-                    </div>
-
-                    <p className="text-text-primary article-h5">{post.title}</p>
-
-                    <div className="hidden md:block mt-100">
-                      <span className="article-text-x-small text-text-secondary line-clamp-3">
-                        {post.desc}
-                      </span>
-                    </div>
-
-                    <div className="hidden md:flex justify-between items-center mt-150">
-                      <div className="badge border px-100 py-0125 rounded-circle text-text-primary">
-                        {post.readTime}
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div>
-          <div className="bg-divider h-0125 w-full mt-300"></div>
-        </div>
+          );
+        })}
       </div>
     </>
   );

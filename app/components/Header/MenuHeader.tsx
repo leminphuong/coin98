@@ -3,6 +3,7 @@ import Script from "next/script";
 import React, { useState } from "react";
 import { useSearch } from "@/components/SearchContext";
 import { useLocale } from "@/components/useLocale";
+import { usePathname } from "next/navigation";
 
 interface MenuHeaderProps {
   isSidebarOpen: boolean;
@@ -15,6 +16,12 @@ export default function MenuHeader({
   setIsSidebarOpen,
   locale: serverLocale,
 }: MenuHeaderProps) {
+  const pathname = usePathname();
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
+
   const [isChangingLocale, setIsChangingLocale] = useState(false);
 
   const handleChangeLocale = () => {
@@ -186,40 +193,63 @@ export default function MenuHeader({
                       </div>
                     </div>
 
-                    {/* MAIN MENU */}
                     <div className="flex flex-col transition-all duration-300">
                       <Link
-                        className="px-200 py-150 text-text-primary ui-text-large-emphasis"
                         href="/"
                         onClick={() => setIsSidebarOpen(false)}
+                        className={`px-200 py-150 ui-text-large-emphasis ${
+                          isActive("/")
+                            ? "text-text-primary bg-background-subtle"
+                            : "text-text-subtlest"
+                        }`}
                       >
                         Home
                       </Link>
+
                       <Link
-                        className="px-200 py-150 text-text-primary ui-text-large"
                         href="/learn"
                         onClick={() => setIsSidebarOpen(false)}
+                        className={`px-200 py-150 ui-text-large ${
+                          isActive("/learn")
+                            ? "text-text-primary bg-background-subtle"
+                            : "text-text-subtlest"
+                        }`}
                       >
                         Learn
                       </Link>
+
                       <Link
-                        className="px-200 py-150 text-text-primary ui-text-large"
                         href="/series"
                         onClick={() => setIsSidebarOpen(false)}
+                        className={`px-200 py-150 ui-text-large ${
+                          isActive("/series")
+                            ? "text-text-primary bg-background-subtle"
+                            : "text-text-subtlest"
+                        }`}
                       >
                         Series
                       </Link>
+
                       <Link
-                        className="px-200 py-150 text-text-primary ui-text-large"
                         href="/report"
                         onClick={() => setIsSidebarOpen(false)}
+                        className={`px-200 py-150 ui-text-large ${
+                          isActive("/report")
+                            ? "text-text-primary bg-background-subtle"
+                            : "text-text-subtlest"
+                        }`}
                       >
                         Report
                       </Link>
+
                       <Link
-                        className="px-200 py-150 text-text-primary ui-text-large"
                         href="/courses"
                         onClick={() => setIsSidebarOpen(false)}
+                        className={`px-200 py-150 ui-text-large ${
+                          isActive("/courses")
+                            ? "text-text-primary bg-background-subtle"
+                            : "text-text-subtlest"
+                        }`}
                       >
                         Courses
                       </Link>
@@ -228,9 +258,9 @@ export default function MenuHeader({
 
                       {/* SIGN IN */}
                       <Link className="lg:ml-150" href="/signin">
-                        <button className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear lg:disabled:cursor-not-allowed bg-button-ghost-background lg:hover:bg-button-ghost-background-hovered active:bg-button-ghost-background-pressed disabled:bg-button-ghost-background-disabled border-0125 border-transparent py-100 px-150 lg:hidden">
+                        <button className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear bg-button-ghost-background py-100 px-150 lg:hidden">
                           <i className="ab-icon !not-italic text-button-ghost-icon mr-100 text-size-600 ab-signin"></i>
-                          <span className="select-none text-button-ghost-text button-text-large !text-text-primary !ui-text-large">
+                          <span className="select-none text-button-ghost-text ui-text-large">
                             Sign in
                           </span>
                         </button>
@@ -284,50 +314,94 @@ export default function MenuHeader({
               {/* DESKTOP MENU */}
               <div className="ch-sidebar ch-menu-wrapper w-0 h-0 overflow-hidden flex items-center">
                 <div className="ch-menu flex items-center h-full">
+                  {/* HOME */}
                   <Link
-                    className="h-full mx-150 lg:mx-250 flex items-center ui-text-medium text-text-primary relative"
                     href="/"
+                    className={`h-full mx-150 lg:mx-250 flex items-center ui-text-medium relative ${
+                      isActive("/")
+                        ? "text-text-primary"
+                        : "text-text-subtlest hover:text-text-primary"
+                    }`}
                   >
                     <span className="overflow-hidden whitespace-nowrap text-ellipsis max-w-1500">
                       Home
                     </span>
-                    <div className="h-025 w-full absolute bottom-0 left-0 bg-icon z-1"></div>
+
+                    {isActive("/") && (
+                      <div className="h-025 w-full absolute bottom-0 left-0 bg-icon z-1" />
+                    )}
                   </Link>
 
+                  {/* LEARN */}
                   <Link
-                    className="h-full mx-150 lg:mx-250 flex items-center ui-text-medium text-text-subtlest hover:text-text-primary"
                     href="/learn"
+                    className={`h-full mx-150 lg:mx-250 flex items-center ui-text-medium relative ${
+                      isActive("/learn")
+                        ? "text-text-primary"
+                        : "text-text-subtlest hover:text-text-primary"
+                    }`}
                   >
                     <span className="overflow-hidden whitespace-nowrap text-ellipsis max-w-1500">
                       Learn
                     </span>
+
+                    {isActive("/learn") && (
+                      <div className="h-025 w-full absolute bottom-0 left-0 bg-icon z-1" />
+                    )}
                   </Link>
 
+                  {/* SERIES */}
                   <Link
-                    className="h-full mx-150 lg:mx-250 flex items-center ui-text-medium text-text-subtlest hover:text-text-primary"
                     href="/series"
+                    className={`h-full mx-150 lg:mx-250 flex items-center ui-text-medium relative ${
+                      isActive("/series")
+                        ? "text-text-primary"
+                        : "text-text-subtlest hover:text-text-primary"
+                    }`}
                   >
                     <span className="overflow-hidden whitespace-nowrap text-ellipsis max-w-1500">
                       Series
                     </span>
+
+                    {isActive("/series") && (
+                      <div className="h-025 w-full absolute bottom-0 left-0 bg-icon z-1" />
+                    )}
                   </Link>
 
+                  {/* REPORT */}
                   <Link
-                    className="h-full mx-150 lg:mx-250 flex items-center ui-text-medium text-text-subtlest hover:text-text-primary"
                     href="/report"
+                    className={`h-full mx-150 lg:mx-250 flex items-center ui-text-medium relative ${
+                      isActive("/report")
+                        ? "text-text-primary"
+                        : "text-text-subtlest hover:text-text-primary"
+                    }`}
                   >
                     <span className="overflow-hidden whitespace-nowrap text-ellipsis max-w-1500">
                       Report
                     </span>
+
+                    {isActive("/report") && (
+                      <div className="h-025 w-full absolute bottom-0 left-0 bg-icon z-1" />
+                    )}
                   </Link>
 
+                  {/* COURSES */}
                   <Link
-                    className="h-full mx-150 lg:mx-250 flex items-center ui-text-medium text-text-subtlest hover:text-text-primary"
                     href="/courses"
+                    className={`h-full mx-150 lg:mx-250 flex items-center ui-text-medium relative ${
+                      isActive("/courses")
+                        ? "text-text-primary"
+                        : "text-text-subtlest hover:text-text-primary"
+                    }`}
                   >
                     <span className="overflow-hidden whitespace-nowrap text-ellipsis max-w-1500">
                       Courses
                     </span>
+
+                    {isActive("/courses") && (
+                      <div className="h-025 w-full absolute bottom-0 left-0 bg-icon z-1" />
+                    )}
                   </Link>
                 </div>
               </div>
@@ -377,7 +451,11 @@ export default function MenuHeader({
 
                             <div className="max-h-h300 overflow-y-auto no-scrollbar w-w240 flex flex-col relative">
                               <div
-                                className="flex items-center p-200 group hover:bg-background-subtle cursor-pointer"
+                                className={`flex items-center p-200 cursor-pointer group ${
+                                  locale === "vi"
+                                    ? "bg-background-subtle"
+                                    : "hover:bg-background-subtle"
+                                }`}
                                 onClick={() => changeLocale("vi")}
                               >
                                 <img
@@ -386,13 +464,23 @@ export default function MenuHeader({
                                   src="https://admin.coinjdg.com/wp-content/uploads/2025/12/vn.png"
                                   alt="Vietnamese"
                                 />
-                                <p className="ml-100 ui-text-small-emphasis">
+                                <p
+                                  className={`ml-100 ui-text-small ${
+                                    locale === "vi"
+                                      ? "ui-text-small-emphasis text-text-primary"
+                                      : "text-text-subtlest"
+                                  }`}
+                                >
                                   Vietnamese
                                 </p>
                               </div>
 
                               <div
-                                className="flex items-center p-200 group hover:bg-background-subtle cursor-pointer"
+                                className={`flex items-center p-200 cursor-pointer group ${
+                                  locale === "en"
+                                    ? "bg-background-subtle"
+                                    : "hover:bg-background-subtle"
+                                }`}
                                 onClick={() => changeLocale("en")}
                               >
                                 <img
@@ -401,8 +489,17 @@ export default function MenuHeader({
                                   src="https://admin.coinjdg.com/wp-content/uploads/2025/12/gb.png"
                                   alt="English"
                                 />
-                                <p className="ml-100 ui-text-small">English</p>
+                                <p
+                                  className={`ml-100 ui-text-small ${
+                                    locale === "en"
+                                      ? "ui-text-small-emphasis text-text-primary"
+                                      : "text-text-subtlest"
+                                  }`}
+                                >
+                                  English
+                                </p>
                               </div>
+
                             </div>
                           </div>
                         </div>

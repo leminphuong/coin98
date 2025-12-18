@@ -7,12 +7,24 @@ import type { SeriesItem } from "@/types/series";
 function getSafeImage(src?: string) {
   return src?.trim() ? src : "/default-series.jpg";
 }
+interface SeriesCardDesktopProps {
+  item: SeriesItem;
+  className?: string; // NEW
+}
 
-export function SeriesCardDesktop({ item }: { item: SeriesItem }) {
+
+
+export function SeriesCardDesktop({
+  item,
+  className,
+}: SeriesCardDesktopProps) {
   const imgSrc = getSafeImage(item.image);
 
   return (
-    <Link href={item.url}>
+    <Link
+      href={item.url}
+      className={className}   // 👈 truyền class ngoài vào đây
+    >
       <div
         draggable={false}
         className="transition-all duration-300 bg-background lg:hover:bg-background-hovered group/seriesCard p-300"
@@ -32,9 +44,8 @@ export function SeriesCardDesktop({ item }: { item: SeriesItem }) {
             />
           </picture>
 
-          {/* OVERLAY — moved OUTSIDE <picture> */}
-          <div
-            className="
+          {/* OVERLAY */}
+          <div className="
               top-40% pb-300 px-300
               lg:group-hover/seriesCard:top-0
               transition-all duration-200 ease-linear
@@ -55,9 +66,7 @@ export function SeriesCardDesktop({ item }: { item: SeriesItem }) {
                 {item.count} bài viết
               </div>
 
-              {/* DESCRIPTION */}
-              <div
-                className="
+              <div className="
                   inset-x-0 bottom-0 absolute
                   transition-all duration-200 ease-linear
                   article-text-x-small text-text-primary
@@ -73,20 +82,12 @@ export function SeriesCardDesktop({ item }: { item: SeriesItem }) {
             </div>
 
             {/* BUTTONS */}
-            <div
-              data-theme="dark"
-              className="flex items-center justify-between w-full mt-300"
-            >
+            <div data-theme="dark" className="flex items-center justify-between w-full mt-300">
               {/* COPY */}
               <div className="overflow-hidden relative w-max h-max group/tooltip lg:hover:overflow-visible">
                 <button className="group/ab-button relative select-none flex items-center justify-center rounded-050 bg-button-ghost-background lg:hover:bg-button-ghost-background-hovered active:bg-button-ghost-background-pressed border-transparent p-100">
                   <i className="ab-icon text-button-ghost-icon text-size-800 mr-0 ab-link"></i>
                 </button>
-
-                <div className="w-max h-max absolute z-10 overflow-hidden px-075 py-050 text-size-400 rounded-050 border border-tooltip-background bg-tooltip-background mb-150 bottom-100% translate-y-100 lg:group-hover/tooltip:translate-y-0 left-1/2 -translate-x-1/2">
-                  Copy link
-                  <div className="tooltip-arrow" data-popper-arrow="true"></div>
-                </div>
               </div>
 
               {/* FOLLOW */}
@@ -104,6 +105,7 @@ export function SeriesCardDesktop({ item }: { item: SeriesItem }) {
     </Link>
   );
 }
+
 
 /* ============================================
    SERIES CARD MOBILE

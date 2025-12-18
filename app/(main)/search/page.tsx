@@ -1,16 +1,47 @@
 "use client";
+import ArticleAuthors from "@/components/ArticleAuthors";
 import AvatarCircle from "@/components/AvatarCircle";
+import { PostItem } from "@/types/post";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
 export default function SearchPage() {
+  const [results, setResults] = useState<{
+    posts: PostItem[];
+    courses: any[];
+    series: any[];
+  }>({
+    posts: [],
+    courses: [],
+    series: [],
+  });
+
+  const [loading, setLoading] = useState(false);
+
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const keywordParam = searchParams.get("keyword") || "";
   const [keyword, setKeyword] = useState(keywordParam);
+  useEffect(() => {
+    if (!keyword.trim()) return;
+
+    setLoading(true);
+
+    const timer = setTimeout(async () => {
+      try {
+        const res = await fetch(`/api/search?q=${encodeURIComponent(keyword)}`);
+        const data = await res.json();
+        setResults(data);
+      } finally {
+        setLoading(false);
+      }
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, [keyword]);
 
   // TAB STATE
   const [activeTab, setActiveTab] = useState<
@@ -23,8 +54,10 @@ export default function SearchPage() {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
+
     router.push(
-      `/search?keyword=${encodeURIComponent(keyword)}&searchType=keyword`
+      `/search?keyword=${encodeURIComponent(keyword)}&searchType=keyword`,
+      { scroll: false }
     );
   };
 
@@ -71,6 +104,11 @@ export default function SearchPage() {
             </div>
           </div>
         </div>
+        {loading && (
+          <div className="flex justify-center py-400">
+            <div className="animate-spin w-300 h-300 border-2 border-t-transparent rounded-full" />
+          </div>
+        )}
 
         {/* --------------------------- TABS --------------------------- */}
         <div className="md:px-100 lg:px-0">
@@ -282,6 +320,7 @@ export default function SearchPage() {
             {activeTab === "posts" && (
               <div role="tabpanel" className="mt-2 focus-visible:outline-none">
                 <div className="flex flex-col pb-800">
+                  {/* HEADER */}
                   <div className="px-200 md:px-300 py-200">
                     <div className="py-050 flex items-center justify-between">
                       <div className="flex h-500 items-center">
@@ -292,112 +331,81 @@ export default function SearchPage() {
                     </div>
                   </div>
 
+                  {/* EMPTY STATE */}
+                  {results.posts.length === 0 && (
+                    <div className="px-200 md:px-300 py-600 text-center text-text-subtlest">
+                      No posts found
+                    </div>
+                  )}
+
+                  {/* POSTS LIST */}
                   <div className="flex flex-wrap">
-                    <Link
-                      className="group block w-full md:w-50% lg:w-1/3 2xl:w-1/4"
-                      href="/huong-dan-serenity-halo-testnet"
-                    >
-                      <div
-                        id="pzk9gbg78q05k8ds"
-                        draggable="false"
-                        className="transition-all duration-300 bg-background lg:hover:bg-background-hovered article-vertical select-none px-200 py-300 md:px-300"
+                    {results.posts.map((post) => (
+                      <Link
+                        key={post.slug}
+                        className="group block w-full md:w-50% lg:w-1/3 2xl:w-1/4"
+                        href={`/${post.slug}`}
                       >
-                        <picture className="relative mb-200 block">
-                          <img
-                            alt="Hướng dẫn làm Serenity & Halo Testnet trên Aura Network"
-                            fetchPriority="high"
-                            loading="eager"
-                            width="600"
-                            height="400"
-                            decoding="async"
-                            data-nimg="1"
-                            className="object-cover rounded-050 aspect-3-2 w-full rounded-050"
-                            sizes="(max-width: 480px) 100vw, (max-width: 675px) 60vw, 50vw"
-                            src="/_next/image?url=https%3A%2F%2Ffile.coin98.com%2Fthumbnail%2Fhuong-dan-serenity-halo-testnet.png&w=3840&q=75"
-                            style={{ color: "transparent" }}
+                        <div
+                          draggable="false"
+                          className="transition-all duration-300 bg-background lg:hover:bg-background-hovered article-vertical select-none px-200 py-300 md:px-300"
+                        >
+                          {/* THUMBNAIL */}
+                          <picture className="relative mb-200 block">
+                            <img
+                              alt={post.title}
+                              loading="lazy"
+                              width="600"
+                              height="400"
+                              className="object-cover rounded-050 aspect-3-2 w-full"
+                              src={post.image}
+                            />
+                          </picture>
+
+                          <ArticleAuthors
+                            authors={post.authors ?? []}
+                            date={post.date}
                           />
-                        </picture>
 
-                        <div className="ui-text-small text-text-secondary min-h-300 flex-wrap items-center mb-100 flex">
-                          <div className="flex items-center h-max ui-text-small text-text-primary">
-                            <div className="aspect-square ab-avatar-people ab-avatar-size-24 flex-none mr-100">
-                              <img
-                                alt="Avatar"
-                                loading="lazy"
-                                width="32"
-                                height="32"
-                                decoding="async"
-                                data-nimg="1"
-                                className="avatar-img aspect-square w-full object-cover"
-                                sizes="(max-width: 675px) 24px, 24px"
-                                src="/_next/image?url=https%3A%2F%2Ffiles.amberblocks.com%2Fthumbnail%2Fchnbzaa92ook5tnj%2Fchannel%2Fchnbzaa92ook5tnj%2Ffuyvacrzjs2gap74gp5ulvwf5g1i25zr%2Fupside-logo.png&w=3840&q=50"
-                                style={{ color: "transparent" }}
-                              />
-                            </div>
+                          {/* TITLE */}
+                          <p className="text-text-primary break-words md:article-h5 article-h5">
+                            {post.title}
+                          </p>
 
-                            <div className="line-clamp-1 break-all max-w-w160 ui-text-x-small md:ui-text-small">
-                              <span>hangduong</span>
-                            </div>
-                          </div>
-                          <AvatarCircle />
-                          May 18 2022
-                        </div>
-
-                        <p className="text-text-primary break-words md:article-h5 article-h5">
-                          Hướng dẫn làm Serenity & Halo Testnet trên Aura
-                          Network
-                        </p>
-
-                        <div className="mt-100 hidden">
-                          <span className="article-text-x-small break-words line-clamp-3 text-text-secondary">
-                            Aura vừa thông báo sự kiện testnet mới...
-                          </span>
-                        </div>
-
-                        {/* Bottom actions */}
-                        <div className="h-400 items-center justify-between mt-150 flex">
-                          <div className="flex items-center">
-                            <div className="box-border badge flex w-fit items-center justify-center rounded-circle border-0125 px-100 py-0125 border-badge-labeled-neutral-border bg-badge-labeled-neutral-background h-300 text-text-primary my-050 whitespace-nowrap">
-                              <span className="ui-text-small text-badge-labeled-neutral-text">
-                                4 min read
+                          {/* EXCERPT (OPTIONAL) */}
+                          {post.excerpt && (
+                            <div className="mt-100 hidden">
+                              <span className="article-text-x-small break-words line-clamp-3 text-text-secondary">
+                                {post.excerpt}
                               </span>
                             </div>
-                          </div>
+                          )}
 
-                          <div className="flex items-center">
-                            {/* Save */}
-                            <div className="overflow-hidden relative w-max h-max group/tooltip lg:hover:overflow-visible mr-150">
-                              <button className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear bg-button-ghost-background p-100">
-                                <i className="ab-icon !not-italic text-button-ghost-icon text-size-800 mr-0 ab-bookmark_outlined"></i>
-                              </button>
-
-                              <div className="w-max h-max absolute z-10 overflow-hidden px-075 py-050 text-size-400 rounded-050 border border-tooltip-background bg-tooltip-background text-tooltip-text mb-150 bottom-100% translate-y-100 group-hover/tooltip:translate-y-0 left-1/2 -translate-x-1/2">
-                                Save
-                                <div
-                                  className="tooltip-arrow"
-                                  data-popper-arrow="true"
-                                ></div>
+                          {/* ACTIONS */}
+                          <div className="h-400 items-center justify-between mt-150 flex">
+                            <div className="flex items-center">
+                              <div className="box-border badge flex w-fit items-center justify-center rounded-circle border-0125 px-100 py-0125 border-badge-labeled-neutral-border bg-badge-labeled-neutral-background h-300 text-text-primary my-050 whitespace-nowrap">
+                                <span className="ui-text-small text-badge-labeled-neutral-text">
+                                  {post.readTime}
+                                </span>
                               </div>
                             </div>
 
-                            {/* Copy link */}
-                            <div className="overflow-hidden relative w-max h-max group/tooltip lg:hover:overflow-visible">
-                              <button className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear bg-button-ghost-background p-100">
-                                <i className="ab-icon !not-italic text-button-ghost-icon text-size-800 mr-0 ab-link"></i>
+                            <div className="flex items-center">
+                              {/* SAVE */}
+                              <button className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 bg-button-ghost-background p-100">
+                                <i className="ab-icon !not-italic text-button-ghost-icon text-size-800 ab-bookmark_outlined" />
                               </button>
 
-                              <div className="w-max h-max absolute z-10 overflow-hidden px-075 py-050 text-size-400 rounded-050 border border-tooltip-background bg-tooltip-background text-tooltip-text mb-150 bottom-100% translate-y-100 group-hover/tooltip:translate-y-0 left-1/2 -translate-x-1/2">
-                                Copy link
-                                <div
-                                  className="tooltip-arrow"
-                                  data-popper-arrow="true"
-                                ></div>
-                              </div>
+                              {/* COPY LINK */}
+                              <button className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 bg-button-ghost-background p-100 ml-150">
+                                <i className="ab-icon !not-italic text-button-ghost-icon text-size-800 ab-link" />
+                              </button>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </Link>
+                      </Link>
+                    ))}
                   </div>
                 </div>
               </div>
