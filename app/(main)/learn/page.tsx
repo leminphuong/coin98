@@ -2,14 +2,13 @@ import LatestPostItem from "@/components/LatestPostItem";
 import { getCategoriesWithPosts } from "@/api/getHomeData";
 import type { PostItem } from "@/types/post";
 import Link from "next/link";
-import "./page.css";
 import { detectLocaleByIP } from "@/lib/server/detectLocale";
 import GroupTabs from "@/components/GroupTabs";
+import BodyClass from "@/components/BodyClass";
 
 export default async function LearnPage() {
   const ipLocale = await detectLocaleByIP();
   const data = await getCategoriesWithPosts(ipLocale);
-
   const categorySections =
     data.categories?.filter((item: any) => {
       const { content } = item;
@@ -36,6 +35,8 @@ export default async function LearnPage() {
 
   return (
     <>
+      <BodyClass className="learn-page" />
+
       {/* ===================== HERO ===================== */}
       <div className="h-h400 bg-background-skeleton relative overflow-hidden">
         <div className="bg-blk-a-50 z-1 absolute h-full w-full"></div>

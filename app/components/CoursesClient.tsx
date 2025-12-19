@@ -18,7 +18,7 @@ type Instructor = {
 type Course = {
   id: number;
   title: string;
-  url: string;
+  slug: string;
   image: string;
   level: string;
   instructor?: Instructor[];
@@ -180,7 +180,7 @@ export default function CoursesClient({ courses }: { courses: Course[] }) {
 
                   return (
                     <div key={c.id}>
-                      <Link href={c.url} target="_blank">
+                      <Link href={`/courses/${c.slug}`} target="_blank">
                         <div className="transition-all duration-300 bg-background lg:hover:bg-background-hovered py-400 px-200 md:px-300 h-full flex flex-col">
                           {/* IMAGE */}
                           <div className="w-full relative mb-200 aspect-video rounded-050 overflow-hidden">
@@ -263,7 +263,7 @@ export default function CoursesClient({ courses }: { courses: Course[] }) {
                 return (
                   <Link
                     key={c.id}
-                    href={c.url}
+                    href={`/courses/${c.slug}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

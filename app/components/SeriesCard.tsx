@@ -22,7 +22,7 @@ export function SeriesCardDesktop({
 
   return (
     <Link
-      href={item.url}
+      href={`/series/${item.slug}`}
       className={className}   // 👈 truyền class ngoài vào đây
     >
       <div
@@ -115,7 +115,7 @@ export function SeriesCardMobile({ item }: { item: SeriesItem }) {
   const imgSrc = getSafeImage(item.image);
 
   return (
-    <Link href={item.url} className="lg:w-1/3 block group/seriesCard">
+    <Link href={`/series/${item.slug}`} className="lg:w-1/3 block group/seriesCard">
       <div
         draggable="false"
         className="

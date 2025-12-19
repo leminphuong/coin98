@@ -12361,3 +12361,35 @@ input:-webkit-autofill:hover {
 #widget-article-detail{
   height: 100% !important;
 }
+
+body.hide-footer footer {
+  display: none !important;
+}
+
+
+/* chỉ áp dụng cho trang post detail */
+body.post-detail-page .ch-template-center2rows {
+  position: relative !important;
+}
+
+/* override padding top */
+body.post-detail-page .md\:pt-sp160 {
+  padding-top: 0 !important;
+}
+
+/* giảm z-index sticky */
+body.post-detail-page .sticky {
+  z-index: 10 !important;
+}
+
+/* desktop */
+@media (min-width: 769px) {
+  body.post-detail-page .md\:pt-500 {
+    padding-top: 0 !important;
+  }
+
+  body.post-detail-page .md\:py-1000 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}

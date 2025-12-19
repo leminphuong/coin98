@@ -1,6 +1,7 @@
 import Link from "next/link";
-import "./page.css";
+
 import Image from "next/image";
+import BodyClass from "@/components/BodyClass";
 interface PageProps {
   params: Promise<{
     slug: string;
@@ -12,7 +13,8 @@ export default async function Page({ params }: PageProps) {
   return (
     <div className="group/profile relative w-full flex flex-col box-border max-w-w1280 mx-auto h-screenBodyFullMobile lg:h-screenBodyFull data-[sidebar=open]:overflow-hidden lg:data-[sidebar=open]:overflow-visible">
       <div className="relative transition-all flex justify-between px-200 lg:px-300 py-300 lg:py-500">
-        {/* LEFT */}
+        <BodyClass className="hide-footer" />
+
         <div className="flex">
           <div className="aspect-square ab-avatar-people ab-avatar-size-64 md:ab-avatar-size-128 flex-none">
             <img
@@ -60,7 +62,6 @@ export default async function Page({ params }: PageProps) {
               </div>
             </div>
           </div>
-
         </div>
 
         {/* Bottom Divider */}
@@ -203,9 +204,7 @@ export default async function Page({ params }: PageProps) {
 
         <div className="lg:pl-sp224 lg:pt-100">
           <div className="lg:pl-1000 mx-auto h-full">
-            <div className="h-full w-full max-w-w728 mx-auto">
-
-            </div>
+            <div className="h-full w-full max-w-w728 mx-auto"></div>
           </div>
         </div>
       </div>

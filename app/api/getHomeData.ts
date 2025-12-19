@@ -52,7 +52,6 @@ export async function getSeriesData(lang = "vi") {
   return res.json();
 }
 
-
 export async function getReportData(lang = "vi") {
   const url = `https://admin.coinjdg.com/wp-json/toan/v1/report?lang=${lang}`;
 
@@ -65,9 +64,46 @@ export async function getReportData(lang = "vi") {
   return res.json();
 }
 
-
 export async function getCoursesData(lang = "vi") {
   const url = `https://admin.coinjdg.com/wp-json/toan/v1/courses?lang=${lang}`;
+
+  const res = await fetch(url, {
+    next: { revalidate: 30 },
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch API");
+
+  return res.json();
+}
+
+export async function getSerieData(slug: string, lang = "vi") {
+  const url = `https://admin.coinjdg.com/wp-json/toan/v1/series/${slug}?lang=${lang}`;
+
+  const res = await fetch(url, {
+    next: { revalidate: 30 },
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch API");
+
+  return res.json();
+}
+
+
+export async function getCourseData(slug: string, lang = "vi") {
+  const url = `https://admin.coinjdg.com/wp-json/toan/v1/course?slug=${slug}&lang=${lang}`;
+
+  const res = await fetch(url, {
+    next: { revalidate: 30 },
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch API");
+
+  return res.json();
+}
+
+
+export async function getPostData(slug: string, lang = "vi") {
+  const url = `https://admin.coinjdg.com/wp-json/toan/v1/post-detail?slug=${slug}&lang=${lang}`;
 
   const res = await fetch(url, {
     next: { revalidate: 30 },

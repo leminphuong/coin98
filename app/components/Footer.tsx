@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useSearch } from "@/components/SearchContext";
 
 export default function Footer() {
 

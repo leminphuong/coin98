@@ -1,7 +1,7 @@
 import Link from "next/link";
-import "./page.css";
 import AvatarCircle from "@/components/AvatarCircle";
 import Image from "next/image";
+import BodyClass from "@/components/BodyClass";
 interface PageProps {
   params: Promise<{
     slug: string;
@@ -9,9 +9,11 @@ interface PageProps {
 }
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
-
+  
   return (
     <div className="group/profile relative w-full flex flex-col box-border max-w-w1280 mx-auto h-screenBodyFullMobile lg:h-screenBodyFull data-[sidebar=open]:overflow-hidden lg:data-[sidebar=open]:overflow-visible">
+      
+      <BodyClass className="hide-footer" />
       <div className="relative transition-all flex justify-between px-200 lg:px-300 py-300 lg:py-500">
         {/* LEFT */}
         <div className="flex">
@@ -58,75 +60,6 @@ export default async function Page({ params }: PageProps) {
                   Copy link
                   <div className="tooltip-arrow" data-popper-arrow="true" />
                 </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Contributor Section */}
-          <div className="hidden md:flex flex-col flex-grow s640:items-end mt-300">
-            <span className="hidden s640:block ui-text-small text-text-subtlest">
-              Contributor at
-            </span>
-
-            <div className="flex items-center mt-050">
-              {/* MarginATM */}
-              <div className="mr-050 last:mr-0">
-                <Link
-                  className="bg-background-on-color p-050 rounded-100 flex items-center pr-100"
-                  href="https://marginatm.com"
-                >
-                  <div className="rounded-050 bg-background overflow-hidden">
-                    <img
-                      alt="MarginATM"
-                      loading="lazy"
-                      width={24}
-                      height={24}
-                      className="hidden lg:flex"
-                      src="https://coin98.s3.ap-southeast-1.amazonaws.com/AmberBlock/marginatmIcon.svg"
-                    />
-                    <img
-                      alt="MarginATM"
-                      loading="lazy"
-                      width={16}
-                      height={16}
-                      className="lg:hidden"
-                      src="https://coin98.s3.ap-southeast-1.amazonaws.com/AmberBlock/marginatmIcon.svg"
-                    />
-                  </div>
-                  <span className="ui-text-x-small-emphasis lg:ui-text-small-emphasis ml-100">
-                    MarginATM
-                  </span>
-                </Link>
-              </div>
-
-              {/* Upside */}
-              <div className="mr-050 last:mr-0">
-                <Link
-                  className="bg-background-on-color p-050 rounded-100 flex items-center pr-100"
-                  href="https://coin98.net"
-                >
-                  <div className="rounded-050 bg-background overflow-hidden">
-                    <img
-                      alt="Upside"
-                      loading="lazy"
-                      width={24}
-                      height={24}
-                      className="hidden lg:flex"
-                      src="/_next/image?url=https%3A%2F%2Ffiles.amberblocks.com%2Fthumbnail%2Fchnbzaa92ook5tnj%2Fchannel%2Fchnbzaa92ook5tnj%2Ffuyvacrzjs2gap74gp5ulvwf5g1i25zr%2Fupside-logo.png&w=48&q=75"
-                    />
-                    <img
-                      alt="Upside"
-                      loading="lazy"
-                      width={16}
-                      height={16}
-                      className="lg:hidden"
-                      src="/_next/image?url=https%3A%2F%2Ffiles.amberblocks.com%2Fthumbnail%2Fchnbzaa92ook5tnj%2Fchannel%2Fchnbzaa92ook5tnj%2Ffuyvacrzjs2gap74gp5ulvwf5g1i25zr%2Fupside-logo.png&w=32&q=75"
-                    />
-                  </div>
-                  <span className="ui-text-x-small-emphasis lg:ui-text-small-emphasis ml-100">
-                    Upside
-                  </span>
-                </Link>
               </div>
             </div>
           </div>
@@ -332,7 +265,10 @@ export default async function Page({ params }: PageProps) {
                   <div className="h-full w-full max-w-w728 mx-auto">
                     <div className="flex flex-wrap">
                       {/* Post Item */}
-                      <Link className="block w-full" href="/what-is-coin98-wallet">
+                      <Link
+                        className="block w-full"
+                        href="/what-is-coin98-wallet"
+                      >
                         <div className="transition-all duration-300 bg-background article-horizontal select-none overflow-hidden py-300 px-200 md:hidden">
                           <div className="ui-text-small text-text-secondary min-h-300 flex-wrap items-center mb-100 flex">
                             <div className="flex items-center h-max ui-text-small text-text-primary">
@@ -350,7 +286,6 @@ export default async function Page({ params }: PageProps) {
                               </div>
                             </div>
                             <AvatarCircle />
-
                             Jun 24 2021
                           </div>
 
@@ -408,7 +343,10 @@ export default async function Page({ params }: PageProps) {
                 >
                   <div className="h-full w-full max-w-w728 mx-auto">
                     <div className="flex flex-wrap">
-                      <Link  className="block w-full" href="/what-is-coin98-wallet">
+                      <Link
+                        className="block w-full"
+                        href="/what-is-coin98-wallet"
+                      >
                         {/* MOBILE CARD */}
                         <div
                           id="peb4rkl89rp6cb9x"
@@ -432,8 +370,7 @@ export default async function Page({ params }: PageProps) {
                                 <span>linhnt</span>
                               </div>
                             </div>
-                           <AvatarCircle />
-
+                            <AvatarCircle />
                             Jun 24 2021
                           </div>
 
@@ -527,7 +464,6 @@ export default async function Page({ params }: PageProps) {
                               </div>
                             </div>
                             <AvatarCircle />
-
                             Jun 24 2021
                           </div>
 
