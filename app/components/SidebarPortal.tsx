@@ -1,8 +1,30 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
+/* =========================
+   SIDEBAR
+========================= */
 export default function SidebarPortal() {
+  const [categories, setCategories] = useState<any[]>([]);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const keyword = searchParams.get("keyword") || "";
+
+  useEffect(() => {
+    fetch("/wp-json/toan/v1/categories-tree")
+      .then((res) => res.json())
+      .then((res) => Array.isArray(res) && setCategories(res));
+  }, []);
+
+  const goCategory = (slug: string) => {
+    router.push(
+      `/learn/detail?${keyword ? `keyword=${encodeURIComponent(keyword)}&` : ""}category=${slug}`
+    );
+  };
+
   return (
     <div
       id="sidebar-portal"
@@ -15,16 +37,25 @@ export default function SidebarPortal() {
             Topics
           </span>
 
-          <button className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 lg:disabled:cursor-not-allowed bg-button-ghost-background p-100 lg:hidden">
+          <button className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 bg-button-ghost-background p-100 lg:hidden">
             <i className="ab-icon !not-italic text-button-ghost-icon text-size-800 ab-cancel"></i>
           </button>
         </div>
 
         {/* Select All */}
-        <div className="group/toggleCheck flex items-center md:hover:cursor-pointer w-fit p-150 px-300 pb-200">
+        <div
+          className="group/toggleCheck flex items-center md:hover:cursor-pointer w-fit p-150 px-300 pb-200"
+          onClick={() =>
+            router.push(
+              `/learn/detail${keyword ? `?keyword=${encodeURIComponent(keyword)}` : ""}`
+            )
+          }
+        >
           <ToggleCheck />
           <div className="flex flex-col items-start ml-200">
-            <span className="text-text-primary ui-text-medium">Select all</span>
+            <span className="text-text-primary ui-text-medium">
+              Select all
+            </span>
           </div>
         </div>
 
@@ -34,39 +65,17 @@ export default function SidebarPortal() {
 
         {/* Scrollable */}
         <div className="h-[calc(100%_-_94px)] overflow-y-auto">
-          {/* SECTION 1 */}
-          <Accordion title="Người mới bắt đầu" />
-
-          <Accordion title="Kiến thức cơ bản">
-            <AccordionItem label="Lưu trữ" />
-            <AccordionItem label="Bảo mật" />
-            <AccordionItem label="Mua bán" />
-            <AccordionItem label="Sàn giao dịch" />
-            <AccordionItem label="Công cụ" />
-            <AccordionItem label="Đầu tư Crypto" />
-            <AccordionItem label="Thuật ngữ Crypto" />
-            <AccordionItem label="Thêm mạng" />
-          </Accordion>
-
-          <Accordion title="Airdrop" />
-          <Accordion title="Kinh nghiệm" />
-          <Accordion title="Trading" />
-
-          <Accordion title="Kinh tế - Tài chính">
-            <AccordionItem label="Tổ chức tài chính" />
-            <AccordionItem label="CBDC" />
-            <AccordionItem label="Sự kiện" />
-            <AccordionItem label="Phân tích tài chính" />
-            <AccordionItem label="Nhân vật" />
-            <AccordionItem label="Thuật ngữ tài chính" />
-          </Accordion>
-
-          <Accordion title="Coin & Token" />
-          <Accordion title="NFT" />
-          <Accordion title="Gaming" />
-          <Accordion title="Web3" />
-          <Accordion title="AI" />
-          <Accordion title="Layer 2" />
+          {categories.map((parent) => (
+            <Accordion key={parent.id} title={parent.name}>
+              {parent.children?.map((child: any) => (
+                <AccordionItem
+                  key={child.id}
+                  label={child.name}
+                  onClick={() => goCategory(child.slug)}
+                />
+              ))}
+            </Accordion>
+          ))}
         </div>
       </div>
 
@@ -75,7 +84,9 @@ export default function SidebarPortal() {
   );
 }
 
-/* ------------------- COMPONENTS ------------------- */
+/* =========================
+   COMPONENTS (GIỮ UI)
+========================= */
 
 function ToggleCheck() {
   return (
@@ -101,22 +112,6 @@ function Accordion({
 
   return (
     <div className="flex flex-col relative px-300">
-      {/* Checkbox */}
-      <div className="group/toggleCheck flex items-center md:hover:cursor-pointer w-fit absolute top-200">
-        <div className="flex items-center rounded-075 p-025 transition-all duration-200 ease-linear h-300 w-300 bg-toggle-background group-hover/toggleCheck:bg-toggle-background-hovered">
-          <div className="rounded-050 transition-all duration-200 ease-in-out border-025 h-full w-full flex justify-center border-border bg-toggle-background group-hover/toggleCheck:border-border-bold">
-            <div className="rotate-45 mt-0125 relative rounded-025 w-075 mx-auto bg-transparent overflow-hidden transition-all duration-200 ease-in-out h-150">
-              <div className="overflow-hidden transition-all duration-100 ease-in-out h-025 bg-background absolute bottom-0 left-0 -rotate-180 w-0 delay-100"></div>
-              <div className="overflow-hidden transition-all duration-100 ease-in-out w-025 bg-background absolute bottom-0 right-0 h-0"></div>
-            </div>
-          </div>
-        </div>
-        <div className="flex-col items-start ml-200 hidden">
-          <span className="text-text-primary ui-text-medium"></span>
-          <span className="mt-050 text-text-subtlest break-work whitespace-pre-wrap ui-text-medium hidden"></span>
-        </div>
-      </div>
-
       {/* Label */}
       <label
         htmlFor={id}
@@ -136,12 +131,23 @@ function Accordion({
   );
 }
 
-function AccordionItem({ label }: { label: string }) {
+function AccordionItem({
+  label,
+  onClick,
+}: {
+  label: string;
+  onClick: () => void;
+}) {
   return (
-    <div className="group/toggleCheck flex items-center w-fit p-150">
+    <div
+      className="group/toggleCheck flex items-center w-fit p-150 cursor-pointer"
+      onClick={onClick}
+    >
       <ToggleCheck />
       <div className="flex flex-col items-start ml-200">
-        <span className="text-text-primary ui-text-medium">{label}</span>
+        <span className="text-text-primary ui-text-medium">
+          {label}
+        </span>
       </div>
     </div>
   );

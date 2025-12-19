@@ -3,18 +3,29 @@
 import { useState } from "react";
 import LatestPostItem from "@/components/LatestPostItem";
 import type { PostItem } from "@/types/post";
-import Link from "next/link";
 
-export default function GroupTabs({ groups }: { groups: any[] }) {
-  const validGroups = groups.filter(
-    (g) => Array.isArray(g.posts) && g.posts.length > 0
+type GroupItem = {
+  id: number;
+  name: string;
+  slug: string;
+  posts: PostItem[];
+};
+
+export default function GroupTabs({ groups }: { groups: GroupItem[] }) {
+  const validGroups = Array.isArray(groups)
+    ? groups.filter((g) => Array.isArray(g.posts) && g.posts.length > 0)
+    : [];
+
+  // ❗️ INIT SAFE
+  const [active, setActive] = useState<string | null>(
+    validGroups.length > 0 ? validGroups[0].slug : null
   );
 
-  const [active, setActive] = useState(validGroups[0]?.category.slug);
+  const activeGroup = active
+    ? validGroups.find((g) => g.slug === active)
+    : null;
 
-  const activeGroup = validGroups.find(
-    (g) => g.category.slug === active
-  );
+  if (validGroups.length === 0) return null;
 
   return (
     <>
@@ -22,13 +33,13 @@ export default function GroupTabs({ groups }: { groups: any[] }) {
       <div className="-my-050 px-200 md:px-300">
         <div className="w-full flex overflow-x-auto md:flex-wrap no-scrollbar">
           {validGroups.map((group) => {
-            const isActive = group.category.slug === active;
+            const isActive = group.slug === active;
 
             return (
               <div
-                key={group.category.id}
+                key={group.id}
                 className="min-w-max my-050 mr-150 last:mr-0"
-                onClick={() => setActive(group.category.slug)}
+                onClick={() => setActive(group.slug)}
               >
                 <div
                   className={`group/chip relative h-fit w-fit min-w-600
@@ -48,7 +59,7 @@ export default function GroupTabs({ groups }: { groups: any[] }) {
                       }`}
                   >
                     <span className="text-text-primary">
-                      {group.category.name}
+                      {group.name}
                     </span>
                   </div>
                 </div>
@@ -71,7 +82,6 @@ export default function GroupTabs({ groups }: { groups: any[] }) {
               </div>
             ))}
           </div>
-
         </div>
       )}
     </>

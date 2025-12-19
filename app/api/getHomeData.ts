@@ -138,3 +138,24 @@ export async function getPostData(slug: string, lang = "vi") {
 
   return res.json();
 }
+
+
+export async function getPostByCategory(
+  slug: string,
+  lang: "vi" | "en",
+  limit = 8
+) {
+  const res = await fetch(
+    `https://admin.coinjdg.com/wp-json/toan/v1/post-by-category?slug=${slug}&lang=${lang}&limit=${limit}`,
+    {
+      // cache server-side tốt cho SEO
+      next: { revalidate: 300 },
+    }
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch post-by-category");
+  }
+
+  return res.json();
+}

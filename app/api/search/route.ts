@@ -12,5 +12,6 @@ export async function GET(req: Request) {
   return NextResponse.json({
     posts: data.posts || [],
     series: data.series || [],
+    courses: data.courses || [],
   });
 }
