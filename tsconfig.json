@@ -29,6 +29,7 @@
       "@/api/*": ["./app/api/*"],
       "@/components/*": ["app/components/*"],
       "@/lib/*": ["app/lib/*"],
+      "@/hooks/*": ["app/hooks/*"],
       "@/types/*": ["./app/types/*"]
     }
   },

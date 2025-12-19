@@ -11,18 +11,43 @@ export async function getHomeData(lang = "vi") {
 }
 
 export async function getSearchData(keyword: string, lang = "vi") {
+  if (!keyword || !keyword.trim()) {
+    return {
+      status: "empty",
+      posts: [],
+    };
+  }
+
   const url = `https://admin.coinjdg.com/wp-json/toan/v1/search?keyword=${encodeURIComponent(
     keyword
   )}&lang=${lang}`;
 
-  const res = await fetch(url, {
-    cache: "no-store", // search KHÔNG cache
-  });
+  try {
+    const res = await fetch(url, {
+      cache: "no-store", // search KHÔNG cache
+    });
 
-  if (!res.ok) throw new Error("Failed to fetch search API");
+    const data = await res.json();
 
-  return res.json();
+    if (!res.ok || data?.status === "error") {
+      return {
+        status: "error",
+        posts: [],
+        message: data?.message || "Search failed",
+      };
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Search API error:", error);
+    return {
+      status: "error",
+      posts: [],
+      message: "Network error",
+    };
+  }
 }
+
 
 export async function getCategoriesWithPosts(lang = "vi") {
   const url = `https://admin.coinjdg.com/wp-json/toan/v1/categories-with-posts?lang=${lang}`;

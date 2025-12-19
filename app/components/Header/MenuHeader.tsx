@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useSearch } from "@/components/SearchContext";
 import { useLocale } from "@/components/useLocale";
 import { usePathname } from "next/navigation";
+import SigninButton from "@/components/SigninButton";
 
 interface MenuHeaderProps {
   isSidebarOpen: boolean;
@@ -499,7 +500,6 @@ export default function MenuHeader({
                                   English
                                 </p>
                               </div>
-
                             </div>
                           </div>
                         </div>
@@ -529,27 +529,7 @@ export default function MenuHeader({
                 </button>
               </Link>
 
-              <Link href="/signin">
-                <button className="group/ab-button relative select-none items-center justify-center rounded-050 transition-all duration-200 ease-linear lg:disabled:cursor-not-allowed bg-button-primary-background lg:hover:bg-button-primary-background-hovered active:bg-button-primary-background-pressed lg:hover:disabled:bg-button-primary-background-disabled disabled:bg-button-primary-background-disabled border-0125 border-button-primary-background lg:hover:border-button-primary-background-hovered active:border-button-primary-background-pressed lg:hover:disabled:border-button-primary-background-disabled disabled:border-button-primary-background-disabled py-100 px-150 hidden lg:block">
-                  <i className="ab-icon !not-italic text-button-primary-icon group-disabled/ab-button:text-button-primary-icon-disabled text-size-400 mr-100 ab-signin"></i>
-                  <span className="select-none text-button-primary-text group-disabled/ab-button:text-button-primary-text-disable button-text-large">
-                    Sign in
-                  </span>
-
-                  <div className="flex items-center justify-center -z-1 opacity-0 absolute inset-0 ab-btn-loading-wrapper transition-all">
-                    <div className="relative animate-spin flex items-center justify-center w-300 h-300">
-                      <div className="bg-g-1 h-050 w-050 rounded-circle absolute left-50% -translate-x-50% top-0 z-1"></div>
-                      <div
-                        className="w-full h-full rounded-circle border-box bg-g-1"
-                        style={{
-                          padding: "4px",
-                          mask: "conic-gradient(rgba(0,0,0,0) 45deg, #000) subtract, linear-gradient(#000 0 0) content-box",
-                        }}
-                      ></div>
-                    </div>
-                  </div>
-                </button>
-              </Link>
+              <SigninButton />
 
               <button
                 onClick={() => setIsSearchOpen(true)}

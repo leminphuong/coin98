@@ -3,214 +3,281 @@
 import { useState } from "react";
 import Link from "next/link";
 
+/* =========================
+   PASSWORD RULE ITEM
+========================= */
+function PasswordRule({ label, valid }: { label: string; valid: boolean }) {
+  return (
+    <div className="flex items-center py-050">
+      <i
+        className={`ab-icon text-size-400 mr-100 ab-chevron_check ${
+          valid ? "text-icon-system-green" : "text-border-subtle"
+        }`}
+      />
+      <span
+        className={`ui-text-x-small ${
+          valid ? "text-text-primary" : "text-text-subtlest"
+        }`}
+      >
+        {label}
+      </span>
+    </div>
+  );
+}
+
 export default function SignupPage() {
   const [step, setStep] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  /* =========================
+     FORM STATE
+  ========================= */
+  const [email, setEmail] = useState("");
+  const [displayName, setDisplayName] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [step1Error, setStep1Error] = useState("");
+  const handleContinue = () => {
+    if (!emailValid) {
+      setStep1Error("Please enter a valid email address.");
+      return;
+    }
+
+    if (displayName.trim().length < 2) {
+      setStep1Error("Display name must be at least 2 characters.");
+      return;
+    }
+
+    setStep1Error("");
+    setStep(2);
+  };
+
+  /* =========================
+     VALIDATION
+  ========================= */
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  const passwordRules = {
+    length: password.length >= 8,
+    uppercase: /[A-Z]/.test(password),
+    digit: /\d/.test(password),
+    special: /[^A-Za-z0-9]/.test(password),
+  };
+
+  const passwordValid =
+    passwordRules.length &&
+    passwordRules.uppercase &&
+    passwordRules.digit &&
+    passwordRules.special;
+
+  const canGoStep2 = emailValid && displayName.trim().length >= 2;
+  const canSignup = canGoStep2 && passwordValid && password === confirmPassword;
+
+  /* =========================
+     SUBMIT SIGNUP
+  ========================= */
+  const handleSignup = async () => {
+    if (!canSignup || loading) {
+      setError("Please check your email and password requirements.");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setError("");
+
+      const res = await fetch(
+        `https://admin.coinjdg.com/wp-json/toan/v1/author/create` +
+          `?name=${encodeURIComponent(displayName)}` +
+          `&email=${encodeURIComponent(email)}` +
+          `&password=${encodeURIComponent(password)}`
+      );
+
+      const data = await res.json();
+
+      if (data.status !== "success") {
+        setError(data.message || "Signup failed");
+        return;
+      }
+
+      window.location.href = "/signin";
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className="bg-background pb-500 md:pb-1300 pt-1500 flex flex-col items-center w-screen h-screen overflow-hidden">
-
+    <div className="bg-background pb-500 pt-1500 flex flex-col items-center w-screen h-screen overflow-hidden">
       {/* TITLE */}
-      <div className="w-full max-w-w680 flex flex-col items-center article-h3 text-center text-text-primary">
-        <i className="ab-icon !not-italic text-icon-link text-size-1100 mb-200 ab-amber_logo_mark"></i>
+      <div className="w-full max-w-w680 flex flex-col items-center article-h3 text-center">
+        <i className="ab-icon text-size-1100 mb-200 ab-amber_logo_mark" />
         Join the AmberBlocks
       </div>
 
       <div className="mt-500 relative w-full max-w-w680">
-
-        {/* BACK BUTTON */}
         {step > 1 && (
-          <div className="fixed left-200 top-1200 md:absolute md:top-100 md:left-0 w-fit h-fit select-none overflow-hidden">
-            {/* Desktop */}
-            <button
-              onClick={() => setStep(step - 1)}
-              className="group/ab-button hidden md:flex items-center justify-center rounded-050 bg-button-ghost-background py-050 px-100"
-            >
-              <i className="ab-icon text-button-ghost-icon text-size-400 mr-100 ab-arrow_left"></i>
-              <span className="button-text-medium text-button-ghost-text">Back</span>
-            </button>
-
-            {/* Mobile */}
-            <button
-              onClick={() => setStep(step - 1)}
-              className="group/ab-button flex md:hidden items-center justify-center rounded-050 bg-button-ghost-background p-100"
-            >
-              <i className="ab-icon text-button-ghost-icon text-size-800 ab-arrow_left"></i>
-            </button>
-          </div>
+          <button
+            onClick={() => setStep(step - 1)}
+            className="fixed md:absolute left-200 top-1200 md:top-100 md:left-0
+               z-50 group/ab-button flex items-center
+               rounded-050 bg-button-ghost-background py-050 px-100"
+          >
+            <i className="ab-icon text-size-400 mr-100 ab-arrow_left" />
+            <span className="button-text-medium">Back</span>
+          </button>
         )}
 
-        {/* WRAPPER */}
-        <div className="w-full relative max-w-w320 mx-auto select-none">
-
-          {/* ---------- STEP 1 ---------- */}
+        {/* FORM WRAPPER */}
+        <div className="w-full relative max-w-w320 mx-auto">
+          {/* =========================
+              STEP 1
+          ========================= */}
           <form
-            className={`absolute top-0 w-full transition-all duration-300 ease-linear ${
-              step === 1 ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-100%"
+            className={`absolute top-0 w-full transition-all duration-300 ${
+              step === 1
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 -translate-x-100%"
             }`}
+            onSubmit={(e) => e.preventDefault()}
           >
-            {/* EMAIL */}
-            <div className="flex flex-col">
-              <label className="h-600 bg-background flex items-center py-150 border-0125 border-border px-0">
-                <i className="ab-icon mr-150 text-size-800 ab-mail"></i>
-                <input
-                  placeholder="Enter your email"
-                  autoComplete="off"
-                  name="email"
-                  className="outline-none bg-transparent flex-1 text-text-primary placeholder:text-text-subtlest"
-                />
-              </label>
-            </div>
+            <label className="h-600 bg-background flex items-center py-150 rounded-050 border-0125 border-border transition-all duration-200 focus-within:border-cbr-50 rounded-none px-0 border-x-none border-t-none focus-within:shadow-t-none cursor-text">
+              <i className="ab-icon mr-150 text-size-800 ab-mail" />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setStep1Error("");
+                }}
+                placeholder="Enter your email"
+                className="flex-1 bg-transparent outline-none"
+              />
+            </label>
 
-            {/* DISPLAY NAME */}
-            <div className="flex flex-col mt-400">
-              <label className="h-600 bg-background flex items-center py-150 border-0125 border-border px-0">
-                <i className="ab-icon mr-150 text-size-800 ab-admin"></i>
-                <input
-                  placeholder="Your display name"
-                  autoComplete="off"
-                  name="displayName"
-                  className="outline-none bg-transparent flex-1 text-text-primary placeholder:text-text-subtlest"
-                />
-              </label>
-              <span className="mt-050 text-text-subtlest ui-text-x-small">Example: John</span>
-            </div>
-
-            {/* CHECKBOX */}
-            <div className="flex items-start mt-400">
-              <div className="group/toggleCheck flex items-center mr-075">
-                <div className="flex items-center rounded-075 p-025 h-250 w-250">
-                  <div className="rounded-050 border-025 border-cbr-30 bg-toggle-background-active w-full h-full"></div>
+            <label className="h-600 bg-background flex items-center py-150 rounded-050 border-0125 border-border transition-all duration-200 focus-within:border-cbr-50 rounded-none px-0 border-x-none border-t-none focus-within:shadow-t-none cursor-text mt-400">
+              <i className="ab-icon mr-150 text-size-800 ab-admin" />
+              <input
+                value={displayName}
+                onChange={(e) => {
+                  setDisplayName(e.target.value);
+                  setStep1Error("");
+                }}
+                placeholder="Your display name"
+                className="flex-1 bg-transparent outline-none"
+              />
+            </label>
+            {step1Error && (
+              <div className="mt-200 ui-text-x-small text-icon-system-red text-center">
+                {step1Error}
+              </div>
+            )}
+            <button
+              type="button"
+              onClick={handleContinue}
+              className={`group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear lg:disabled:cursor-not-allowed bg-button-primary-background lg:hover:bg-button-primary-background-hovered active:bg-button-primary-background-pressed lg:hover:disabled:bg-button-primary-background-disabled disabled:bg-button-primary-background-disabled border-0125 border-button-primary-background lg:hover:border-button-primary-background-hovered active:border-button-primary-background-pressed lg:hover:disabled:border-button-primary-background-disabled disabled:border-button-primary-background-disabled py-100 px-150 w-full mt-400`}
+            >
+              <span className="button-text-large text-button-primary-text">
+                Continue
+              </span>
+            </button>
+            <Link href="/signin">
+              <div className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear lg:disabled:cursor-not-allowed bg-button-ghost-background lg:hover:bg-button-ghost-background-hovered active:bg-button-ghost-background-pressed lg:hover:disabled:bg-button-ghost-background-disabled disabled:bg-button-ghost-background-disabled border-0125 border-transparent py-100 px-150 w-full mt-200">
+                <span className="select-none text-button-ghost-text group-disabled/ab-button:text-button-ghost-text-disable button-text-large">
+                  Sign in
+                </span>
+                <div className="flex items-center justify-center -z-1 opacity-0 absolute inset-0 ab-btn-loading-wrapper transition-all">
+                  <div className="relative animate-spin flex items-center justify-center w-300 h-300">
+                    <div className="h-050 w-050 rounded-circle absolute left-50% -translate-x-50% top-0 z-1 bg-btn-loading-transparent"></div>
+                  </div>
                 </div>
               </div>
-
-              <span className="ui-text-x-small">
-                I confirm that I am at least 18 years old and agree to{" "}
-                <Link
-                  href="https://docs.amberblocks.com/terms-of-service"
-                  target="_blank"
-                  className="ui-text-x-small-emphasis text-text-highlight"
-                >
-                  AmberBlocks Terms of Service
-                </Link>
-                ,{" "}
-                <Link
-                  href="https://docs.amberblocks.com/"
-                  target="_blank"
-                  className="ui-text-x-small-emphasis text-text-highlight"
-                >
-                  Publisher Terms of Service
-                </Link>
-                , and{" "}
-                <Link
-                  href="https://docs.amberblocks.com/privacy-policy"
-                  target="_blank"
-                  className="ui-text-x-small-emphasis text-text-highlight"
-                >
-                  Privacy Policy
-                </Link>
-              </span>
-            </div>
-
-            <button
-              type="button"
-              onClick={() => setStep(2)}
-              className="group/ab-button w-full mt-400 rounded-050 bg-button-primary-background py-100 px-150"
-            >
-              <span className="text-button-primary-text button-text-large">Continue</span>
-            </button>
+            </Link>
           </form>
 
-          {/* ---------- STEP 2 ---------- */}
+          {/* =========================
+              STEP 2
+          ========================= */}
           <form
-            className={`absolute top-0 w-full transition-all duration-300 ease-linear ${
-              step === 2 ? "opacity-100 translate-x-0" : "opacity-0 translate-x-100%"
+            className={`absolute top-0 w-full transition-all duration-300 ${
+              step === 2
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 translate-x-100%"
             }`}
+            onSubmit={(e) => e.preventDefault()}
           >
-            {/* PASSWORD */}
-            <div className="flex flex-col">
-              <label className="h-600 bg-background flex items-center py-150 border-0125 border-border px-0">
-                <i className="ab-icon mr-150 text-size-800 ab-permission"></i>
-                <input
-                  type="password"
-                  placeholder="Enter password"
-                  className="outline-none bg-transparent flex-1 text-text-primary placeholder:text-text-subtlest"
-                />
-              </label>
+            <label className="h-600 bg-background flex items-center py-150 rounded-050 border-0125 border-border transition-all duration-200 focus-within:border-cbr-50 rounded-none px-0 border-x-none border-t-none focus-within:shadow-t-none cursor-text">
+              <i className="ab-icon mr-150 text-size-800 ab-permission" />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter password"
+                className="flex-1 bg-transparent outline-none"
+              />
+            </label>
+
+            <div className="mt-200 ui-text-x-small">
+              Password must have at least:
             </div>
 
-            <div className="mt-200 ui-text-x-small">Password must have at least:</div>
+            <div className="mt-100">
+              <PasswordRule label="8 characters" valid={passwordRules.length} />
+              <PasswordRule
+                label="1 upper case letter"
+                valid={passwordRules.uppercase}
+              />
+              <PasswordRule label="1 digit" valid={passwordRules.digit} />
+              <PasswordRule
+                label="1 special character"
+                valid={passwordRules.special}
+              />
+            </div>
 
-            {[
-              "8 characters",
-              "1 upper case letter",
-              "1 digit",
-              "1 special character (ex: @, #, $, %, & ,...)"
-            ].map((rule) => (
-              <div key={rule} className="flex items-center py-050">
-                <i className="ab-icon text-size-400 text-border-subtle ab-chevron_check"></i>
-                <span className="ml-100 ui-text-x-small">{rule}</span>
+            <label className="h-600 bg-background flex items-center py-150 rounded-050 border-0125 border-border transition-all duration-200 focus-within:border-cbr-50 rounded-none px-0 border-x-none border-t-none focus-within:shadow-t-none cursor-text mt-400">
+              <i className="ab-icon mr-150 text-size-800 ab-permission" />
+              <input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Re-enter password"
+                className="flex-1 bg-transparent outline-none"
+              />
+            </label>
+
+            {error && (
+              <div className="mt-200 ui-text-x-small text-icon-system-red">
+                {error}
               </div>
-            ))}
-
-            {/* CONFIRM PASSWORD */}
-            <div className="flex flex-col mt-400">
-              <label className="h-600 bg-background flex items-center py-150 border-0125 border-border px-0">
-                <i className="ab-icon mr-150 text-size-800 ab-permission"></i>
-                <input
-                  type="password"
-                  placeholder="Re-enter password"
-                  className="outline-none bg-transparent flex-1 text-text-primary placeholder:text-text-subtlest"
-                />
-              </label>
-            </div>
+            )}
 
             <button
               type="button"
-              onClick={() => setStep(3)}
-              className="group/ab-button w-full mt-400 rounded-050 bg-button-primary-background py-100 px-150"
+              onClick={handleSignup}
+              className={`group/ab-button w-full mt-400 rounded-050 py-100 ${
+                canSignup ? "bg-button-primary-background" : "bg-button-primary-background"
+              }`}
             >
-              <span className="text-button-primary-text button-text-large">Sign up</span>
+              <span className="button-text-large text-button-primary-text">
+                {loading ? "Signing up..." : "Sign up"}
+              </span>
             </button>
-          </form>
-
-          {/* ---------- STEP 3 ---------- */}
-          <form
-            className={`absolute top-0 w-full transition-all duration-300 ease-linear ${
-              step === 3 ? "opacity-100 translate-x-0" : "opacity-0 translate-x-200%"
-            }`}
-          >
-            <div className="py-150 ui-text-small">
-              An OTP has been sent to your email address
-              <br />
-              <span className="ui-text-small-emphasis">example@gmail.com</span>
-            </div>
-
-            {/* OTP INPUT */}
-            <div className="flex flex-col mt-400">
-              <label className="h-600 bg-background flex items-center py-150 border-0125 border-border px-0">
-                <input
-                  placeholder="Enter OTP code"
-                  className="outline-none flex-1 text-text-primary placeholder:text-text-subtlest"
-                />
-                <div className="flex-none">52s</div>
-              </label>
-            </div>
-
-            <button
-              type="submit"
-              className="group/ab-button w-full mt-400 rounded-050 bg-button-primary-background py-100 px-150"
-            >
-              <span className="text-button-primary-text button-text-large">Sign up</span>
-            </button>
+            <Link href="/signin">
+              <div className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear lg:disabled:cursor-not-allowed bg-button-ghost-background lg:hover:bg-button-ghost-background-hovered active:bg-button-ghost-background-pressed lg:hover:disabled:bg-button-ghost-background-disabled disabled:bg-button-ghost-background-disabled border-0125 border-transparent py-100 px-150 w-full mt-200">
+                <span className="select-none text-button-ghost-text group-disabled/ab-button:text-button-ghost-text-disable button-text-large">
+                  Sign in
+                </span>
+                <div className="flex items-center justify-center -z-1 opacity-0 absolute inset-0 ab-btn-loading-wrapper transition-all">
+                  <div className="relative animate-spin flex items-center justify-center w-300 h-300">
+                    <div className="h-050 w-050 rounded-circle absolute left-50% -translate-x-50% top-0 z-1 bg-btn-loading-transparent"></div>
+                  </div>
+                </div>
+              </div>
+            </Link>
           </form>
         </div>
-
-        {/* LINK TO SIGNIN */}
-        <Link href="/signin">
-          <button className="group/ab-button w-full mt-200 rounded-050 bg-button-ghost-background py-100 px-150">
-            <span className="button-text-large text-button-ghost-text">Sign in</span>
-          </button>
-        </Link>
       </div>
     </div>
   );
