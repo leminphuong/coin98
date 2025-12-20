@@ -5,13 +5,19 @@ import { useSearch } from "@/components/SearchContext";
 import { useLocale } from "@/components/useLocale";
 import { usePathname } from "next/navigation";
 import SigninButton from "@/components/SigninButton";
+import { useAuthUser } from "@/hooks/useAuthUser";
 
 interface MenuHeaderProps {
   isSidebarOpen: boolean;
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
   locale: "vi" | "en";
 }
-
+type AuthorInfo = {
+  id: number;
+  slug: string;
+  name: string;
+  bio?: string;
+};
 export default function MenuHeader({
   isSidebarOpen,
   setIsSidebarOpen,
@@ -46,6 +52,9 @@ export default function MenuHeader({
 
   const { isSearchOpen, setIsSearchOpen } = useSearch();
   const [isOpen, setIsOpen] = useState(false);
+  const { user, isLoggedIn, logout } = useAuthUser();
+  const [open, setOpen] = useState(false);
+  const [author, setAuthor] = useState<AuthorInfo | null>(null);
 
   return (
     <>
@@ -257,15 +266,43 @@ export default function MenuHeader({
 
                       <div className="bg-divider h-0125 w-full my-050"></div>
 
-                      {/* SIGN IN */}
-                      <Link className="lg:ml-150" href="/signin">
-                        <button className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear bg-button-ghost-background py-100 px-150 lg:hidden">
-                          <i className="ab-icon !not-italic text-button-ghost-icon mr-100 text-size-600 ab-signin"></i>
-                          <span className="select-none text-button-ghost-text ui-text-large">
-                            Sign in
-                          </span>
-                        </button>
-                      </Link>
+                      {!isLoggedIn ? (
+                        /* =====================
+     CHƯA ĐĂNG NHẬP
+  ===================== */
+                        <Link className="lg:ml-150" href="/signin">
+                          <button className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear bg-button-ghost-background py-100 px-150 lg:hidden">
+                            <i className="ab-icon !not-italic text-button-ghost-icon mr-100 text-size-600 ab-signin"></i>
+                            <span className="select-none text-button-ghost-text ui-text-large">
+                              Sign in
+                            </span>
+                          </button>
+                        </Link>
+                      ) : (
+                        /* =====================
+     ĐÃ ĐĂNG NHẬP
+  ===================== */
+                        <div >
+                          <Link
+                            className="text-text-primary ui-text-large"
+                            href="/profile"
+                          >
+                            <p className="px-200 py-150">Profile</p>
+                          </Link>
+
+                          {/* SIGN OUT */}
+                          <button
+                            onClick={logout}
+                            className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear bg-button-ghost-background border-0125 border-transparent py-100 px-150 w-fit"
+                          >
+                            <i className="ab-icon !not-italic text-button-ghost-icon mr-100 text-size-600 ab-signout"></i>
+                            <span className="select-none text-button-ghost-text button-text-large !text-text-primary !ui-text-large md:hidden">
+                              Sign out
+                            </span>
+                          </button>
+                          {/* PROFILE */}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

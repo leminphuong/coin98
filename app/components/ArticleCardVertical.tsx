@@ -42,7 +42,7 @@ export default function ArticleCardVertical({
         {/* READ TIME + ICONS */}
         <div className="h-400 items-center justify-between mt-150 lg:flex hidden">
           <ArticleReadTime readTime={readTime} />
-          <ArticleActions />
+          <ArticleActions slug={slug} />
         </div>
       </div>
     </Link>

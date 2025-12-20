@@ -32,9 +32,9 @@ export default function NotFound() {
       {/* Background Image */}
       <div className="land flex-none h-sp200 md:h-sp264 overflow-hidden relative">
         <img
-          src="https://coin98.net/assets/error/land-lm.svg"
+          src="http://admin.coinjdg.com/wp-content/uploads/2025/12/land-lm.svg"
           alt="land 404 page"
-          className="object-cover"
+          className="object-cover land_404_page"
           sizes="100vw"
         />
       </div>

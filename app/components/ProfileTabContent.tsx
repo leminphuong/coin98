@@ -63,16 +63,16 @@ export default function ProfileTabContent() {
       return <AboutTab />;
 
     case "saved":
-      return <SavedTab posts={author.follow?.saved || []} />;
+      return <SavedTab />;
 
     case "following":
       return <FollowingTab series={author.follow?.series || []} />;
 
     case "learning":
-      return <LearningTab courses={author.learning || []} />;
+      return <LearningTab courses={author.follow?.courses || []} />;
 
     case "history":
-      return <HistoryTab posts={author.history || []} />;
+      return <HistoryTab posts={author.history_posts || []} />;
 
     case "password":
       return <LanguageTab />;

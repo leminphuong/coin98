@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import ArticleActions from "./ArticleActions";
 
 type Author = {
   id: number;
@@ -141,38 +142,7 @@ function PostCard({ post }: { post: PostItem }) {
             </div>
           </div>
 
-          {/* ACTIONS */}
-          <div className="flex items-center">
-            {/* SAVE */}
-            <div className="overflow-hidden relative w-max h-max group/tooltip lg:hover:overflow-visible mr-150">
-              <button
-                type="button"
-                className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear bg-button-ghost-background lg:hover:bg-button-ghost-background-hovered border-0125 border-transparent p-100"
-              >
-                <i className="ab-icon !not-italic text-button-ghost-icon text-size-800 ab-bookmark_outlined" />
-              </button>
-
-              <div className="w-max h-max absolute z-10 overflow-hidden px-075 py-050 text-size-400 rounded-050 border border-tooltip-background bg-tooltip-background text-tooltip-text shadow-elevation-none lg:group-hover/tooltip:shadow-elevation-200 mb-150 bottom-100% translate-y-100 lg:group-hover/tooltip:translate-y-0 left-1/2 -translate-x-1/2">
-                Save
-                <div className="tooltip-arrow" />
-              </div>
-            </div>
-
-            {/* COPY LINK */}
-            <div className="overflow-hidden relative w-max h-max group/tooltip lg:hover:overflow-visible">
-              <button
-                type="button"
-                className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear bg-button-ghost-background lg:hover:bg-button-ghost-background-hovered border-0125 border-transparent p-100"
-              >
-                <i className="ab-icon !not-italic text-button-ghost-icon text-size-800 ab-link" />
-              </button>
-
-              <div className="w-max h-max absolute z-10 overflow-hidden px-075 py-050 text-size-400 rounded-050 border border-tooltip-background bg-tooltip-background text-tooltip-text shadow-elevation-none lg:group-hover/tooltip:shadow-elevation-200 mb-150 bottom-100% translate-y-100 lg:group-hover/tooltip:translate-y-0 left-1/2 -translate-x-1/2">
-                Copy link
-                <div className="tooltip-arrow" />
-              </div>
-            </div>
-          </div>
+         <ArticleActions slug={post.slug} />
         </div>
       </div>
     </Link>
@@ -193,7 +163,7 @@ export default function PostsTab() {
       .then((r) => r.json())
       .then((res) => {
         if (res?.status === "success") {
-          setPosts(res.author.follow?.posts || []);
+          setPosts(res.author.user_posts || []);
           setAuthorName(res.author.name || slug);
         }
       });

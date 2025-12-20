@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import ArticleActions from "../ArticleActions";
 
 type Author = {
   id: number;
@@ -141,38 +142,7 @@ function PostCard({ post }: { post: PostItem }) {
             </div>
           </div>
 
-          {/* ACTIONS */}
-          <div className="flex items-center">
-            {/* SAVE */}
-            <div className="overflow-hidden relative w-max h-max group/tooltip lg:hover:overflow-visible mr-150">
-              <button
-                type="button"
-                className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear bg-button-ghost-background lg:hover:bg-button-ghost-background-hovered border-0125 border-transparent p-100"
-              >
-                <i className="ab-icon !not-italic text-button-ghost-icon text-size-800 ab-bookmark_outlined" />
-              </button>
-
-              <div className="w-max h-max absolute z-10 overflow-hidden px-075 py-050 text-size-400 rounded-050 border border-tooltip-background bg-tooltip-background text-tooltip-text shadow-elevation-none lg:group-hover/tooltip:shadow-elevation-200 mb-150 bottom-100% translate-y-100 lg:group-hover/tooltip:translate-y-0 left-1/2 -translate-x-1/2">
-                Save
-                <div className="tooltip-arrow" />
-              </div>
-            </div>
-
-            {/* COPY LINK */}
-            <div className="overflow-hidden relative w-max h-max group/tooltip lg:hover:overflow-visible">
-              <button
-                type="button"
-                className="group/ab-button relative select-none flex items-center justify-center rounded-050 transition-all duration-200 ease-linear bg-button-ghost-background lg:hover:bg-button-ghost-background-hovered border-0125 border-transparent p-100"
-              >
-                <i className="ab-icon !not-italic text-button-ghost-icon text-size-800 ab-link" />
-              </button>
-
-              <div className="w-max h-max absolute z-10 overflow-hidden px-075 py-050 text-size-400 rounded-050 border border-tooltip-background bg-tooltip-background text-tooltip-text shadow-elevation-none lg:group-hover/tooltip:shadow-elevation-200 mb-150 bottom-100% translate-y-100 lg:group-hover/tooltip:translate-y-0 left-1/2 -translate-x-1/2">
-                Copy link
-                <div className="tooltip-arrow" />
-              </div>
-            </div>
-          </div>
+          <ArticleActions slug={post.slug} />
         </div>
       </div>
     </Link>
@@ -180,56 +150,76 @@ function PostCard({ post }: { post: PostItem }) {
 }
 
 export default function PostsTab() {
+  const AUTH_KEY = "amberblocks_auth_user";
   const { slug } = useParams<{ slug: string }>();
   const [posts, setPosts] = useState<PostItem[]>([]);
   const [authorName, setAuthorName] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [author, setAuthor] = useState<any>(null);
 
   useEffect(() => {
-    if (!slug) return;
+    let resolvedSlug = slug;
+
+    // 👉 fallback localStorage
+    if (!resolvedSlug && typeof window !== "undefined") {
+      try {
+        const raw = localStorage.getItem(AUTH_KEY);
+        if (raw) resolvedSlug = JSON.parse(raw)?.slug;
+      } catch {}
+    }
+
+    if (!resolvedSlug) {
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
 
     fetch(
-      `https://admin.coinjdg.com/wp-json/toan/v1/author?slug=${slug}&lang=vi`
+      `https://admin.coinjdg.com/wp-json/toan/v1/author?slug=${resolvedSlug}&lang=vi`
     )
       .then((r) => r.json())
       .then((res) => {
         if (res?.status === "success") {
-          setPosts(res.author.follow?.posts || []);
-          setAuthorName(res.author.name || slug);
+          const author = res.author;
+
+          setAuthor(author);
+          setPosts(author?.user_posts || []);
+          setAuthorName(author?.name || resolvedSlug);
         }
-      });
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
   }, [slug]);
 
   return (
     <>
-
       {/* LIST */}
       <div className="mt-200">
-        {posts.length === 0 ? (
-          <div className="h-full w-full max-w-w728 mx-auto">
-            {/* HEADER */}
-            <div className="flex items-center px-200 md:px-300 pt-300 md:pt-200">
-              <button
-                className="group/ab-button relative select-none flex items-center justify-center
+        <div className="h-full w-full max-w-w728 mx-auto">
+          {/* HEADER */}
+          <div className="flex items-center px-200 md:px-300 pt-300 md:pt-200">
+            <button
+              className="group/ab-button relative select-none flex items-center justify-center
             rounded-050 transition-all duration-200 ease-linear
             bg-button-tertiary-background
             lg:hover:bg-button-tertiary-background-hovered
             active:bg-button-tertiary-background-pressed
             border-0125 border-button-tertiary-border
             p-050 lg:hidden mr-150"
-              >
-                <i className="ab-icon !not-italic text-button-tertiary-icon w-300 h-300 flex items-center justify-center text-size-400 ab-menu" />
-              </button>
+            >
+              <i className="ab-icon !not-italic text-button-tertiary-icon w-300 h-300 flex items-center justify-center text-size-400 ab-menu" />
+            </button>
 
-              <div className="flex grow flex-col break-words">
-                <span className="ui-text-large-emphasis md:ui-h3-emphasis text-text-primary line-clamp-1">
-                  Contribution
-                </span>
-              </div>
-
-              <div className="min-h-500" />
+            <div className="flex grow flex-col break-words">
+              <span className="ui-text-large-emphasis md:ui-h3-emphasis text-text-primary line-clamp-1">
+                Contribution
+              </span>
             </div>
 
-            {/* EMPTY CONTENT */}
+            <div className="min-h-500" />
+          </div>
+          {posts.length === 0 ? (
             <div className="px-200 md:px-300">
               <div className="bg-background-subtle pb-500 px-1200 pt-200 mt-200 lg:mt-300 flex flex-col items-center">
                 <div className="relative w-1300 aspect-square">
@@ -245,10 +235,10 @@ export default function PostsTab() {
                 </p>
               </div>
             </div>
-          </div>
-        ) : (
-          posts.map((post) => <PostCard key={post.slug} post={post} />)
-        )}
+          ) : (
+            posts.map((post) => <PostCard key={post.slug} post={post} />)
+          )}
+        </div>
       </div>
     </>
   );

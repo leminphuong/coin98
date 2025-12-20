@@ -140,32 +140,7 @@ export default function SinglePostItem({ item }: Props) {
               </div>
             </div>
 
-            {/* Save + Copy Link buttons */}
-            <div className="flex items-center ml-100 h-500">
-              {/* Save button */}
-              <div className="overflow-hidden relative w-max h-max group/tooltip lg:hover:overflow-visible mr-100">
-                <button className="group/ab-button relative select-none flex items-center justify-center rounded-050 bg-button-ghost-background lg:hover:bg-button-ghost-background-hovered border-transparent p-100">
-                  <i className="ab-icon text-button-ghost-icon text-size-800 ab-bookmark_outlined"></i>
-                </button>
-
-                <div className="w-max h-max absolute z-10 overflow-hidden px-075 py-050 text-size-400 rounded-050 border border-tooltip-background bg-tooltip-background text-tooltip-text shadow-elevation-none mt-150 top-100% -translate-y-100 left-1/2 -translate-x-1/2">
-                  Save
-                  <div className="tooltip-arrow" data-popper-arrow="true"></div>
-                </div>
-              </div>
-
-              {/* Copy link */}
-              <div className="overflow-hidden relative w-max h-max group/tooltip lg:hover:overflow-visible">
-                <button className="group/ab-button relative select-none flex items-center justify-center rounded-050 bg-button-ghost-background lg:hover:bg-button-ghost-background-hovered border-transparent p-100">
-                  <i className="ab-icon text-button-ghost-icon text-size-800 ab-link"></i>
-                </button>
-
-                <div className="w-max h-max absolute z-10 overflow-hidden px-075 py-050 text-size-400 rounded-050 border border-tooltip-background bg-tooltip-background text-tooltip-text shadow-elevation-none mt-150 top-100% -translate-y-100 left-1/2 -translate-x-1/2">
-                  Copy link
-                  <div className="tooltip-arrow" data-popper-arrow="true"></div>
-                </div>
-              </div>
-            </div>
+            <ArticleActions slug={item.slug} />
           </div>
 
           {/* ===== TITLE ===== */}
@@ -529,7 +504,7 @@ export default function SinglePostItem({ item }: Props) {
 
                   <div className="hidden lg:flex justify-between">
                     <ArticleReadTime readTime={post.readTime} />
-                    <ArticleActions />
+                    <ArticleActions slug={post.slug} />
                   </div>
                 </div>
               </Link>

@@ -150,7 +150,7 @@ export default async function ReportPage() {
 
                     <div className="hidden lg:flex justify-between">
                       <ArticleReadTime readTime={post.readTime} />
-                      <ArticleActions />
+                      <ArticleActions slug={post.slug} />
                     </div>
                   </div>
                 </Link>

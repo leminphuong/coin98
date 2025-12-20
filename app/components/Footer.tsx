@@ -39,7 +39,7 @@ export default function Footer() {
                 rel="nofollow"
                 className="flex items-center"
                 target="_blank"
-                href="https://www.facebook.com/groups/Coin98.Net"
+                href="https://www.facebook.com/"
               >
                 <i className="ab-icon !not-italic text-size-800 text-icon-subtlest ab-channel_facebook"></i>
               </Link>
@@ -86,7 +86,7 @@ export default function Footer() {
                 <Link
                   rel="nofollow"
                   target="_blank"
-                  href="https://docs.coin98.net/terms-of-service"
+                  href="https://coinjdg.com"
                 >
                   <span className="text-text-subtlest">Terms of Service</span>
                 </Link>
@@ -98,7 +98,7 @@ export default function Footer() {
                 <Link
                   rel="nofollow"
                   target="_blank"
-                  href="https://docs.coin98.net/privacy-policy"
+                  href="https://coinjdg.com"
                 >
                   <span className="text-text-subtlest">Privacy Policy</span>
                 </Link>

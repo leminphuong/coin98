@@ -11,11 +11,55 @@ type Props = {
 export default function FollowingTab({ series }: Props) {
   if (!series || series.length === 0) {
     return (
-      <div className="px-200 md:px-300 py-500 text-center">
-        <p className="ui-text-small text-text-subtlest">
-          You are not following any series yet.
-        </p>
-      </div>
+      <>
+        <div className="flex items-center px-200 md:px-300 py-200">
+          <button className="group/ab-button lg:hidden mr-150 p-050 rounded-050 border-0125 bg-button-tertiary-background">
+            <i className="ab-icon ab-menu text-size-400" />
+          </button>
+
+          <div className="flex grow flex-col break-words">
+            <span className="ui-text-large-emphasis md:ui-h3-emphasis text-text-primary line-clamp-1">
+              Following
+            </span>
+          </div>
+        </div>
+        <div className="flex flex-wrap">
+          <div className="flex items-center justify-center w-full p-500 ab-empty-large">
+            <div className="ab-empty-content w-full flex flex-col items-center justify-center">
+              <div className="empty-img">
+                <img
+                  src="http://admin.coinjdg.com/wp-content/uploads/2025/12/series.svg"
+                  alt="empty-learning"
+                  className="aspect-square object-cover"
+                />
+              </div>
+
+              <div className="ab-empty-message text-text-subtlest break-words whitespace-pre-line text-center mt-150">
+                You haven't followed any series yet.
+                <br />
+                Go explore series and finding your favorite one.{" "}
+              </div>
+
+              <div className="empty-footer flex items-center justify-center mt-300">
+                <Link
+                  href="/series"
+                  className="group/ab-button relative select-none flex items-center justify-center
+              rounded-050 transition-all duration-200 ease-linear
+              bg-button-primary-background
+              lg:hover:bg-button-primary-background-hovered
+              active:bg-button-primary-background-pressed
+              border-0125 border-button-primary-background
+              py-100 px-150"
+                >
+                  <span className="select-none text-button-primary-text button-text-large">
+                    Explore series
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
     );
   }
 
@@ -233,8 +277,7 @@ export default function FollowingTab({ series }: Props) {
                             onClick={(e) => {
                               e.preventDefault();
                               navigator.clipboard.writeText(
-                                item.url ||
-                                  `${window.location.origin}/series/${item.slug}`
+                                `${window.location.origin}/series/${item.slug}`
                               );
                             }}
                             className="group/ab-button relative select-none
