@@ -1,0 +1,14 @@
+npm run build
+pm2 restart coinjdg
+
+
+
+pm2 start cmd --name coinjdg -- /c "npm run start"
+ 
+
+ pm2 save
+
+
+pm2 delete coinjdg
+pm2 start cmd --name coinjdg -- /c "npm run start"
+pm2 save
