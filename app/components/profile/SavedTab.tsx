@@ -224,7 +224,7 @@ export default function PostsTab() {
               <div className="bg-background-subtle pb-500 px-1200 pt-200 mt-200 lg:mt-300 flex flex-col items-center">
                 <div className="relative w-1300 aspect-square">
                   <img
-                    src="http://admin.coinjdg.com/wp-content/uploads/2025/12/channel.svg"
+                    src="https://admin.coinjdg.com/wp-content/uploads/2025/12/channel.svg"
                     alt=""
                     className="w-full h-full object-cover"
                   />

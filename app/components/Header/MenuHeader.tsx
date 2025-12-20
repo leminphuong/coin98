@@ -129,8 +129,8 @@ export default function MenuHeader({
                               alt={locale === "vi" ? "English" : "Vietnamese"}
                               src={
                                 locale === "vi"
-                                  ? "http://admin.coinjdg.com/wp-content/uploads/2025/12/gb.png"
-                                  : "http://admin.coinjdg.com/wp-content/uploads/2025/12/vn.png"
+                                  ? "https://admin.coinjdg.com/wp-content/uploads/2025/12/gb.png"
+                                  : "https://admin.coinjdg.com/wp-content/uploads/2025/12/vn.png"
                               }
                             />
                             <p className="ui-text-small">
@@ -183,7 +183,7 @@ export default function MenuHeader({
                           width="22"
                           height="16"
                           alt="Vietnamese"
-                          src="http://admin.coinjdg.com/wp-content/uploads/2025/12/vn.png"
+                          src="https://admin.coinjdg.com/wp-content/uploads/2025/12/vn.png"
                         />
                         <p className="ml-100 text-text-primary ui-text-small-emphasis">
                           Vietnamese
@@ -195,7 +195,7 @@ export default function MenuHeader({
                           width="22"
                           height="16"
                           alt="English"
-                          src="http://admin.coinjdg.com/wp-content/uploads/2025/12/gb.png"
+                          src="https://admin.coinjdg.com/wp-content/uploads/2025/12/gb.png"
                         />
                         <p className="ml-100 text-text-primary ui-text-small">
                           English
@@ -465,7 +465,7 @@ export default function MenuHeader({
                           alt={locale === "vi" ? "Vietnamese" : "English"}
                           src={
                             locale === "vi"
-                              ? "http://admin.coinjdg.com/wp-content/uploads/2025/12/vn.png"
+                              ? "https://admin.coinjdg.com/wp-content/uploads/2025/12/vn.png"
                               : "https://admin.coinjdg.com/wp-content/uploads/2025/12/gb.png"
                           }
                         />

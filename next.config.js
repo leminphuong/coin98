@@ -5,6 +5,10 @@ const nextConfig = {
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "https://coin.joydigi.net",
+    "http://coinjdg.com",
+    "https://coinjdg.com",
+    "http://www.coinjdg.com",
+    "https://www.coinjdg.com",
   ],
 
   images: {

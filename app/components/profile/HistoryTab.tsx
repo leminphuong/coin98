@@ -38,7 +38,7 @@ export default function HistoryTab({ posts }: Props) {
             <div className="ab-empty-content w-full flex flex-col items-center justify-center">
               <div className="empty-img">
                 <img
-                  src="http://admin.coinjdg.com/wp-content/uploads/2025/12/series.svg"
+                  src="https://admin.coinjdg.com/wp-content/uploads/2025/12/series.svg"
                   alt="empty-learning"
                   className="aspect-square object-cover"
                 />
